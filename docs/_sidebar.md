@@ -1,0 +1,6 @@
+- [Home](/)
+- Módulo 1
+  - [DER](./modulo_01/der.md)
+  - [Dicionário de Dados](./modulo_01/dicionarioDeDados.md)
+  - [Modelo Relacional](./modulo_01/modeloRelacional.md)
+  - [Modelo Entidade Relacionamento](./modulo_01/modeloEntidadeRelacionamento.md)
