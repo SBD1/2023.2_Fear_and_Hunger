@@ -29,7 +29,7 @@ Exploraremos a forma como os dados são organizados e armazenados para dar vida 
 ## Entregas
 
 - Módulo 1
-  - [DER](#)
-  - [Dicionário de Dados](#)
-  - [Modelo Relacional](#)
-  - [Modelo Entidade Relacionamento](#)
+  - [DER](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/der)
+  - [Dicionário de Dados](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/dicionarioDeDados)
+  - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloRelacional)
+  - [Modelo Entidade Relacionamento](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloEntidadeRelacionamento)
