@@ -6,10 +6,10 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 ### Versionamento
 
-| Versão | Data       | Modificação                 | Autor      | Revisor(es) |
-| ------ | ---------- | --------------------------- | ---------- | ----------- |
-| 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima | -           |
-| 1.0    | 24/09/2023 | Criação do modelo de tabela | Pedro Lima | -           |
+| Versão | Data       | Modificação                 | Autor                               | Revisor(es) |
+| ------ | ---------- | --------------------------- | ----------------------------------- | ----------- |
+| 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima                          | -           |
+| 1.1    | 24/09/2023 | Criação do modelo de tabela | Pedro, Matheus, Alexandre, Gabriela | -           |
 
 
 ## Tabela : **Personagem**
