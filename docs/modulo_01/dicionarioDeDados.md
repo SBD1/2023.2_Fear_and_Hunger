@@ -11,22 +11,50 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima                          | -           |
 | 1.1    | 24/09/2023 | Criação do modelo de tabela | Pedro, Matheus, Alexandre, Gabriela | -           |
 
-
 ## Tabela : **Personagem**
 
-|                 |                    |     |     |     |
-| --------------- | ------------------ | --- | --- | --- |
-| **Descrição**   | Personagem jogável |     |     |     |
-| **Observações** | -                  |     |     |     |
+|                 |                    |     |     |     |     |
+| --------------- | ------------------ | --- | --- | --- | --- |
+| **Descrição**   | Personagem jogável |     |     |     |     |
+| **Observações** | -                  |     |     |     |     |
 
-| Nome          | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio     |
-| ------------- | ---------------------------------- | ------------ | ------- | ------------------------- |
-| id            | Identificador único do personagem  | int          | 4       | PK/Identity/Not Null      |
-| id            | Identificador único do personagem  | int          | 4       | PK/Identity/Not Null      |
-| Nome          | Nome do personagem                 | varchar      | 255     | Not Null                  |
-| Ataque        | Valor do atributo de ataque        | int          | 4       | Identificação do jogador. |
-| Defesa        | Valor do atributo de defesa        | int          | 4       | Identificação do jogador. |
-| Defesa Magica | Valor do atributo de defesa magica | int          | 4       | Identificação do jogador. |
-| Agilidade     | Valor do atributo de agilidade     | int          | 4       | Identificação do jogador. |
-| Alma          | Valor do atributo de alma          | int          | 4       | Identificação do jogador. |
-  
+| Nome          | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
+| id            | idPersonagem | Identificador único do personagem  | int          | 4       | PK/Not Null           |
+| Nome          | nome         | Nome do personagem                 | varchar      | 255     | Not Null/Identity     |
+| Ataque        | ataque       | Valor do atributo de ataque        | int          | 4       | Default               |
+| Defesa        | defesa       | Valor do atributo de defesa        | int          | 4       | Default               |
+| Defesa Magica | defesaMagica | Valor do atributo de defesa magica | int          | 4       | Default               |
+| Agilidade     | agilidade    | Valor do atributo de agilidade     | int          | 4       | Default               |
+| Alma          | alma         | Valor do atributo de alma          | int          | 4       | Default               |
+
+## Tabela : **Legível**
+
+|                 |                                                    |     |     |     |
+| --------------- | -------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Item Legível                                       |     |     |     |
+| **Observações** | pergaminhos, livros, notas que liberem habilidades |     |     |     |
+
+| Nome      | Varíavel  | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | --------- | --------------------------------------- | ------------ | ------- | --------------------- |
+| id        | idLegivel | Identificador único do personagem       | int          | 4       | PK/Not Null           |
+| Nome      | nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
+| Descrição | descricao | Informação básica sobre o item legível. | varchar      | 255     | Default               |
+| Conteúdo  | conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
+| Efeito    | efeioto   | Impacto do item quando lido.            | varchar      | 255     | Default               |
+
+## Tabela : **Consumível**
+
+|                 |                                                                       |     |     |     |
+| --------------- | --------------------------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Item Consumível                                                       |     |     |     |
+| **Observações** | podem recuperar HP ou sanidade mental, curar infecções ou sangramento |     |     |     |
+
+| Nome          | Varíavel  | Descrição                              | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | --------- | -------------------------------------- | ------------ | ------- | --------------------- |
+| id            | idLegivel | Identificador único do personagem      | int          | 4       | PK/Not Null           |
+| Nome          | nome      | Nome do item                           | varchar      | 255     | Not Null/Identity     |
+| Conteúdo      | conteudo  | Texto ou informações contidas no item. | varchar      | 255     | Default               |
+| Efeito        | efeito    | Impacto do item quando lido.           | varchar      | 255     | Default               |
+| Cura Sanidade | ad_mente  | Impacto do item quando lido.           | int          | 4       | Default               |
+| Cura Vida     | ad_vida   | Impacto do item quando lido.           | int          | 4       | Default               |
