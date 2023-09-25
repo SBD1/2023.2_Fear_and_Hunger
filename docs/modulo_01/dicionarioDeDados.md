@@ -20,7 +20,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 | Nome          | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
 | ------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
-| id            | idPersonagem | Identificador único de Personagem  | int          | 4       | PK/Not Null           |
+| id Personagem | idPersonagem | Identificador único de Personagem  | int          | 4       | PK/Not Null           |
 | Nome          | nome         | Nome do personagem                 | varchar      | 255     | Not Null/Identity     |
 | Ataque        | ataque       | Valor do atributo de ataque        | int          | 4       | Default               |
 | Defesa        | defesa       | Valor do atributo de defesa        | int          | 4       | Default               |
@@ -70,7 +70,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 | Nome        | Varíavel | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
 | ----------- | -------- | ---------------------------------- | ------------ | ------- | --------------------- |
-| id          | idParte  | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
+| id Parte    | idParte  | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
 | Nome        | nome     | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
 | Tipo        | conteudo | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
 | Vida Máxima | hpMaximo | vida maxima da parte               | int          | 4       | Default               |
@@ -87,6 +87,19 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | id Genital | idGenital | Identificador único de Genital | int          | 4       | PK/Not Null/Identity  |
 | id Parte   | idParte   | Chave estrangeira para Parte   | int          | 4       | FK/Not Null           |
 | Vida       | hp        | vida da parte                  | int          | 4       | Default               |
+
+## Tabela : **Cabeça**
+
+|                 |                        |     |     |     |
+| --------------- | ---------------------- | --- | --- | --- |
+| **Descrição**   | Tipo de Parte do corpo |     |     |     |
+| **Observações** | -                      |     |     |     |
+
+| Nome      | Varíavel | Descrição                     | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | -------- | ----------------------------- | ------------ | ------- | --------------------- |
+| id Cabeça | idCabeca | Identificador único de Cabeça | int          | 4       | PK/Not Null/Identity  |
+| id Parte  | idParte  | Chave estrangeira para Parte  | int          | 4       | FK/Not Null           |
+| Vida      | hp       | vida da parte                 | int          | 4       | Default               |
 
 ## Tabela : **Olho**
 
