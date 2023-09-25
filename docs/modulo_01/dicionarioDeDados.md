@@ -50,11 +50,25 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Consumível                                                       |     |     |     |
 | **Observações** | podem recuperar HP ou sanidade mental, curar infecções ou sangramento |     |     |     |
 
-| Nome          | Varíavel  | Descrição                              | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | --------- | -------------------------------------- | ------------ | ------- | --------------------- |
-| id            | idLegivel | Identificador único do personagem      | int          | 4       | PK/Not Null           |
-| Nome          | nome      | Nome do item                           | varchar      | 255     | Not Null/Identity     |
-| Conteúdo      | conteudo  | Texto ou informações contidas no item. | varchar      | 255     | Default               |
-| Efeito        | efeito    | Impacto do item quando lido.           | varchar      | 255     | Default               |
-| Cura Sanidade | ad_mente  | Impacto do item quando lido.           | int          | 4       | Default               |
-| Cura Vida     | ad_vida   | Impacto do item quando lido.           | int          | 4       | Default               |
+| Nome          | Varíavel     | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ------------ | --------------------------------- | ------------ | ------- | --------------------- |
+| id            | idConsumivel | Identificador único do personagem | int          | 4       | PK/Not Null           |
+| Nome          | nome         | Nome do item                      | varchar      | 255     | Not Null/Identity     |
+| Conteúdo      | conteudo     | O que é contido no item           | varchar      | 255     | Default               |
+| Efeito        | efeito       | Impacto do item quando consumido. | varchar      | 255     | Default               |
+| Cura Sanidade | ad_mente     | Impacto do item quando consumido. | int          | 4       | Default               |
+| Cura Vida     | ad_vida      | Impacto do item quando consumido. | int          | 4       | Default               |
+
+## Tabela : **Parte**
+
+|                 |                                                                     |     |     |     |
+| --------------- | ------------------------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Parte do corpo                                                      |     |     |     |
+| **Observações** | Partes do corpo podem ser arrancadas por diferentes tipos de ataque |     |     |     |
+
+| Nome        | Varíavel | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
+| ----------- | -------- | ---------------------------------- | ------------ | ------- | --------------------- |
+| id          | idParte  | Identificador único do personagem  | int          | 4       | PK/Not Null/Identity  |
+| Nome        | nome     | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
+| Tipo        | conteudo | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
+| Vida Máxima | hpMaximo | vida maxima da parte               | int          | 4       | Default               |
