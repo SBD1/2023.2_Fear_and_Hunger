@@ -72,7 +72,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | ----------- | -------- | ---------------------------------- | ------------ | ------- | --------------------- |
 | id Parte    | idParte  | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
 | Nome        | nome     | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
-| Tipo        | conteudo | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
+| Tipo        | tipo     | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
 | Vida Máxima | hpMaximo | vida maxima da parte               | int          | 4       | Default               |
 
 ## Tabela : **Genital**
