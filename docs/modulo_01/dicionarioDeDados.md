@@ -58,8 +58,8 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | Nome          | nome         | Nome do item                      | varchar      | 255     | Not Null/Identity     |
 | Conteúdo      | conteudo     | O que é contido no item           | varchar      | 255     | Default               |
 | Efeito        | efeito       | Impacto do item quando consumido. | varchar      | 255     | Default               |
-| Cura Sanidade | ad_mente     | Impacto do item quando consumido. | int          | 4       | Default               |
-| Cura Vida     | ad_hp        | Impacto do item quando consumido. | int          | 4       | Default               |
+| Cura Sanidade | adMente      | Impacto do item quando consumido. | int          | 4       | Default               |
+| Cura Vida     | adHp         | Impacto do item quando consumido. | int          | 4       | Default               |
 
 ## Tabela : **Parte**
 
