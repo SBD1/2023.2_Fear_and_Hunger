@@ -51,15 +51,13 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Consumível                                                       |     |     |     |
 | **Observações** | podem recuperar HP ou sanidade mental, curar infecções ou sangramento |     |     |     |
 
-| Nome          | Varíavel     | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | ------------ | --------------------------------- | ------------ | ------- | --------------------- |
-| id Consumível | idConsumivel | Identificador único de Consumível | int          | 4       | PK/Not Null           |
-| id Item       | idItem       | Chave estrangeira para Item       | int          | 4       | FK/Not Null           |
-| Nome          | nome         | Nome do item                      | varchar      | 255     | Not Null/Identity     |
-| Conteúdo      | conteudo     | O que é contido no item           | varchar      | 255     | Default               |
-| Efeito        | efeito       | Impacto do item quando consumido. | varchar      | 255     | Default               |
-| Cura Sanidade | adMente      | Impacto do item quando consumido. | int          | 4       | Default               |
-| Cura Vida     | adHp         | Impacto do item quando consumido. | int          | 4       | Default               |
+| Nome          | Varíavel     | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ------------ | ----------------------------------------- | ------------ | ------- | --------------------- |
+| id Consumível | idConsumivel | Identificador único de Consumível         | int          | 4       | PK/Not Null           |
+| id Item       | idItem       | Chave estrangeira para Item               | int          | 4       | FK/Not Null           |
+| Nome          | nome         | Nome do item                              | varchar      | 255     | Not Null/Identity     |
+| Descrição     | descricao    | Descrição do item consumível e seu efeito | varchar      | 255     | Default               |
+| Efeito        | efeito       | Impacto do item quando consumido.         | varchar      | 255     | Default               |
 
 ## Tabela : **Parte**
 
