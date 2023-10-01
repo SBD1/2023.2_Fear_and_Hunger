@@ -42,7 +42,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | Nome       | nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
 | Descrição  | descricao | Informação básica sobre o item legível. | varchar      | 255     | Default               |
 | Conteúdo   | conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
-| Efeito     | efeioto   | Impacto do item quando lido.            | varchar      | 255     | Default               |
+| Efeito     | efeito    | Impacto do item quando lido.            | varchar      | 255     | Default               |
 
 ## Tabela : **Consumível**
 
