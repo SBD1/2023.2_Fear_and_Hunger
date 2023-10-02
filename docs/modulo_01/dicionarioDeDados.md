@@ -11,7 +11,8 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima                          | -           |
 | 1.1    | 24/09/2023 | Criação do modelo de tabela | Pedro, Matheus, Alexandre, Gabriela | -           |
 | 1.2    | 02/10/2023 | Adicionando tabelas | Matheus | Gabriela |
-| 1.2.1    | 02/10/2023 | Pequenas Correções | Matheus | Gabriela |
+| 1.2.1  | 02/10/2023 | Pequenas Correções | Matheus | Gabriela |
+| 1.3    | 02/10/2023 | Removendo tabelas que foram removidas no MER | Matheus | Gabriela |
 
 
 ## Tabela : **Personagem**
@@ -41,23 +42,12 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 | Nome         | Descrição                                                      | Tipo de Dado | Tamanho | Restrições de domínio  |
 | ------------ | -------------------------------------------------------------- | ------------ | ------- | ---------------------- |
-| idAtaque     | Identificador único do Ataque                                  | int          | 4       | PK/Identity/Not Null   |
-| tipoAtaque  | Tipo de Ataque                                                 | int          | 4       | Check/Not Null/Default |
-| descrição    | Descrição do Ataque                                            | varchar      | 255     | Not Null               |
+| idAtaque     | Identificador único do ataque                                  | int          | 4       | PK/Identity/Not Null   |
+| tipoAtaque  | Tipo de ataque                                                 | int          | 4       | Check/Not Null/Default |
+| descrição    | Descrição do ataque                                            | varchar      | 255     | Not Null               |
 | idHabilidade | Chave estrangeira referenciando o código da tabela Habilidade. | varchar      | 255     | FK/Identity/Not Null   |
-
-
-## Tabela : **Físico**
-
-|                 |                                                    |     |     |     |
-| --------------- | -------------------------------------------------- | --- | --- | --- |
-| **Descrição**   | Armazenará as informações do tipo de Ataque Físico |     |     |     |
-| **Observações** | -                                                  |     |     |     |
-
-| Nome        | Descrição                                                 | Tipo de Dado | Tamanho | Restrições de domínio |
-| ----------- | --------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idAtaque    | Chave estrangeira referenciando o código da tabela Ataque | int          | 4       | FK/Identity/Not Null  |
-| dano_fisico | Dano Físico referente ao ataque                           | int          | 4       | Not Null/Default      |
+| danoFisico | Dano físico referente ao ataque                           | int          | 4       | Not Null/Default      |
+| danoMagico | Dano mágico referente ao ataque                           | int          | 4       | Not Null/Default      |
 
 ## Tabela : **Perna**
 
