@@ -13,10 +13,10 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 ## Tabela : **Personagem**
 
-|                 |                    |     |     |     |     |
-| --------------- | ------------------ | --- | --- | --- | --- |
-| **Descrição**   | Personagem jogável |     |     |     |     |
-| **Observações** | -                  |     |     |     |     |
+|                 |                               |     |     |     |     |
+| --------------- | ----------------------------- | --- | --- | --- | --- |
+| **Descrição**   | Tabela genérica de personagem |     |     |     |     |
+| **Observações** | -                             |     |     |     |     |
 
 | Nome          | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
 | ------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
