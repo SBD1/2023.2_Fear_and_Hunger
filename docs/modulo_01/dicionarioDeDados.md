@@ -10,6 +10,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | ------ | ---------- | --------------------------- | ----------------------------------- | ----------- |
 | 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima                          | -           |
 | 1.1    | 24/09/2023 | Criação do modelo de tabela | Pedro, Matheus, Alexandre, Gabriela | -           |
+| 1.2    | 02/10/2023 | Adicionando tabelas | Matheus | Gabriela |
 
 
 ## Tabela : **Personagem**
@@ -69,6 +70,77 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | idParte | Chave estrangeira referenciando o código da tabela Parte | int          | 4       | FK/Identity/Not Null  |
 | idPerna | Dano Perna referente ao ataque                           | int          | 4       | PK/Identity/Not Null  |
 | hp      | Vida total referente ao membro da perna do personagem    | int          | 4       | Not Null/Default      |
+
+## Tabela : **Braço**
+
+|                 |                                    |     |     |     |
+| --------------- | ---------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazenará as informações da entidade Braço |     |     |     |
+| **Observações** | -                                  |     |     |     |
+
+| Nome    | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------- | -------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Chave estrangeira referenciando o código da tabela Parte | int          | 4       | FK/Identity/Not Null  |
+| idBraco | identificador do braco                          | int          | 4       | PK/Identity/Not Null  |
+| hp      | Vida total atual referente ao braço do personagem    | int          | 4       | Not Null/Default      |
+
+## Tabela : **Item**
+
+|                 |                                    |     |     |     |
+| --------------- | ---------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazenará as informações da entidade Item |     |     |     |
+| **Observações** | -                                  |     |     |     |
+
+| Nome    | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------- | -------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idItem | Chave estrangeira referenciando o código item | int          | 4       | PK/Identity/Not Null  |
+| idInventario | Identificador do inventario que esse item está associado                          | int          | 4       | FK/Identity|
+| descricao | Descrição do item  | varchar | 255       | Not Null/Default      |
+| valor | Quanto vale esse item no lojista  | int          | 4       | Default      |
+| tipo | Qual é o tipo desse item | varchar | 255       | Check/Not Null/Default      |
+
+## Tabela : **Armadura**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazenará as informações do item armadura |     |     |     |
+| **Observações** | -                                    |     |     |     |
+
+| Nome         | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | -------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idItem    | Chave estrangeira referenciando o idItem da entidade Item                         | int          | 4       | FK/Identity/Not Null  |
+| defesa | Quanto de defesa esse item agrega ao personagem | int          | 4       | Not Null/Default  |
+| defesaMagica | Quanto de defesa mágica esse item agrega ao personagem | int  | 4     | Not Null/Default |
+| agilidade | Quanto de agilidade esse item agrega ao personagem | int  | 4     | Not Null/Default |
+
+## Tabela : **Arma**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazenará as informações do item arma |     |     |     |
+| **Observações** | -                                    |     |     |     |
+
+| Nome         | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | -------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idItem    | Chave estrangeira referenciando o idItem da entidade Item                         | int          | 4       | FK/Identity/Not Null  |
+| ataqueFisico | Quanto de dano de ataque fisico essa arma agrega ao personagem | int  | 4  | Not Null/Default  |
+| ataqueMagico | Quanto de dano de ataque magico essa arma agrega ao personagem | int  | 4  | Not Null/Default |
+
+## Tabela : **Acessório**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazenará as informações do item acessório |     |     |     |
+| **Observações** | -                                    |     |     |     |
+
+| Nome         | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | -------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idItem    | Chave estrangeira referenciando o idItem da entidade Item                         | int          | 4       | FK/Identity/Not Null  |
+| defesa | Quanto de defesa esse item agrega ao personagem | int          | 4       | Not Null/Default  |
+| defesaMagica | Quanto de defesa mágica esse item agrega ao personagem | int  | 4     | Not Null/Default |
+| agilidade | Quanto de agilidade esse item agrega ao personagem | int  | 4     | Not Null/Default |
+| ataqueFisico | Quanto de dano de ataque fisico esse acessório agrega ao personagem | int  | 4  | Not Null/Default |
+| ataqueMagico | Quanto de dano de ataque magico esse acessório agrega ao personagem | int  | 4  | Not Null/Default |
 
 
 ## Tabela : **Lojista**
