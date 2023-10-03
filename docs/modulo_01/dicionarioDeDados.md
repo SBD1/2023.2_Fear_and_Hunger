@@ -21,12 +21,12 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Personagem jogável |     |     |     |     |
 | **Observações** | -                  |     |     |     |     |
 
-| Nome          | Varíavel     | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | ------------ | --------------------------------- | ------------ | ------- | --------------------- |
-| id Personagem | idPersonagem | Identificador único de Personagem | int          | 4       | PK/Not Null           |
-| Alma          | alma         | Valor do atributo de alma         | int          | 4       | Default /Not Null     |
-| Local         | agilidade    | Valor do atributo de agilidade    | int          | 4       | Default               |
-| Tipo P        | alma         | Tipo do personagem (PC ou NPC)    | int          | 4       | Default /Not Null     |
+| Nome          | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | --------------------------------- | ------------ | ------- | --------------------- |
+| id Personagem | Identificador único de Personagem | int          | 4       | PK/Not Null           |
+| Alma          | Valor do atributo de alma         | int          | 4       | Default /Not Null     |
+| Local         | Valor do atributo de agilidade    | int          | 4       | Default               |
+| Tipo P        | Tipo do personagem (PC ou NPC)    | int          | 4       | Default /Not Null     |
 
 ## Tabela : **Ataque**
 
