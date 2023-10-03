@@ -22,6 +22,7 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
 ## História
 
 ## Apresentações
+[Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
 
 [Apresentação do Módulo 1](#) <br>
 
