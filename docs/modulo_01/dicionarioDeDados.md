@@ -199,3 +199,58 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | Vida Máxima      | hpMaximo     | vida maxima da parte               | int          | 4       | Default               |
 | Chance de Acerto | hitChance    | chance da parte ser acertada       | int          | 4       | Default               |
 | Vida atual       | hpAtual      | vida atual da parte                | int          | 4       | Default               |
+
+## Tabela : **Inventario**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazena os dados do inventário. |     |     |     |
+| **Observações** | Contem chave estrangeira referenciando Personagem.                                    |     |     |     |
+
+| Nome      | Descrição                        | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | -------------------------------- | ------------ | ------- | --------------------- |
+| idInventario| Código de identificação do inventário. | int        |  4      | PK|
+| idPersonagem| Chave Estrangeira referenciando Personagem. | int        |  4      | FK/Not Null |
+
+
+## Tabela : **Alma**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazena os dados de classe do personagem. |     |     |     |
+| **Observações** | Contem Chave Estrangeira referenciando Personagem.                                    |     |     |     |
+
+| Nome      | Descrição                        | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | -------------------------------- | ------------ | ------- | --------------------- |
+| nome| Identifica a classe do personagem | varchar         |    255    | PK |
+| Personagem| Chave Estrangeira referenciando Personagem. |    int      |    4    | FK/Not Null |
+
+
+## Tabela : **Personagem Jogável**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazena os dados do personagem jogável. |     |     |     |
+| **Observações** | Contem Chave Estrangeiras referenciando acessorio, acessorio2, arma e armadura ainda não listados no modelo relacional.                                 |     |     |     |
+
+| Nome      | Descrição                        | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | -------------------------------- | ------------ | ------- | --------------------- |
+| acessorio1| Chave Estrangeira referenciando o item acessorio. |   int      |   4   | FK |
+| acessorio2| Chave Estrangeira referenciando o item acessorio. |   int      |   4     | FK |
+| arma| Chave Estrangeira referenciando o item arma. |   int       |   4    | FK |
+| armadura| Chave Estrangeira referenciando o item armadura. |  int        |   4    | FK |
+| mente| Código de identificação do atributo mente do personagem. |   int       |  4     | Not Null |
+| corpo| Código de identificação do atributo corpo do personagem |   int       |    4   | Not Null |
+| idPersonagem| Contem Chave Estrangeira referenciando a tabela Coletadas|   int       |    4   | Not Null |
+## Tabela : **Habilidade**
+
+|                 |                                      |     |     |     |
+| --------------- | ------------------------------------ | --- | --- | --- |
+| **Descrição**   | Armazena os dados de habilidades. |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando alma.                                    |     |     |     |
+
+| Nome      | Descrição                        | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | -------------------------------- | ------------ | ------- | --------------------- |
+| idHabilidade| Identificador da habilidade. | int         |    4    | PK|
+| custo| Armazena quantos recursos de mente são necessários para realização de alguma habilidade. | int         |    4    | Not Null/Default |
+| alma| Chave Estrangeira referenciando alma. | int         |    4    | FK |
