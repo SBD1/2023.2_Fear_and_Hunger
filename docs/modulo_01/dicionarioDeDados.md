@@ -36,14 +36,14 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Legível                                       |     |     |     |
 | **Observações** | pergaminhos, livros, notas que liberem habilidades |     |     |     |
 
-| Nome       | Varíavel  | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
-| ---------- | --------- | --------------------------------------- | ------------ | ------- | --------------------- |
-| id Legível | idLegivel | Identificador único de Legível          | int          | 4       | PK/Not Null           |
-| id Item    | idItem    | Chave estrangeira para Item             | int          | 4       | FK/Not Null           |
-| Nome       | nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
-| Descrição  | descricao | Informação básica sobre o item legível. | varchar      | 255     | Default               |
-| Conteúdo   | conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
-| Efeito     | efeito    | Impacto do item quando lido.            | varchar      | 255     | Default               |
+| Nome      | Varíavel  | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | --------- | --------------------------------------- | ------------ | ------- | --------------------- |
+| id Item   | idItem    | Chave estrangeira para Item             | int          | 4       | FK/Not Null           |
+| Nome      | nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
+| Descrição | descricao | Informação básica sobre o item legível. | varchar      | 255     | Default               |
+| Conteúdo  | conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
+| Efeito    | efeito    | Impacto do item quando lido.            | varchar      | 255     | Default               |
+| Valor     | valor     | Valor do item para ser comprado         | varchar      | 255     | Default               |
 
 ## Tabela : **Consumível**
 
@@ -52,13 +52,13 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Consumível                                                       |     |     |     |
 | **Observações** | podem recuperar HP ou sanidade mental, curar infecções ou sangramento |     |     |     |
 
-| Nome          | Varíavel     | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | ------------ | ----------------------------------------- | ------------ | ------- | --------------------- |
-| id Consumível | idConsumivel | Identificador único de Consumível         | int          | 4       | PK/Not Null           |
-| id Item       | idItem       | Chave estrangeira para Item               | int          | 4       | FK/Not Null           |
-| Nome          | nome         | Nome do item                              | varchar      | 255     | Not Null/Identity     |
-| Descrição     | descricao    | Descrição do item consumível e seu efeito | varchar      | 255     | Default               |
-| Efeito        | efeito       | Impacto do item quando consumido.         | varchar      | 255     | Default               |
+| Nome      | Varíavel  | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | --------- | ----------------------------------------- | ------------ | ------- | --------------------- |
+| id Item   | idItem    | Chave estrangeira para Item               | int          | 4       | FK/Not Null           |
+| Nome      | nome      | Nome do item                              | varchar      | 255     | Not Null/Identity     |
+| Descrição | descricao | Descrição do item consumível e seu efeito | varchar      | 255     | Default               |
+| Efeito    | efeito    | Impacto do item quando consumido.         | varchar      | 255     | Default               |
+| Valor     | valor     | Valor do item para ser comprado           | varchar      | 255     | Default               |
 
 ## Tabela : **Parte**
 
@@ -67,9 +67,12 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Parte do corpo                                                      |     |     |     |
 | **Observações** | Partes do corpo podem ser arrancadas por diferentes tipos de ataque |     |     |     |
 
-| Nome        | Varíavel | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
-| ----------- | -------- | ---------------------------------- | ------------ | ------- | --------------------- |
-| id Parte    | idParte  | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
-| Nome        | nome     | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
-| Tipo        | tipo     | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
-| Vida Máxima | hpMaximo | vida maxima da parte               | int          | 4       | Default               |
+| Nome             | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
+| ---------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
+| id Parte         | idParte      | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
+| Nome             | nome         | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
+| Tipo             | tipoParte    | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
+| Id Personagem    | idPersonagem | Chave estrangeira para Personagem  | int          | 4       | FK/Not Null           |
+| Vida Máxima      | hpMaximo     | vida maxima da parte               | int          | 4       | Default               |
+| Chance de Acerto | hitChance    | chance da parte ser acertada       | int          | 4       | Default               |
+| Vida atual       | hpAtual      | vida atual da parte                | int          | 4       | Default               |
