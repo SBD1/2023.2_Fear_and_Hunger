@@ -58,8 +58,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | ------------ | -------------------------------------------------------- | ------------ | ------- | ---------------------- |
 | idItem       | Chave estrangeira referenciando o código item            | int          | 4       | PK/Identity/Not Null   |
 | idInventario | Identificador do inventario que esse item está associado | int          | 4       | FK/Identity            |
-| descricao    | Descrição do item                                        | varchar      | 255     | Not Null/Default       |
-| valor        | Quanto vale esse item no lojista                         | int          | 4       | Default                |
+| lojista      | Identificador do lojista que esse item está associado    | int          | 4       | FK/Identity            |
 | tipo         | Qual é o tipo desse item                                 | varchar      | 255     | Check/Not Null/Default |
 
 ## Tabela : **Armadura**
@@ -75,6 +74,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | defesa       | Quanto de defesa esse item agrega ao personagem           | int          | 4       | Not Null/Default      |
 | defesaMagica | Quanto de defesa mágica esse item agrega ao personagem    | int          | 4       | Not Null/Default      |
 | agilidade    | Quanto de agilidade esse item agrega ao personagem        | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura                                     | varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura                                         | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura                                          | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Arma**
 
@@ -88,6 +90,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | idItem       | Chave estrangeira referenciando o idItem da entidade Item      | int          | 4       | FK/Identity/Not Null  |
 | ataqueFisico | Quanto de dano de ataque fisico essa arma agrega ao personagem | int          | 4       | Not Null/Default      |
 | ataqueMagico | Quanto de dano de ataque magico essa arma agrega ao personagem | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura                                          | varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura                                              | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura                                               | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Acessório**
 
@@ -104,6 +109,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | agilidade    | Quanto de agilidade esse item agrega ao personagem                  | int          | 4       | Not Null/Default      |
 | ataqueFisico | Quanto de dano de ataque fisico esse acessório agrega ao personagem | int          | 4       | Not Null/Default      |
 | ataqueMagico | Quanto de dano de ataque magico esse acessório agrega ao personagem | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura                                               | varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura                                                   | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura                                                    | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Lojista**
 
@@ -137,20 +145,16 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Armazenará as informações de Inimigo |     |     |     |
 | **Observações** | -                                    |     |     |     |
 
-| Nome      | Descrição                       | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | ------------------------------- | ------------ | ------- | --------------------- |
-| idInimigo | Chave primaria única do Inimigo | int          | 4       | PK/Identity/Not Null  |
-
-| Nome          | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
-| id Personagem | idPersonagem | Identificador único de Personagem  | int          | 4       | PK/Not Null           |
-| Nome          | nome         | Nome do personagem                 | varchar      | 255     | Not Null/Identity     |
-| Ataque        | ataque       | Valor do atributo de ataque        | int          | 4       | Default               |
-| Defesa        | defesa       | Valor do atributo de defesa        | int          | 4       | Default               |
-| Defesa Magica | defesaMagica | Valor do atributo de defesa magica | int          | 4       | Default               |
-| Agilidade     | agilidade    | Valor do atributo de agilidade     | int          | 4       | Default               |
-| Alma          | alma         | Valor do atributo de alma          | int          | 4       | Default               |
-| Tipo          | tipoP        | Tipo de Personagem (generalização) | int          | 4       | Default               |
+| Nome          | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ---------------------------------- | ------------ | ------- | --------------------- |
+| id Personagem | Identificador único de Personagem  | int          | 4       | PK/Not Null           |
+| Nome          | Nome do personagem                 | varchar      | 255     | Not Null/Identity     |
+| Ataque        | Valor do atributo de ataque        | int          | 4       | Default               |
+| Defesa        | Valor do atributo de defesa        | int          | 4       | Default               |
+| Defesa Magica | Valor do atributo de defesa magica | int          | 4       | Default               |
+| Agilidade     | Valor do atributo de agilidade     | int          | 4       | Default               |
+| Alma          | Valor do atributo de alma          | int          | 4       | Default               |
+| Tipo          | Tipo de Personagem (generalização) | int          | 4       | Default               |
 
 ## Tabela : **Legível**
 
@@ -159,14 +163,14 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Legível                                       |     |     |     |
 | **Observações** | pergaminhos, livros, notas que liberem habilidades |     |     |     |
 
-| Nome      | Varíavel  | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | --------- | --------------------------------------- | ------------ | ------- | --------------------- |
-| id Item   | idItem    | Chave estrangeira para Item             | int          | 4       | FK/Not Null           |
-| Nome      | nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
-| Descrição | descricao | Informação básica sobre o item legível. | varchar      | 255     | Default               |
-| Conteúdo  | conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
-| Efeito    | efeito    | Impacto do item quando lido.            | varchar      | 255     | Default               |
-| Valor     | valor     | Valor do item para ser comprado         | varchar      | 255     | Default               |
+| Nome      | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | --------------------------------------- | ------------ | ------- | --------------------- |
+| id Item   | Chave estrangeira para Item             | int          | 4       | FK/Not Null           |
+| Nome      | Nome do item                            | varchar      | 255     | Not Null/Identity     |
+| Descrição | Informação básica sobre o item legível. | varchar      | 255     | Default               |
+| Conteúdo  | Texto ou informações contidas no item.  | varchar      | 255     | Default               |
+| Efeito    | Impacto do item quando lido.            | varchar      | 255     | Default               |
+| Valor     | Valor do item para ser comprado         | varchar      | 255     | Default               |
 
 ## Tabela : **Consumível**
 
@@ -175,13 +179,13 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Item Consumível                                                       |     |     |     |
 | **Observações** | podem recuperar HP ou sanidade mental, curar infecções ou sangramento |     |     |     |
 
-| Nome      | Varíavel  | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | --------- | ----------------------------------------- | ------------ | ------- | --------------------- |
-| id Item   | idItem    | Chave estrangeira para Item               | int          | 4       | FK/Not Null           |
-| Nome      | nome      | Nome do item                              | varchar      | 255     | Not Null/Identity     |
-| Descrição | descricao | Descrição do item consumível e seu efeito | varchar      | 255     | Default               |
-| Efeito    | efeito    | Impacto do item quando consumido.         | varchar      | 255     | Default               |
-| Valor     | valor     | Valor do item para ser comprado           | varchar      | 255     | Default               |
+| Nome      | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------- | ----------------------------------------- | ------------ | ------- | --------------------- |
+| id Item   | Chave estrangeira para Item               | int          | 4       | FK/Not Null           |
+| Nome      | Nome do item                              | varchar      | 255     | Not Null/Identity     |
+| Descrição | Descrição do item consumível e seu efeito | varchar      | 255     | Default               |
+| Efeito    | Impacto do item quando consumido.         | varchar      | 255     | Default               |
+| Valor     | Valor do item para ser comprado           | varchar      | 255     | Default               |
 
 ## Tabela : **Parte**
 
@@ -190,12 +194,66 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | **Descrição**   | Parte do corpo                                                      |     |     |     |
 | **Observações** | Partes do corpo podem ser arrancadas por diferentes tipos de ataque |     |     |     |
 
-| Nome             | Varíavel     | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
-| ---------------- | ------------ | ---------------------------------- | ------------ | ------- | --------------------- |
-| id Parte         | idParte      | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
-| Nome             | nome         | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
-| Tipo             | tipoParte    | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
-| Id Personagem    | idPersonagem | Chave estrangeira para Personagem  | int          | 4       | FK/Not Null           |
-| Vida Máxima      | hpMaximo     | vida maxima da parte               | int          | 4       | Default               |
-| Chance de Acerto | hitChance    | chance da parte ser acertada       | int          | 4       | Default               |
-| Vida atual       | hpAtual      | vida atual da parte                | int          | 4       | Default               |
+| Nome             | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio |
+| ---------------- | ---------------------------------- | ------------ | ------- | --------------------- |
+| id Parte         | Identificador único de Parte       | int          | 4       | PK/Not Null/Identity  |
+| Nome             | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
+| Tipo             | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
+| Id Personagem    | Chave estrangeira para Personagem  | int          | 4       | FK/Not Null           |
+| Vida Máxima      | vida maxima da parte               | int          | 4       | Default               |
+| Chance de Acerto | chance da parte ser acertada       | int          | 4       | Default               |
+| Vida atual       | vida atual da parte                | int          | 4       | Default               |
+
+## Tabela : **Inventario**
+
+|                 |                                                    |     |     |     |
+| --------------- | -------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados do inventário.                   |     |     |     |
+| **Observações** | Contem chave estrangeira referenciando Personagem. |     |     |     |
+
+| Nome         | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ------------------------------------------- | ------------ | ------- | --------------------- |
+| idInventario | Código de identificação do inventário.      | int          | 4       | PK                    |
+| idPersonagem | Chave Estrangeira referenciando Personagem. | int          | 4       | FK/Not Null           |
+
+## Tabela : **Alma**
+
+|                 |                                                    |     |     |     |
+| --------------- | -------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados de classe do personagem.         |     |     |     |
+| **Observações** | Contem Chave Estrangeira referenciando Personagem. |     |     |     |
+
+| Nome       | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
+| ---------- | ------------------------------------------- | ------------ | ------- | --------------------- |
+| nome       | Identifica a classe do personagem           | varchar      | 255     | PK                    |
+| Personagem | Chave Estrangeira referenciando Personagem. | int          | 4       | FK/Not Null           |
+
+## Tabela : **Personagem Jogável**
+
+|                 |                                                                                                                         |     |     |     |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados do personagem jogável.                                                                                |     |     |     |
+| **Observações** | Contem Chave Estrangeiras referenciando acessorio, acessorio2, arma e armadura ainda não listados no modelo relacional. |     |     |     |
+
+| Nome         | Descrição                                                 | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | --------------------------------------------------------- | ------------ | ------- | --------------------- |
+| acessorio1   | Chave Estrangeira referenciando o item acessorio.         | int          | 4       | FK                    |
+| acessorio2   | Chave Estrangeira referenciando o item acessorio.         | int          | 4       | FK                    |
+| arma         | Chave Estrangeira referenciando o item arma.              | int          | 4       | FK                    |
+| armadura     | Chave Estrangeira referenciando o item armadura.          | int          | 4       | FK                    |
+| mente        | Código de identificação do atributo mente do personagem.  | int          | 4       | Not Null              |
+| corpo        | Código de identificação do atributo corpo do personagem   | int          | 4       | Not Null              |
+| idPersonagem | Contem Chave Estrangeira referenciando a tabela Coletadas | int          | 4       | Not Null              |
+
+## Tabela : **Habilidade**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados de habilidades.            |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando alma. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idHabilidade | Identificador da habilidade.                                                             | int          | 4       | PK                    |
+| custo        | Armazena quantos recursos de mente são necessários para realização de alguma habilidade. | int          | 4       | Not Null/Default      |
+| alma         | Chave Estrangeira referenciando alma.                                                    | int          | 4       | FK                    |
