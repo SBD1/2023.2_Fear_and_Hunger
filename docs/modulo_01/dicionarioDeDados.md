@@ -47,32 +47,6 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | danoFisico   | Dano físico referente ao ataque                                | int          | 4       | Not Null/Default       |
 | danoMagico   | Dano mágico referente ao ataque                                | int          | 4       | Not Null/Default       |
 
-## Tabela : **Perna**
-
-|                 |                                    |     |     |     |
-| --------------- | ---------------------------------- | --- | --- | --- |
-| **Descrição**   | Armazenará as informações da Perna |     |     |     |
-| **Observações** | -                                  |     |     |     |
-
-| Nome    | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------- | -------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idParte | Chave estrangeira referenciando o código da tabela Parte | int          | 4       | FK/Identity/Not Null  |
-| idPerna | identificador da perna                                   | int          | 4       | PK/Identity/Not Null  |
-| hp      | Vida total referente ao membro da perna do personagem    | int          | 4       | Not Null/Default      |
-
-## Tabela : **Braço**
-
-|                 |                                             |     |     |     |
-| --------------- | ------------------------------------------- | --- | --- | --- |
-| **Descrição**   | Armazenará as informações da entidade Braço |     |     |     |
-| **Observações** | -                                           |     |     |     |
-
-| Nome    | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------- | -------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idParte | Chave estrangeira referenciando o código da tabela Parte | int          | 4       | FK/Identity/Not Null  |
-| idBraco | Identificador do braco                                   | int          | 4       | PK/Identity/Not Null  |
-| hp      | Vida total atual referente ao braço do personagem        | int          | 4       | Not Null/Default      |
-
 ## Tabela : **Item**
 
 |                 |                                            |     |     |     |
