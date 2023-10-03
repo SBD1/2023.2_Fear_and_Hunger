@@ -16,20 +16,17 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 
 ## Tabela : **Personagem**
 
-|                 |                               |     |     |     |     |
-| --------------- | ----------------------------- | --- | --- | --- | --- |
-| **Descrição**   | Tabela genérica de personagem |     |     |     |     |
-| **Observações** | -                             |     |     |     |     |
+|                 |                    |     |     |     |     |
+| --------------- | ------------------ | --- | --- | --- | --- |
+| **Descrição**   | Personagem jogável |     |     |     |     |
+| **Observações** | -                  |     |     |     |     |
 
-| Nome          | Descrição                                               | Tipo de Dado | Tamanho | Restrições de domínio     |
-| ------------- | ------------------------------------------------------- | ------------ | ------- | ------------------------- |
-| idPersonagemF | Identificador único do personagem                       | int          | 4       | PK/Identity/Not Null      |
-| alma          | Chave estrangeira referenciando o código da tabela alma | int          | 4       | FK/Identity/Not Null      |
-| nome          | Nome do personagem                                      | varchar      | 255     | Not Null                  |
-| ataque        | Valor do atributo de ataque                             | int          | 4       | Identificação do jogador. |
-| defesa        | Valor do atributo de defesa                             | int          | 4       | Identificação do jogador. |
-| defesa Magica | Valor do atributo de defesa magica                      | int          | 4       | Identificação do jogador. |
-| agilidade     | Valor do atributo de agilidade                          | int          | 4       | Identificação do jogador. |
+| Nome          | Varíavel     | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ------------ | --------------------------------- | ------------ | ------- | --------------------- |
+| id Personagem | idPersonagem | Identificador único de Personagem | int          | 4       | PK/Not Null           |
+| Alma          | alma         | Valor do atributo de alma         | int          | 4       | Default /Not Null     |
+| Local         | agilidade    | Valor do atributo de agilidade    | int          | 4       | Default               |
+| Tipo P        | alma         | Tipo do personagem (PC ou NPC)    | int          | 4       | Default /Not Null     |
 
 ## Tabela : **Ataque**
 
