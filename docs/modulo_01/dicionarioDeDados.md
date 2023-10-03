@@ -58,8 +58,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | ------------ | -------------------------------------------------------- | ------------ | ------- | ---------------------- |
 | idItem       | Chave estrangeira referenciando o código item            | int          | 4       | PK/Identity/Not Null   |
 | idInventario | Identificador do inventario que esse item está associado | int          | 4       | FK/Identity            |
-| descricao    | Descrição do item                                        | varchar      | 255     | Not Null/Default       |
-| valor        | Quanto vale esse item no lojista                         | int          | 4       | Default                |
+| lojista      | Identificador do lojista que esse item está associado    | int          | 4       | FK/Identity            |
 | tipo         | Qual é o tipo desse item                                 | varchar      | 255     | Check/Not Null/Default |
 
 ## Tabela : **Armadura**
@@ -75,6 +74,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | defesa       | Quanto de defesa esse item agrega ao personagem           | int          | 4       | Not Null/Default      |
 | defesaMagica | Quanto de defesa mágica esse item agrega ao personagem    | int          | 4       | Not Null/Default      |
 | agilidade    | Quanto de agilidade esse item agrega ao personagem        | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura      |   varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura          | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura           | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Arma**
 
@@ -88,6 +90,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | idItem       | Chave estrangeira referenciando o idItem da entidade Item      | int          | 4       | FK/Identity/Not Null  |
 | ataqueFisico | Quanto de dano de ataque fisico essa arma agrega ao personagem | int          | 4       | Not Null/Default      |
 | ataqueMagico | Quanto de dano de ataque magico essa arma agrega ao personagem | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura      |   varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura          | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura           | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Acessório**
 
@@ -104,6 +109,9 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | agilidade    | Quanto de agilidade esse item agrega ao personagem                  | int          | 4       | Not Null/Default      |
 | ataqueFisico | Quanto de dano de ataque fisico esse acessório agrega ao personagem | int          | 4       | Not Null/Default      |
 | ataqueMagico | Quanto de dano de ataque magico esse acessório agrega ao personagem | int          | 4       | Not Null/Default      |
+| descrição    | Descrição da armadura      |   varchar      | 255     | Not Null/Default      |
+| valor        | Valor da armadura          | int          | 4       | Not Null/Default      |
+| nome         | Nome da armadura           | varchar      | 255     | Not Null/Default      |
 
 ## Tabela : **Lojista**
 
