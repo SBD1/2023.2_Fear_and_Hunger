@@ -27,6 +27,7 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | Defesa Magica | defesaMagica | Valor do atributo de defesa magica | int          | 4       | Default               |
 | Agilidade     | agilidade    | Valor do atributo de agilidade     | int          | 4       | Default               |
 | Alma          | alma         | Valor do atributo de alma          | int          | 4       | Default               |
+| Tipo          | tipoP        | Tipo de Personagem (generalização) | int          | 4       | Default               |
 
 ## Tabela : **Legível**
 
@@ -72,42 +73,3 @@ Um dicionário de dados é uma coleção organizada de metadados que descrevem o
 | Nome        | nome     | Nome da parte do corpo             | varchar      | 255     | Not Null/Identity     |
 | Tipo        | tipo     | Tipo de parte (Braço/Perna/Cabeça) | varchar      | 255     | Default               |
 | Vida Máxima | hpMaximo | vida maxima da parte               | int          | 4       | Default               |
-
-## Tabela : **Genital**
-
-|                 |                        |     |     |     |
-| --------------- | ---------------------- | --- | --- | --- |
-| **Descrição**   | Tipo de Parte do corpo |     |     |     |
-| **Observações** | -                      |     |     |     |
-
-| Nome       | Varíavel  | Descrição                      | Tipo de Dado | Tamanho | Restrições de domínio |
-| ---------- | --------- | ------------------------------ | ------------ | ------- | --------------------- |
-| id Genital | idGenital | Identificador único de Genital | int          | 4       | PK/Not Null/Identity  |
-| id Parte   | idParte   | Chave estrangeira para Parte   | int          | 4       | FK/Not Null           |
-| Vida       | hp        | vida da parte                  | int          | 4       | Default               |
-
-## Tabela : **Cabeça**
-
-|                 |                        |     |     |     |
-| --------------- | ---------------------- | --- | --- | --- |
-| **Descrição**   | Tipo de Parte do corpo |     |     |     |
-| **Observações** | -                      |     |     |     |
-
-| Nome      | Varíavel | Descrição                     | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | -------- | ----------------------------- | ------------ | ------- | --------------------- |
-| id Cabeça | idCabeca | Identificador único de Cabeça | int          | 4       | PK/Not Null/Identity  |
-| id Parte  | idParte  | Chave estrangeira para Parte  | int          | 4       | FK/Not Null           |
-| Vida      | hp       | vida da parte                 | int          | 4       | Default               |
-
-## Tabela : **Olho**
-
-|                 |                        |     |     |     |
-| --------------- | ---------------------- | --- | --- | --- |
-| **Descrição**   | Tipo de Parte do corpo |     |     |     |
-| **Observações** | -                      |     |     |     |
-
-| Nome     | Varíavel | Descrição                    | Tipo de Dado | Tamanho | Restrições de domínio |
-| -------- | -------- | ---------------------------- | ------------ | ------- | --------------------- |
-| id Olho  | idOlho   | Identificador único de Olho  | int          | 4       | PK/Not Null/Identity  |
-| id Parte | idParte  | Chave estrangeira para Parte | int          | 4       | FK/Not Null           |
-| Vida     | hp       | vida da parte                | int          | 4       | Default               |
