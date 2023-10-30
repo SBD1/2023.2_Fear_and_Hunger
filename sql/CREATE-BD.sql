@@ -8,14 +8,14 @@ CREATE TABLE Personagem (
 
 -- Tabela Loot
 CREATE TABLE Loot (
-  FOREIGN KEY (local) REFERENCES Local (idLocal),
-  FOREIGN KEY (item) REFERENCES Item (idItem)
+  local INT FOREIGN KEY REFERENCES Local(idLocal),
+  item INT FOREIGN KEY REFERENCES Item (idItem)
 );
 
 -- Tabela Coletadas
 CREATE TABLE Coletadas (
-  FOREIGN KEY (personagem) REFERENCES PersonagemJogavel (idPersonagem),
-  FOREIGN KEY (alma) REFERENCES Alma (nome), 
+  personagem INT FOREIGN KEY REFERENCES PersonagemJogavel(idPersonagem),
+  alma VARCHAR(255) FOREIGN KEY REFERENCES Alma(nome), 
 );
 
 -- Tabela Ataque
@@ -23,7 +23,7 @@ CREATE TABLE Ataque (
   idAtaque INT PRIMARY KEY AUTO_INCREMENT,
   tipoAtaque INT NOT NULL,
   descrição VARCHAR(255) DEFAULT '',
-  FOREIGN KEY(idHabilidade) REFERENCES Habilidade (idHabilidade),
+  idHabilidade INT FOREIGN KEY REFERENCES Habilidade(idHabilidade),
   danoFisico INT DEFAULT 0, 
   danoMagico INT DEFAULT 0
 );
@@ -32,12 +32,12 @@ CREATE TABLE Ataque (
 CREATE TABLE Item (
   idItem INT PRIMARY KEY AUTO_INCREMENT,
   tipo VARCHAR(255) NOT NULL,
-  FOREIGN KEY(idInventario) REFERENCES Inventario (idInventario),
-  FOREIGN KEY(lojista) REFERENCES Lojista (idLojista)
+  idInventario INT FOREIGN KEY REFERENCES Inventario(idInventario),
+  lojista INT FOREIGN KEY REFERENCES Lojista(idLojista)
 
 -- Tabela Armadura
 CREATE TABLE Armadura (
-  FOREIGN KEY (idItem) REFERENCES Item (idItem),
+  idItem INT FOREIGN KEY REFERENCES Item(idItem),
   defesa INT DEFAULT 0, 
   defesaMagica INT DEFAULT 0, 
   agilidade INT DEFAULT 0, 
@@ -48,19 +48,19 @@ CREATE TABLE Armadura (
 
 -- Tabela Local
 CREATE TABLE Local (
-  idLocal PRIMARY KEY AUTO_INCREMENT
+  idLocal INT PRIMARY KEY AUTO_INCREMENT
 );
 
 -- Tabela Estoque
 CREATE TABLE Estoque (
-  FOREIGN KEY (idLojista) REFERENCES Lojista (idLojista),
-  FOREIGN KEY (idItem) REFERENCES Item (idItem)
+  idLojista INT FOREIGN KEY REFERENCES Lojista(idLojista),
+  idItem INT FOREIGN KEY REFERENCES Item(idItem)
 );
 
 
 -- Tabela Arma
 CREATE TABLE Arma (
-  FOREIGN KEY (idItem) REFERENCES Item (idItem), 
+  idItem INT FOREIGN KEY REFERENCES Item(idItem), 
   ataqueFisico INT DEFAULT 0, 
   ataqueMagico INT DEFAULT 0, 
   descrição VARCHAR(255) DEFAULT '',
@@ -70,7 +70,7 @@ CREATE TABLE Arma (
 
 -- Tabela Acessorio
 CREATE TABLE Acessorio (
-  FOREIGN KEY (idItem) REFERENCES Item (idItem),
+  idItem INT FOREIGN KEY REFERENCES Item(idItem),
   defesa INT DEFAULT 0, 
   defesaMagica INT DEFAULT 0, 
   agilidade INT DEFAULT 0, 
@@ -84,7 +84,7 @@ CREATE TABLE Acessorio (
 -- Tabela Lojista
 CREATE TABLE Lojista (
   idLojista INT PRIMARY KEY AUTO_INCREMENT,
-  FOREIGN KEY (idInventario) REFERENCES Inventario (idInventario)
+  idInventario INT FOREIGN KEY REFERENCES Inventario(idInventario)
   agilidade INT DEFAULT 0,
   defesaMagica INT DEFAULT 0,
   defesa INT DEFAULT 0, 
@@ -94,7 +94,7 @@ CREATE TABLE Lojista (
 
 -- Tabela Personagem Não Jogável
 CREATE TABLE PNJ (
-  FOREIGN KEY (idPersonagem) REFERENCES Personagem (idPersonagem),
+  idPersonagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoPnj NOT NULL 
 );
 
@@ -130,13 +130,13 @@ CREATE TABLE Consumivel (
 -- Tabela Inventario
 CREATE TABLE Inventario (
   idInventario INT PRIMARY KEY AUTO_INCREMENT,
-  FOREIGN KEY (idPersonagem) REFERENCES Personagem (idPersonagem)
+  idPersonagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem)
 );
 
 -- Tabela Alma
 CREATE TABLE Alma (
   nome VARCHAR(255) PRIMARY KEY,
-  FOREIGN KEY (personagem) REFERENCES Personagem (idPersonagem)
+  personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem)
 );
 
 -- Tabela Personagem Jogável
@@ -148,24 +148,24 @@ CREATE TABLE PersonagemJogavel (
   ataque INT NOT NULL,
   nome VARCHAR(255) NOT NULL,
   defesaMagica INT NOT NULL,
-  FOREIGN KEY (idPersonagem) REFERENCES Personagem (idPersonagem),  
-  FOREIGN KEY (acessorio1) REFERENCES Item (idItem),
-  FOREIGN KEY (acessorio2) REFERENCES Item (idItem),
-  FOREIGN KEY (Arma) REFERENCES Item (idItem),
-  FOREIGN KEY (Armadura) REFERENCES Item (idItem)    
+  idPersonagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),  
+  acessorio1 INT FOREIGN KEY REFERENCES Item(idItem),
+  acessorio2 INT FOREIGN KEY REFERENCES Item(idItem),
+  Arma INT FOREIGN KEY REFERENCES Item(idItem),
+  Armadura INT FOREIGN KEY REFERENCES Item(idItem)    
 );
 
 -- Tabela Habilidade
 CREATE TABLE Habilidade (
   idHabilidade INT PRIMARY KEY AUTO_INCREMENT,
   custo INT NOT NULL,
-  FOREIGN KEY (alma) REFERENCES Alma (Nome)
+  alma VARCHAR(255) FOREIGN KEY REFERENCES Alma(Nome)
 );
 
 -- Tabela Genital
 CREATE TABLE Genital (
   idParte INT PRIMARY KEY, 
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE Genital (
 -- Tabela Cabeca
 CREATE TABLE Cabeca (
   idParte INT PRIMARY KEY,
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE Cabeca (
 -- Tabela Olho
 CREATE TABLE Olho (
   idParte INT PRIMARY KEY,
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
@@ -195,7 +195,7 @@ CREATE TABLE Olho (
 -- Tabela Braco
 CREATE TABLE Braco (
   idParte INT PRIMARY KEY,
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
@@ -205,7 +205,7 @@ CREATE TABLE Braco (
 -- Tabela Torco
 CREATE TABLE Torco (
   idParte INT PRIMARY KEY,
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
@@ -215,7 +215,7 @@ CREATE TABLE Torco (
 -- Tabela Perna
 CREATE TABLE Perna (
   idParte INT PRIMARY KEY,
-  FOREIGN KEY (Personagem) REFERENCES Personagem (idPersonagem),
+  Personagem INT FOREIGN KEY REFERENCES Personagem(idPersonagem),
   tipoParte INT UNIQUE,
   hpMaximo INT NOT NULL,
   hitChance INT NOT NULL,
