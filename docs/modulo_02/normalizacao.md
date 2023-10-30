@@ -54,4 +54,5 @@
 | --------------- | ------------------ |
 | **Descrição**   | Não pode haver dependência multivalorada, pois causa redundância | 
 | **Resolucao** | Em dependências multivaloradas de forma que A determina de forma multivalorada B, A -> -> B. Dividir a relação R em dois atributos, sendo A U B e R - B. Dessa forma não haverão mais dependências multivaloradas|
+
 **1.** Assim como nos outros casos, não há relação de dependência entre atributos. Sendo assim, não houve necessidade de qualquer alteração. Sendo assim, o modelo está na quarta forma normal.
