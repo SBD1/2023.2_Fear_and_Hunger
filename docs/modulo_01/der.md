@@ -7,6 +7,7 @@
 | 1.0    | 16/09/2023 | Criação do Documento        | Pedro Lima                          | -           |
 | 1.1    | 24/09/2023 | Criação do modelo de tabela | Pedro, Matheus, Alexandre, Gabriela | -           |
 | 1.2    | 01/09/2023 | Atualização do DER          | Pedro, Matheus, Alexandre, Gabriela | -           |
+| 1.3    | 30/10/2023 | Removendo atributos, pequenos ajustes          | Matheus, Gabriela | -           |
 
 ## O que é?
 
