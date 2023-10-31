@@ -23,6 +23,7 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
 
 ## Apresentações
 [Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
+[Apresentação do Módulo 2](https://youtu.be/hq5K7pO5bPs) <br>
 
 
 ## Entregas
@@ -33,7 +34,7 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
   - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloRelacional)
   - [Modelo Entidade Relacionamento](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloEntidadeRelacionamento)
 - Módulo 2 (WIP)
-  - [DDL]()
-  - [DML]()
-  - [Documento Completo SQL]()
+  - [DDL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DDL.sql)
+  - [DML](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DML.sql)
+  - [Documento Completo SQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/pdf)
   
