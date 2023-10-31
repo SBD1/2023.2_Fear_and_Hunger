@@ -33,7 +33,7 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
   - [Dicionário de Dados](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/dicionarioDeDados)
   - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloRelacional)
   - [Modelo Entidade Relacionamento](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloEntidadeRelacionamento)
-- Módulo 2 (WIP)
+- Módulo 2
   - [DDL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DDL.sql)
   - [DML](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DML.sql)
   - [Documento Completo SQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/pdf)
