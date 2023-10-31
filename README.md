@@ -1,6 +1,10 @@
 # Grupo - Fear & Hunger
 
+<div align="center">
+
 <div align="center"><img src= "https://i.imgur.com/dTIta6r.png" height="230" width="auto"/></div>
+
+</div>
 
 ## Alunos
 
@@ -23,8 +27,7 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
 
 ## Apresentações
 [Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
-[Apresentação do Módulo 2](https://youtu.be/rAxV4Q2LYVc?si=-WU7nNxkK6Q6OO8Q) <br>
-
+[Apresentação do Módulo 2](https://www.youtube.com/watch?v=rAxV4Q2LYVc) <br>
 
 ## Entregas
 
