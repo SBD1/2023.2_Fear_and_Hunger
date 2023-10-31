@@ -8,6 +8,7 @@
 | 1.2.1  | 02/10/2023 | Pequenas Correções                           | Matheus                             | Gabriela    |
 | 1.3    | 02/10/2023 | Removendo tabelas que foram removidas no MER | Matheus                             | Gabriela    |
 | 1.4    | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                            | Matheus    |
+| 1.4.1    | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                            | Matheus    |
 
 ## Tabela : **Personagem**
 
@@ -241,3 +242,93 @@
 | idHabilidade | Identificador da habilidade.                                                             | int          | 4       | PK                    |
 | custo        | Armazena quantos recursos de mente são necessários para realização de alguma habilidade. | int          | 4       | NOT NULL      |
 | alma         | Chave Estrangeira referenciando alma.                                                    | int          | 4       | FK                    |
+
+## Tabela : **Genital**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Genital"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte da genital do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
+
+## Tabela : **Cabeça**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Cabeça"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte da cabeça do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
+
+## Tabela : **Olho**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Olho"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte do olho do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
+
+## Tabela : **Braço**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Braço"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte do braço do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
+
+## Tabela : **Torço**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Torço"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte do torço do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
+
+## Tabela : **Perna**
+
+|                 |                                              |     |     |     |
+| --------------- | -------------------------------------------- | --- | --- | --- |
+| **Descrição**   | Armazena os dados da parte do corpo "Perna"           |     |     |     |
+| **Observações** | Contém Chave Estrangeira referenciando a tabela Personagem. |     |     |     |
+
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte | Identificador da parte da perna do personagem                                                             |     int      | 4       | PK                    |
+| Personagem        | Chave estrangeira referenciando a tabela Personagem | int          | 4       | FK      |
+| tipoParte         | Identificador do tipo da parte.                                                    | int         | 4       | UNIQUE                  |
+| hpMaximo       | Quantidade máxima de pontos de vida que a parte possui                                                    |      int     | 4       | NOT NULL                    |
+| hpAtual        | Quantidade de pontos de vida que a parte possui no momento                                                   |     int      | 4       | NOT NULL 
