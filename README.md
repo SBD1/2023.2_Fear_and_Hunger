@@ -1,6 +1,10 @@
 # Grupo - Fear & Hunger
 
-<div align="center"><img src= "https://i.imgur.com/dTIta6r.png" height="230" width="auto"/></div>
+<div align="center">
+
+![Logo e figuras](https://github.com/SBD1/2023.2_Fear_and_Hunger/assets/43069991/d205dd0b-4faa-4cc3-add5-d6ac03dc5298)
+
+</div>
 
 ## Alunos
 
