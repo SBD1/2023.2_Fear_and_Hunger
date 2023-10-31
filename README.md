@@ -36,5 +36,5 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
 - Módulo 2
   - [DDL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DDL.sql)
   - [DML](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DML.sql)
+  - [DQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DQL.sql)
   - [Documento Completo SQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/pdf)
-  
