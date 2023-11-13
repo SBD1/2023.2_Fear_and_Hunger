@@ -4,7 +4,12 @@ Este documento visa auxiliar as nossas correções e feedbacks do professor, al�
 
 ## Mapear todos os conjuntos de entidades (CE)
 **1. Entidade:**
+* **DER:**
+* **Modelo Relacional:**
+
 **2. Entidade:**
+* **DER:**
+* **Modelo Relacional:**
 
 ## Mapear todos os conjuntos de entidades (CE) fracas.
 **1. Entidade fraca:** Personagem e Inventario.
