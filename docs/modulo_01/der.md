@@ -15,4 +15,4 @@ Um DER, ou Diagrama de Entidade-Relacionamento, é uma ferramenta gráfica utili
 
 Em suma, um Diagrama de Entidade-Relacionamento é uma ferramenta essencial no processo de design e modelagem de banco de dados, contribuindo para a organização eficaz e a integridade dos dados em um sistema.
 
-![DER v1.2](./assets/DiagramaEntidadeRelacionamento.drawio.png)
+![DER v1.3](./assets/DER.png)
