@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db:
+    restart: always
+    build:
+      context: .
+      dockerfile: postgres/Dockerfile
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sbd1_database
+    ports:
+      - '5432:5432'
+    networks:
+      - postgres-network
+
+networks:
+  postgres-network:
+    driver: bridge
