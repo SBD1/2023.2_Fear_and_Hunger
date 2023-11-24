@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   db:
     restart: always
@@ -13,6 +14,17 @@ services:
       - '5432:5432'
     networks:
       - postgres-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-container
+    networks:
+      - postgres-network
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      - "80:80"
 
 networks:
   postgres-network:
