@@ -164,62 +164,62 @@ CREATE TABLE Consumivel (
     nome VARCHAR(255) NOT NULL
 );
 
--- Tabela Genital
-CREATE TABLE Genital (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Genital
+-- CREATE TABLE Genital (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
 
--- Tabela Cabeca
-CREATE TABLE Cabeca (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Cabeca
+-- CREATE TABLE Cabeca (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
 
--- Tabela Olho
-CREATE TABLE Olho (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Olho
+-- CREATE TABLE Olho (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
 
--- Tabela Braco
-CREATE TABLE Braco (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Braco
+-- CREATE TABLE Braco (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
 
--- Tabela Torco
-CREATE TABLE Torco (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Torco
+-- CREATE TABLE Torco (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
 
--- Tabela Perna
-CREATE TABLE Perna (
-    idParte SERIAL PRIMARY KEY,
-    Personagem INT REFERENCES Personagem (idPersonagem),
-    tipoParte INT UNIQUE,
-    hpMaximo INT NOT NULL,
-    hitChance INT NOT NULL,
-    hpAtual INT NOT NULL
-);
+-- -- Tabela Perna
+-- CREATE TABLE Perna (
+--     idParte SERIAL PRIMARY KEY,
+--     Personagem INT REFERENCES Personagem (idPersonagem),
+--     tipoParte INT UNIQUE,
+--     hpMaximo INT NOT NULL,
+--     hitChance INT NOT NULL,
+--     hpAtual INT NOT NULL
+-- );
