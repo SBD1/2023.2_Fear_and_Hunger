@@ -5,6 +5,8 @@ INSERT INTO Personagem(alma, local, tipoP) VALUES (2, 1003, 2);
 
 INSERT INTO Personagem(alma, local, tipoP) VALUES (3, 1004, 2);
 
+INSERT INTO Personagem(alma, local, tipoP) VALUES (4, 1005, 2);
+
 -- Entidade Personagem Não Jogável:
 
 INSERT INTO PNJ (idPersonagem, tipoPnj) VALUES (1, 1);
@@ -12,6 +14,12 @@ INSERT INTO PNJ (idPersonagem, tipoPnj) VALUES (1, 1);
 INSERT INTO PNJ (idPersonagem, tipoPnj) VALUES (2, 2);
 
 INSERT INTO PNJ (idPersonagem, tipoPnj) VALUES (3, 3);
+
+
+INSERT INTO PersonagemJogavel 
+(corpo, mente, defesa, agilidade, ataque, nome, defesaMagica, idPersonagem, acessorio1, acessorio2, Arma, Armadura) 
+VALUES 
+(1, 1, 1, 1, 1, 'Nome do Personagem', 1, 4, NULL, NULL, NULL, NULL);
 
 -- Entidade Inventário
 

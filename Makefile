@@ -2,6 +2,8 @@ build:
 		docker-compose -f game/Backend/docker-compose.yml up -d	
 stop:
 		docker-compose -f game/Backend/docker-compose.yml stop
+stop:
+		docker-compose -f game/Backend/docker-compose.yml down
 start:
 		docker-compose -f game/Backend/docker-compose.yml start
 restart:
