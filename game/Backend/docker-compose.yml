@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=sbd1_database
     ports:
-      - '5432:5432'
+      - "5432:5432"
     networks:
       - postgres-network
 
@@ -25,6 +25,24 @@ services:
       PGADMIN_DEFAULT_PASSWORD: adminpassword
     ports:
       - "80:80"
+
+  express-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-api-container
+    restart: always
+    command: npm start
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/sbd1_database
+    ports:
+      - "3000:3000"
+    networks:
+      - postgres-network
+    volumes:
+      - ./src:/usr/src/app/src
 
 networks:
   postgres-network:

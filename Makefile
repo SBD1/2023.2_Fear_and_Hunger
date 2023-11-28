@@ -1,9 +1,14 @@
 build:
-		docker-compose -f game/Backend/docker-compose.yml up -d
-		cd game/Backend && npm run dev
-
+		docker-compose -f game/Backend/docker-compose.yml up -d	
 stop:
-	docker-compose -f game/Backend/docker-compose.yml stop
-
+		docker-compose -f game/Backend/docker-compose.yml stop
+start:
+		docker-compose -f game/Backend/docker-compose.yml start
+restart:
+		docker-compose -f game/Backend/docker-compose.yml stop
+		docker-compose -f game/Backend/docker-compose.yml up -d	
 prune:
-	docker system prune && docker volume prune
+		docker system prune && docker volume prune
+clean:
+		docker-compose -f game/Backend/docker-compose.yml stop
+		docker system prune -a --volumes

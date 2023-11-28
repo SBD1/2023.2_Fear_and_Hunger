@@ -10,7 +10,7 @@ const routes = new Router();
 //Rotas
 
 routes.get('/', (req, res) => {
-    return res.send({ message: 'API Online! 👻' });
+    return res.send({ message: 'API Online! 👻👻👻' });
   });
 
 // Rota Personagem
