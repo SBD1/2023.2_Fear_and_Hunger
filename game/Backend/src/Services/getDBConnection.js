@@ -18,7 +18,6 @@ async function getDBConnection(query, returToCaller = true) {
     if (returToCaller) {
         return resp.rows;
     }
-    return console.log("error");
 };
 
 
