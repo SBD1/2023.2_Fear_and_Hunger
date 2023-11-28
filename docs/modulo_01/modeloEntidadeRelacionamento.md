@@ -1,4 +1,4 @@
-# Modelo Entidade Relacionamento
+# MREL
 
 ### Versionamento
 
