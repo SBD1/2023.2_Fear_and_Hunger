@@ -1,10 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import api from './api'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [data, setData] = useState("")
+
+  const testApi = async () => {
+    const {data} = await api.get("/")
+    setData(data.message);
+  }
+
+  useEffect(() => {
+    testApi()
+  }, [])
+  
 
   return (
     <>
@@ -27,10 +39,10 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
-      <p>aaaaaaaaaaaa</p>
+      </p>      
+      <p>{data}</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
