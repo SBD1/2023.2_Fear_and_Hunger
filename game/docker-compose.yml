@@ -4,7 +4,7 @@ services:
   db:
     restart: always
     build:
-      context: .
+      context: ./Backend
       dockerfile: postgres/Dockerfile
     environment:
       - POSTGRES_USER=postgres
@@ -28,7 +28,7 @@ services:
 
   express-api:
     build:
-      context: .
+      context: ./Backend
       dockerfile: Dockerfile
     container_name: express-api-container
     restart: always
@@ -38,11 +38,27 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/sbd1_database
     ports:
-      - "3000:3000"
+      - "3333:3333"
     networks:
       - postgres-network
     volumes:
-      - ./src:/usr/src/app/src
+      - ./Backend/src:/usr/src/app/src
+  app-vite:
+    container_name: frontend_fear_hunger
+    stdin_open: true
+    tty: true
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./FrontEnd:/usr/src/app
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    command: npm run dev
+    depends_on:
+      - express-api
 
 networks:
   postgres-network:

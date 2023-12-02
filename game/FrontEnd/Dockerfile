@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:14-alpine
+FROM node:latest
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -14,7 +14,8 @@ RUN npm install
 COPY . .
 
 # Expose the port on which the application will run
-EXPOSE 3333
+EXPOSE 5173
 
 # Command to run the application
-CMD ["npm", "start"]
+# CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"];
