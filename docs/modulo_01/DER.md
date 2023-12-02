@@ -28,6 +28,17 @@ Em suma, um Diagrama de Entidade-Relacionamento é uma ferramenta essencial no p
 Durante a disciplina foram geradas várias versões do diagrama entidade-relacionamento, para atender regras de negócio propostas pela equipe e realizar alterações que garantissem a correção dos diagramas conforme o estudo na disciplina e os feedbacks do professor. As versões podem ser acompanhadas logo abaixo.
 
 <details>
+<summary>Clique para apresentar a versão 2.3 do DER</summary>
+
+### DER v2.3
+
+Documentar alteracoes aqui.
+
+![DER v2.3](./assets/DERv/DERv2.3.png)
+
+</details>
+
+<details>
 <summary>Clique para apresentar a versão 2.2 do DER</summary>
 
 ### DER v2.2
