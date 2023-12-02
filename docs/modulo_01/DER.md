@@ -12,6 +12,7 @@
 | 0.6    | 15/11/2023 | Adição da versão 2.0 do DER conforme feedback                                            | Matheus, Gabriela                   |
 | 0.7    | 15/11/2023 | Adição da versão 2.1 do DER                                                              | Matheus, Gabriela                   |
 | 0.8    | 28/11/2023 | Adição da versão 2.2 do DER, correções no versionamento e adições das versões anteriores | Gabriela                            |
+| 0.9    | 02/12/2023 | Adição da versão 2.3 do DER | Gabriela e Matheus|
 
 
 ## O que é?
@@ -20,7 +21,7 @@ Um DER, ou Diagrama de Entidade-Relacionamento, é uma ferramenta gráfica utili
 
 Em suma, um Diagrama de Entidade-Relacionamento é uma ferramenta essencial no processo de design e modelagem de banco de dados, contribuindo para a organização eficaz e a integridade dos dados em um sistema.
 
-![DER v2.2](./assets/DERv/DERv2.2.png)
+![DER v2.3](./assets/DERv/DERv2.3.png)
 
 ### Desenvolvimento do Diagrama Entidade-Relacionamento
 
