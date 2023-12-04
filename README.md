@@ -25,7 +25,6 @@ Exploraremos a forma como os dados são organizados e armazenados para construir
 
 ## Como Rodar o Projeto
 
-[Instruções de como rodar o projeto](https://sbd1.github.io/2023.2_Fear_and_Hunger/game/README.md)
 [Instruções de como rodar o projeto](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/game/README.md)
 
 ## Apresentações
