@@ -13,31 +13,35 @@
 
 ## Tabela : **Regiao**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                |   
+| --------------- | -------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações de cada região existente no jogo |
+| **Observações** |                                                                | 
 
-| Nome         | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ------------------------------------------- | ------------ | ------- | --------------------- |
-|idRegiao      |                                             |              |         |                       |
-|nomeR         |                                             |              |         |                       |
-|descricao     |                                             |              |         |                       |
-|tranca        |                                             |              |         |                       |
-|imgTexto      |                                             |              |         |                       |
+| Nome         | Descrição                                                           | Tipo de Dado | Tamanho | Restrições de domínio                       |
+| ------------ | ------------------------------------------------------------------- | ------------ | ------- | ------------------------------------------- |
+| idRegiao     | Atributo identificador Regiao do jogo que o usuário poderá escolher | SERIAL       | -       | PRIMARY KEY                                 |
+| nomeR        | Atributo que nomeia a região que o usuário poderá escolher          | VARCHAR      | 25      | NOT NULL, UNIQUE* (chave secundária)        |
+| descricao    | Atributo que carrega a descrição daquela região em específico       | TEXT         | -       | NULL*                                       |
+| tranca       | Atributo que verifica se determinada região está trancada ou não    | BOOL         | -       | DEFAULT                                     |
+| imgTexto     | Atributo que carrega o gráfico em imagem texto da região            | TEXT         | -       | NULL*                                       |
+
+*Estudar alterar em create table.
 
 ## Tabela : **Local**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                                            |  
+| --------------- | ------------------------------------------------------------------------------------------ | 
+| **Descrição**   | Tabela que contém informações de cada local que está dentro das regiões existentes no jogo |
+| **Observações** | Possui chave composta que tem chave estrangeira que referencia a tabela Regiao             | 
 
-| Nome             | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| ---------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-|idLocal, idRegiao |                                             |              |         |                       |
-|nomeL             |                                             |              |         |                       |
-|imgTexto          |                                             |              |         |                       |
+| Nome              | Descrição                                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
+| ----------------- | -------------------------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idLocal, idRegiao | Chave composta que identifica a entidade fraca Local que o usuário poderá escolher para navegar no jogo  |              | -       | PRIMARY KEY           |
+| idLocal           | Chave estrangeira que referencia a tabela Regiao                                                         |  SERIAL      | -       |                       |
+| idRegiao          | Chave estrangeira que referencia a tabela Regiao                                                         |  SERIAL      | -       | FOREIGN KEY           |
+| nomeL             | Atributo que nomeia o local que o usuário poderá escolher                                                |  VARCHAR     | 25      | NOT NULL              |
+| imgTexto          | Atributo que carrega o gráfico em imagem texto do local                                                  |  TEXT        | -       | NULL*                 |
 
 ## Tabela : **Personagem**
 
@@ -125,15 +129,15 @@
 
 ## Tabela : **Item**
 
-|                 |                                             |
-| --------------- | ------------------------------------------- |
-| **Descrição**   | Armazenará as informações de todos os itens |
-| **Observações** |                                             | 
+|                 |                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------- |
+| **Descrição**   | Tabela que armazena as informações dos itens relacionados aos tipos de item respectivos |
+| **Observações** | Advém de uma generalização Total Exclusiva de Itens                                     | 
 
 | Nome         | Descrição                                                | Tipo de Dado | Tamanho | Restrições de domínio  |
 | ------------ | -------------------------------------------------------- | ------------ | ------- | ---------------------- |
-| idItem       |                                                          |              |         | PK                     |
-| tipoItem     | Qual é o tipo desse item                                 | varchar      |         | NOT NULL               |
+| idItem       | Atributo identificador do item respectivo                | SERIAL       |         | PK                     |
+| tipoItem     | Qual é o tipo desse item                                 | VARCHAR*     | 25      | NOT NULL               |
 
 ## Tabela : **Acessório**
 
