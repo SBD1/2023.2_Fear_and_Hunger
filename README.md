@@ -23,7 +23,10 @@ Fear & Hunger é um jogo de role-playing sombrio que mergulha os jogadores em um
 
 Exploraremos a forma como os dados são organizados e armazenados para construir uma experiencia de horror com uma dinamica semelhante a da saga original. Buscaremos reproduzir a mecanica de combate com características de RPG, sistema de crafting de itens, interação entre personagens, lojas, entre outros. Aprofundaremos nosso estudo nos esquemas de banco de dados e relacionamentos no contexto desse mundo sombrio, injusto e repleto de horrores inimagináveis.
 
-## História
+## Como Rodar o Projeto
+
+[Instruções de como rodar o projeto](https://sbd1.github.io/2023.2_Fear_and_Hunger/game/README.md)
+[Instruções de como rodar o projeto](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/game/README.md)
 
 ## Apresentações
 [Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
