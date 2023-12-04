@@ -1,0 +1,20 @@
+.container {     
+    width: 960px;
+    height: 90vh;
+    display: flex;
+    /* background-color: blue; */
+    flex-direction: column;
+}
+
+.content {    
+    text-align: start;
+}
+
+.content ul {
+    margin-top: 1rem;
+}
+
+.content li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}

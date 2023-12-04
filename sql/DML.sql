@@ -31,7 +31,7 @@ INSERT INTO PersonagemNaoJogavel(idPnj, tipoPnj) VALUES ('NI06', 'I');
 
 -- Entidade Lojista:
 
-INSERT INTO Lojista(idLojista, agilidade, defesaMagica, defesa, ataque, nome) VALUES('NL01', 11, 40, 15, 40, 'Sinistro');
+INSERT INTO Lojista(idInventario, agilidade, defesaMagica, defesa, ataque, nome) VALUES (1, 10, 5, 20, 15, 'Sinistro');
 
 -- Entidade Inimigo:
 
@@ -101,9 +101,13 @@ INSERT INTO Item (idItem, tipo, idInventario, lojista) VALUES ('CONSU01', 'Chave
 -- Entidade Arma
 
 INSERT INTO Arma (idItem, ataqueFisico, ataqueMagico, descrição, valor, nome) VALUES (1, 10, 0, 'Espada de aço', 100, 'Espada');
+
 INSERT INTO Arma (idItem, ataqueFisico, ataqueMagico, descrição, valor, nome) VALUES (2, 15, 0, 'Machado de batalha', 150, 'Machado');
+
 INSERT INTO Arma (idItem, ataqueFisico, ataqueMagico, descrição, valor, nome) VALUES (3, 20, 0, 'Lança longa de Aço', 200, 'Lança');
+
 INSERT INTO Arma (idItem, ataqueFisico, ataqueMagico, descrição, valor, nome) VALUES (4, 0, 10, 'Bisturi médico', 100, 'Bisturi');
+
 
 
 
