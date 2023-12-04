@@ -2,14 +2,15 @@ CREATE TABLE Regiao (
     idRegiao SERIAL PRIMARY KEY,
     nomeR VARCHAR(25) NOT NULL,
     descricao TEXT DEFAULT '',
-	tranca bool DEFAULT FALSE
+	tranca bool DEFAULT FALSE,
+  imgTexto TEXT DEFAULT '',
 );
 
 CREATE TABLE Local (
     idLocal SERIAL,
 	idRegiao SERIAL REFERENCES Regiao(idRegiao),
     nomeL VARCHAR(25) NOT NULL,
-    imgTexto TEXT,
+    imgTexto TEXT DEFAULT '',
 	CONSTRAINT pk_CE primary key(idLocal, idRegiao)
 );
 
@@ -86,9 +87,6 @@ CREATE TABLE Chave(
 
 CREATE TABLE Personagem(
   idPersonagem SERIAL PRIMARY KEY,
-	local SERIAL,
-	regiao SERIAL,
-  FOREIGN KEY(local, regiao) REFERENCES Local(idLocal, idRegiao),
   tipoP VARCHAR(3) NOT NULL
 );
 
@@ -107,7 +105,10 @@ CREATE TABLE PersonagemJogavel(
   defesaM int DEFAULT 0,
   defesa INT DEFAULT 0,
   atqM INT Default 0,
-  nome text NOT NULL
+  nome text NOT NULL,
+  local SERIAL,
+	regiao SERIAL,
+  FOREIGN KEY(local, regiao) REFERENCES Local(idLocal, idRegiao)
 );
 
 CREATE TABLE PersonagemNaoJogavel(
