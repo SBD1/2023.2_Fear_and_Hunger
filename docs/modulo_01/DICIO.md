@@ -1,15 +1,15 @@
 ### Versionamento
 
-| Versão | Data       | Modificação                                  | Autor                               |
-| ------ | ---------- | -------------------------------------------- | ----------------------------------- |
-| 1.0    | 16/09/2023 | Criação do Documento                         | Pedro Lima                          |
-| 1.1    | 24/09/2023 | Criação do modelo de tabela                  | Pedro, Matheus, Alexandre, Gabriela |
-| 1.2    | 02/10/2023 | Adicionando tabelas                          | Matheus                             |
-| 1.2.1  | 02/10/2023 | Pequenas Correções                           | Matheus                             |
-| 1.3    | 02/10/2023 | Removendo tabelas que foram removidas no MER | Matheus                             |
-| 1.4    | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                       |
-| 1.4.1    | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                     |
-| 1.5    | 02/12/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                       | 
+| Versão | Data       | Modificação                                       | Autor                               |
+| ------ | ---------- | ------------------------------------------------- | ----------------------------------- |
+| 1.0    | 16/09/2023 | Criação do Documento                              | Pedro Lima                          |
+| 1.1    | 24/09/2023 | Criação do modelo de tabela                       | Pedro, Matheus, Alexandre, Gabriela |
+| 1.2    | 02/10/2023 | Adicionando tabelas                               | Matheus                             |
+| 1.2.1  | 02/10/2023 | Pequenas Correções                                | Matheus                             |
+| 1.3    | 02/10/2023 | Removendo tabelas que foram removidas no MER      | Matheus                             |
+| 1.4    | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                            |
+| 1.4.1  | 30/10/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                            |
+| 1.5    | 02/12/2023 | Atualizando tabelas conforme a nova versão do MER | Gabriela                            | 
 
 ## Tabela : **Regiao**
 
@@ -45,30 +45,30 @@
 
 ## Tabela : **Personagem**
 
-|                 |                                                               | 
-| --------------- | --------------------------------------------------------------| 
-| **Descrição**   | Personagem jogável, que o usuário do jogo irá utilizar        |     
-| **Observações** | Contém chaves estrangeiras referenciando tabelas Local e Alma |
+|                 |                                                                                                                                                                     | 
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações de Personagem, tabela de generalização que ramifica para as especializações de Personagem Jogavel e Personagem Nao Jogavel            |     
+| **Observações** | Contém chaves estrangeiras referenciando tabelas Local e Alma                                                                                                       |
 
-| Nome          | Descrição                         | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------- | --------------------------------- | ------------ | ------- | --------------------- |
-| idPersonagem  | Identificador único de Personagem | int          | 4       | PK                    |
-| local         | Valor do atributo de agilidade    | int          | 4       | FK (Local)            |
-| alma          | Valor do atributo de alma         | int          | 4       | FK (Alma)             |
-| tipoP         | Tipo do personagem (PC ou NPC)    | int          | 4       | NOT NULL              |
+| Nome          | Descrição                                                               | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------- | ----------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idPersonagem  | Atributo que carrega identificador único do Personagem                  | SERIAL       | -       | PRIMARY KEY           |
+| local         | Chave estrangeira que referencia a tabela Local                         | SERIAL       | 4       | FOREIGN KEY           |
+| alma          | Chave estrangeira que referencia a tabela Alma                          |              |         | FOREIGN KEY           |
+| tipoP         | Atributo que carrega o tipo da especialização do personagem (PC ou NPC) | VARCHAR      | 3       | NOT NULL              |
 
 ## Tabela : **Habilidade**
 
-|                 |                                                      |  
-| --------------- | ---------------------------------------------------- | 
-| **Descrição**   | Armazena os dados de habilidades                     |
-| **Observações** | Contém chave estrangeira referenciando a tabela Alma | 
+|                 |                                                                                                                                       |  
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações da lista de habilidades, de seus identificadores e respectivos nomes e almas a quais estão relacionadas |
+| **Observações** | Contém chave estrangeira referenciando a tabela Alma                                                                                  | 
 
-| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idHabilidade | Identificador da habilidade.                                                             | int          | 4       | PK                    |
-| alma         | Chave estrangeira referenciando Alma.                                                    | int          | 4       | FK                    |
-| tipoHab      |                                                                                          |              |         |                       |
+| Nome         | Descrição                                                                                      | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | ---------------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idHabilidade | Atributo que carrega identificador único da Habilidade                                         | SERIAL       | -       | PRIMARY KEY           |
+| alma         | Chave estrangeira que referencia a tabela Alma.                                                | VARCHAR*     | 10      | FOREIGN KEY           |
+| tipoHab      | Atributo que carrega o tipo da especialização da habilidade: (P)assiva, (S)uporte ou (A)taque) | VARCHAR      | 1       |                       |
 
 ## Tabela : **Ataque**
 
@@ -77,14 +77,14 @@
 | **Descrição**   | Armazenará as informações de habilidades de ataque         | 
 | **Observações** | Possui chave estrangeira referenciando a tabela Habilidade.|
 
-| Nome         | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio  |
-| ------------ | ------------------------------------------- | ------------ | ------- | ---------------------- |
-| idHabilidade |                                             |              |         |PK, FK (Habilidade)     |  
-| danoFisico   |                                             |              |         |                        |
-| nome         |                                             |              |         |                        |
-| danoMagico   |                                             |              |         |                        |
-| custo        |                                             |              |         |                        |
-| descricao    |                                             |              |         |                        |                             
+| Nome         | Descrição                                                                        | Tipo de Dado | Tamanho | Restrições de domínio     |
+| ------------ | -------------------------------------------------------------------------------- | ------------ | ------- | ------------------------- |
+| idHabilidade | Chave primária da tabela e chave estrangeira que referencia a tabela Habilidade  | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY  |  
+| danoFisico   | Quantidade de ataque físico que a habilidade é capaz de realizar                 | INT          | -       | DEFAULT                   |
+| nome         | Atributo que carrega o nome da habilidade de ataque                              | VARCHAR*     | 30      | NOT NULL                  |
+| danoMagico   | Quantidade de ataque mágico que a habilidade é capaz de realizar                 | INT          | -       | DEFAULT                   |
+| custo        | Quantidade de recurso em mente que é necessário para realizar a habilidade       | INT          |         | DEFAULT                   |
+| descricao    | Atributo que carrega a descrição da habilidade de ataque respectiva              | TEXT         | -       | NULL*                     |                             
 
 ## Tabela : **Passiva**
 
@@ -93,19 +93,19 @@
 | **Descrição**   | Armazenará as informações de habilidades passivas          | 
 | **Observações** | Possui chave estrangeira referenciando a tabela Habilidade.|
 
-| Nome         | Descrição                                                      | Tipo de Dado | Tamanho | Restrições de domínio  |
-| ------------ | -------------------------------------------------------------- | ------------ | ------- | ---------------------- |
-| idHabilidade |                                                                |              |         | PK, FK (Habilidade)    |  
-| adAtqM       |                                                                |              |         |                        |
-| adDefM       |                                                                |              |         |                        |
-| adMenteMax   |                                                                |              |         |                        |
-| adAgil       |                                                                |              |         |                        |
-| adAtq        |                                                                |              |         |                        |
-| adDef        |                                                                |              |         |                        |
-| adHpMax      |                                                                |              |         |                        |
-| nome         |                                                                |              |         |                        |
-| custo        |                                                                |              |         |                        |
-| descricao    |                                                                |              |         |                        |                
+| Nome         | Descrição                                                                                               | Tipo de Dado | Tamanho | Restrições de domínio     |
+| ------------ | ------------------------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------- |
+| idHabilidade | Chave primária da tabela e chave estrangeira que referencia a tabela Habilidade                         | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY  |  
+| adAtqM       | Atributo que guarda a quantidade de ataque mágico pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adDefM       | Atributo que guarda a quantidade de defesa mágica pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adMenteMax   | Atributo que guarda a quantidade de mente pro personagem que a habilidade é capaz de adicionar          | INT          | -       | DEFAULT                   |
+| adAgil       | Atributo que guarda a quantidade de agilidade pro personagem que a habilidade é capaz de adicionar      | INT          | -       | DEFAULT                   |
+| adAtq        | Atributo que guarda a quantidade de ataque físico pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adDef        | Atributo que guarda a quantidade de defesa física pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adHpMax      | Atributo que guarda a quantidade de vida pro personagem que a habilidade é capaz de adicionar no total  | INT          | -       | DEFAULT                   |
+| nome         | Atributo que carrega o nome da habilidade de ataque                                                     | VARCHAR*     | 30      | NOT NULL                  |
+| custo        | Quantidade de recurso em mente que é necessário para realizar a habilidade                              | INT          |         | DEFAULT                   |
+| descricao    | Atributo que carrega a descrição da habilidade de ataque respectiva                                     | TEXT         | -       | NULL*                     |                             
 
 ## Tabela : **Suporte**
 
@@ -114,17 +114,17 @@
 | **Descrição**   | Armazenará as informações de habilidades de suporte        | 
 | **Observações** | Possui chave estrangeira referenciando a tabela Habilidade | 
 
-| Nome         | Descrição                                                      | Tipo de Dado | Tamanho | Restrições de domínio  |
-| ------------ | -------------------------------------------------------------- | ------------ | ------- | ---------------------- |
-| idHabilidade |                                                                |              |         | PK, FK (Habilidade)    |  
-| nome         |                                                                |              |         |                        | 
-| adAtqM       |                                                                |              |         |                        |
-| adDefM       |                                                                |              |         |                        |
-| adAgil       |                                                                |              |         |                        |
-| adHp         |                                                                |              |         |                        |
-| duracao      |                                                                |              |         |                        |
-| custo        |                                                                |              |         |                        |
-| descricao    |                                                                |              |         |                        |
+| Nome         | Descrição                                                                                               | Tipo de Dado | Tamanho | Restrições de domínio     |
+| ------------ | ------------------------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------- |
+| idHabilidade | Chave primária da tabela e chave estrangeira que referencia a tabela Habilidade                         | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY  |  
+| nome         | Atributo que carrega o nome da habilidade de ataque                                                     | VARCHAR*     | 30      | NOT NULL                  |
+| adAtqM       | Atributo que guarda a quantidade de ataque mágico pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adDefM       | Atributo que guarda a quantidade de defesa mágica pro personagem que a habilidade é capaz de adicionar  | INT          | -       | DEFAULT                   |
+| adAgil       | Atributo que guarda a quantidade de agilidade pro personagem que a habilidade é capaz de adicionar      | INT          | -       | DEFAULT                   |
+| adHp         | Atributo que guarda a quantidade de vida pro personagem que a habilidade é capaz de adicionar           | INT          | -       | DEFAULT                   |
+| duracao      | Atributo que guarda os turnos em que a habilidade afetará o personagem                                  | INT          | -       | DEFAULT                   |
+| custo        | Quantidade de recurso em mente que é necessário para realizar a habilidade                              | INT          | -       | DEFAULT                   |
+| descricao    | Atributo que carrega a descrição da habilidade de ataque respectiva                                     | TEXT         | -       | NULL*                     |   
   
 
 ## Tabela : **Item**
