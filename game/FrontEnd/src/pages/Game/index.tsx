@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
 import "./styles.css";
+import ItensForm from "../../components/Loja";
+import TabelaItens, { Inventario } from "../../components/TabelaItens/TabelaItens";
 
 interface Personagem {
-  idpersonagem: number;
-  alma: number;
-  local: number;
-  tipop: number;
+  id_personagem?: number;
+  alma?: number;
+  nome?: string;
+  dinheiro?: number;
+  local?: number;
+  tipop?: number;
 }
 
 const Game = () => {
   const [personagens, setPersonagem] = useState<Personagem[]>([]);
+  const [inventario, setInventario] = useState<Inventario[]>([]);
+  const [item, setItem] = useState<string[]>([]);
 
   const getPersonagem = async () => {
     try {
@@ -21,29 +27,62 @@ const Game = () => {
     }
   };
 
+
+  const getInventario = async () => {
+    try {
+      const { data } = await api.get("/inventario");
+      setInventario(data);
+    } catch (error) {
+      console.error("Erro ao obter personagens:", error);
+    }
+  };
+
+  const getItens = async () => {
+    try {
+      const { data } = await api.get("/lojista");
+      
+      const result = inventario.map((item) => {
+        return data.find((i: { id_item: number; }) => i.id_item === item.id_item).nome;
+      });      
+      console.log(result);
+      setItem(result)
+    } catch (error) {
+      console.error("Erro ao obter personagens:", error);
+    }
+  };
+
   useEffect(() => {
     getPersonagem();
+    getInventario();
+    getItens()
   }, []);
+
+  
 
   return (
     <div className="container">
       <div className="content">
-        <h1>Listagem de Personagens 👻</h1>
-        <ul>
-          {personagens.map((personagem) => (
-            <li key={personagem.idpersonagem}>
-              <strong>ID do Personagem:</strong> {personagem.idpersonagem}
-              <br />
-              <strong>Alma:</strong> {personagem.alma}
-              <br />
-              <strong>Local:</strong> {personagem.local}
-              <br />
-              <strong>Tipo P:</strong> {personagem.tipop}
-              <br />
-              <hr />
-            </li>
-          ))}
-        </ul>
+        <h1>Fear Hunger</h1>
+        <div className="grid">
+          <ul>
+            {personagens.map((personagem) => (
+              <li key={personagem.id_personagem}>
+                <h3>Informações do Personagem</h3>
+                <strong>ID do Personagem:</strong> {personagem.id_personagem}
+                <br />
+                <strong>Nome:</strong> {personagem.nome}
+                <br />
+                <strong>Dinheiro:</strong> {personagem.dinheiro}
+                <br />
+                {/* <strong>Tipo P:</strong> {personagem.tipop} */}
+                <br />
+                <hr />
+              </li>
+            ))}
+          </ul>
+          <ItensForm />
+          <TabelaItens itens={item}/>
+        </div>
       </div>
     </div>
   );
