@@ -141,112 +141,112 @@
 
 ## Tabela : **Acessório**
 
-|                 |                                                         |
-| --------------- | --------------------------------------------------------|
-| **Descrição**   | Armazenará as informações do item tido como "acessório" |
-| **Observações** | Possui chave estrangeira referenciando a tabela Item    |
+|                 |                                                                    |
+| --------------- | ------------------------------------------------------------------ |
+| **Descrição**   | Tabela que armazena as informações dos itens tido como "acessório" |
+| **Observações** | Possui chave estrangeira referenciando a tabela Item               |
 
-| Nome         | Descrição                                                           | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ------------------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idItem       | Chave estrangeira referenciando o idItem da entidade Item           | int          | 4       | PK, FK (Item)         |
-| adAtqM       | Quanto de dano de ataque magico esse acessório agrega ao personagem | int          | 4       | DEFAULT               |
-| adAgil       | Quanto de agilidade esse item agrega ao personagem                  | int          | 4       | DEFAULT               |
-| adDefM       | Quanto de defesa mágica esse item agrega ao personagem              | int          | 4       | DEFAULT               |
-| adDef        | Quanto de defesa esse item agrega ao personagem                     | int          | 4       | DEFAULT               |
-| adAtqF       | Quanto de dano de ataque fisico esse acessório agrega ao personagem | int          | 4       | DEFAULT               |
-| valor        | Valor da armadura                                                   | int          | 4       | DEFAULT               |
-| peso         |                                                                     |              |         |                       |
-| nome         | Nome da armadura                                                    | varchar      | 255     | NOT NULL              |
-| descricao    | Descrição da armadura                                               | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                                | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item     | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| adAtqM       | Atributo que carrega quanto de ataque magico esse acessório agrega ao personagem         | INT          | -       | DEFAULT                  |
+| adAgil       | Atributo que carrega quanto de agilidade esse acessório agrega ao personagem             | INT          | -       | DEFAULT                  |
+| adDefM       | Atributo que carrega quanto de defesa mágica esse acessório agrega ao personagem         | INT          | -       | DEFAULT                  |
+| adDef        | Atributo que carrega quanto de defesa esse acessório agrega ao personagem                | INT          | -       | DEFAULT                  |
+| adAtqF       | Atributo que carrega quanto de ataque físico esse acessório agrega ao personagem         | INT          | -       | DEFAULT                  |
+| valor        | Valor do item para venda e compra                                                        | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                   | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                             | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                        | TEXT         | -       | DEFAULT                  |
 
 ## Tabela : **Armadura**
 
-|                 |                                                        |
-| --------------- | ------------------------------------------------------ |
-| **Descrição**   | Armazenará as informações do item tido como "armadura" |
-| **Observações** | Possui chave estrangeira referenciando a tabela Item   |
+|                 |                                                                   |
+| --------------- | ----------------------------------------------------------------- |
+| **Descrição**   | Tabela que armazena as informações dos itens tido como "armadura" |
+| **Observações** | Possui chave estrangeira referenciando a tabela Item              |
 
-| Nome         | Descrição                                                        | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ---------------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idItem       | Chave estrangeira referenciando o identificador da entidade Item | int          | 4       | PK, FK (Item)         |
-| adAgil       | Quanto de agilidade esse item agrega ao personagem               | int          | 4       | DEFAULT               |
-| adDefM       | Quanto de defesa mágica esse item agrega ao personagem           | int          | 4       | DEFAULT               |
-| adDef        | Quanto de defesa esse item agrega ao personagem                  | int          | 4       | DEFAULT               |
-| valor        | Valor da armadura                                                | int          | 4       | DEFAULT               |
-| peso         |                                                                  |              |         |                       |
-| nome         | Nome da armadura                                                 | varchar      | 255     | NOT NULL              |
-| descricao    | Descrição da armadura                                            | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                              | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | -------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item   | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| adAgil       | Atributo que carrega quanto de agilidade essa armadura agrega ao personagem            | INT          | -       | DEFAULT                  |
+| adDefM       | Atributo que carrega quanto de defesa mágica essa armadura agrega ao personagem        | INT          | -       | DEFAULT                  |
+| adDef        | Atributo que carrega quanto de defesa essa armadura agrega ao personagem               | INT          | -       | DEFAULT                  |
+| valor        | Valor do item para venda e compra                                                      | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                 | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                           | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                      | TEXT         | -       | DEFAULT                  |
 
 ## Tabela : **Legível**
 
-|                 |                                                    |
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   | Item Legível                                       | 
-| **Observações** | -                                                  | 
+|                 |                                                                 |
+| --------------- | --------------------------------------------------------------- | 
+| **Descrição**   | Tabela que armazena as informações dos itens tido como "Legível"| 
+| **Observações** | Possui chave estrangeira referenciando a tabela Item            | 
 
-| Nome      | Descrição                               | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | --------------------------------------- | ------------ | ------- | --------------------- |
-| idItem    | Chave primária para itens legiveis      | int          | 4       | PK, FK (Item)         |
-| conteudo  | Texto ou informações contidas no item.  | varchar      | 255     | DEFAULT               |
-| valor     | Valor do item para ser comprado         | int          | 4       | DEFAULT               |
-| peso      |                                         |              |         |                       |
-| nome      | Nome do item                            | varchar      | 255     | NOT NULL              |
-| descricao | Informação básica sobre o item legível. | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                              | Tipo de Dado | Tamanho | Restrições de domínio |
+| ------------ | -------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item   | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| conteudo     | Texto ou informações contidas no item legível                                          | TEXT*        | -       | DEFAULT                  |
+| valor        | Valor do item para venda e compra                                                      | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                 | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                           | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                      | TEXT         | -       | DEFAULT                  |
 
 
 
 ## Tabela : **Arma**
 
-|                 |                                                           |
-| --------------- | --------------------------------------------------------- |
-| **Descrição**   | Armazenará as informações do item tido como "arma"        | 
-| **Observações** | Possui chave estrangeira referenciando a tabela Item      | 
+|                 |                                                               |
+| --------------- | ------------------------------------------------------------- |
+| **Descrição**   | Tabela que armazena as informações dos itens tido como "Arma" | 
+| **Observações** | Possui chave estrangeira referenciando a tabela Item          | 
 
-| Nome         | Descrição                                                        | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ---------------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idItem       | Chave estrangeira referenciando o identificador da entidade Item | int          | 4       | PK, FK (Item)         |
-| adAtqM       | Quanto de dano de ataque magico essa arma agrega ao personagem   | int          | 4       | DEFAULT               |
-| adAtqF       | Quanto de dano de ataque fisico essa arma agrega ao personagem   | int          | 4       | DEFAULT               |
-| valor        | Valor da armadura                                                | int          | 4       | DEFAULT               |
-| peso         |                                                                  |              |         |                       |
-| nome         | Nome da armadura                                                 | varchar      | 255     | NOT NULL              |
-| descricao    | Descrição da armadura                                            | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                              | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | -------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item   | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| adAtqM       | Atributo que carrega quanto de ataque mágico essa arma agrega ao personagem            | INT          | -       | DEFAULT                  |
+| adAtqF       | Atributo que carrega quanto de ataque físico essa arma agrega ao personagem            | INT          | -       | DEFAULT                  |
+| valor        | Valor do item para venda e compra                                                      | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                 | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                           | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                      | TEXT         | -       | DEFAULT                  |
 
 ## Tabela : **Consumível**
 
-|                 |                                                                                          | 
-| --------------- | ---------------------------------------------------------------------------------------- |
-| **Descrição**   | Item consumível que pode recuperar HP ou sanidade mental, curar infecções ou sangramento |
-| **Observações** |                                                                                          | 
+|                 |                                                                                                                      | 
+| --------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Descrição**   |  Tabela que armazena as informações dos itens tido como "Consumível" que podem recuperar HP ou mente, etc.           |
+| **Observações** |  Possui chave estrangeira referenciando a tabela Item                                                                | 
 
-| Nome      | Descrição                                                                | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | ------------------------------------------------------------------------ | ------------ | ------- | --------------------- |
-| idItem    | Chave primária para itens consumíveis                                    | int          | 4       | PK, FK (Item)         |
-| conteudo  |                                                                          |              |         |                       |
-| adMente   | Quantidade de pontos no atributo mente de personagem que o item adiciona | int          | 4       | NOT NULL              |
-| adDefM    |                                                                          |              |         |                       |
-| adAgil    |                                                                          |              |         |                       |
-| adHp      | Quantidade de HP que o item adiciona                                     | int          | 4       | NOT NULL              |
-| valor     | Valor do item para ser comprado                                          | int          | 4       | DEFAULT               |
-| peso      |                                                                          |              |         |                       |
-| nome      | Nome do item                                                             | varchar      | 255     | NOT NULL              |
-| descricao | Descrição do item consumível e seu efeito                                | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                                          | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | -------------------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item               | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| conteudo     | Texto ou informações contidas no item consumível como pergaminhos utilizáveis                      | TEXT         | -       | DEFAULT                  |
+| adMente      | Atributo que carrega a quantidade de pontos no atributo mente de personagem que o item adiciona    | INT          | -       | DEFAULT                  |
+| adDefM       | Atributo que carrega a quantidade de pontos de defesa mágica que o item adiciona para o personagem | INT          | -       | DEFAULT                  |
+| adAgil       | Atributo que carrega a quantidade de pontos de agilidade que o item adiciona para o personagem     | INT          | -       | DEFAULT                  |
+| adHp         | Quantidade de HP que o item adiciona                                                               | int          | 4       | NOT NULL                 |
+| valor        | Valor do item para venda e compra                                                                  | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                             | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                                       | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                                  | TEXT         | -       | DEFAULT                  |
 
 ## Tabela : **Chave**
 
 |                 |                                                                       |
 | --------------- | --------------------------------------------------------------------- |
-| **Descrição**   |                                                                       | 
-| **Observações** |                                                                       |  
+| **Descrição**   |  Tabela que armazena as informações dos itens tido como "Chave"  | 
+| **Observações** |  Possui chave estrangeira referenciando a tabela Item      |  
 
-| Nome      | Descrição                                 | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------- | ----------------------------------------- | ------------ | ------- | --------------------- |
-| idItem    | Chave primária para a tabela Item         | int          | 4       | PK, FK (Item)         |
-| Regiao    |                                           |              |         | FK (Regiao)           |
-| valor     | Valor do item para ser comprado           | int          | 4       | DEFAULT               |
-| peso      |                                           |              |         |                       |
-| nome      | Nome do item                              | varchar      | 255     | NOT NULL              |
-| descricao |                                           | varchar      | 255     | DEFAULT               |
+| Nome         | Descrição                                                                                          | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | -------------------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idItem       | Chave primária da tabela e chave estrangeira referenciando o idItem da entidade Item               | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| Regiao       | Chave estrangeira que referencia a tabela Regiao                                                   | SERIAL       | -       | FOREIGN KEY              |
+| valor        | Valor do item para venda e compra                                                                  | INT          | -       | DEFAULT                  |
+| peso         | Peso que o item possui                                                                             | INT          | -       | NOT NULL                 |
+| nome         | Nome do item                                                                                       | VARCHAR      | 25      | NOT NULL                 |
+| descricao    | Descrição do item                                                                                  | TEXT         | -       | DEFAULT                  |
 
 ## Tabela : **Personagem Jogável**
 
