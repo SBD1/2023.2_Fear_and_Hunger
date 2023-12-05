@@ -226,7 +226,7 @@
 | adMente      | Atributo que carrega a quantidade de pontos no atributo mente de personagem que o item adiciona    | INT          | -       | DEFAULT                  |
 | adDefM       | Atributo que carrega a quantidade de pontos de defesa mágica que o item adiciona para o personagem | INT          | -       | DEFAULT                  |
 | adAgil       | Atributo que carrega a quantidade de pontos de agilidade que o item adiciona para o personagem     | INT          | -       | DEFAULT                  |
-| adHp         | Quantidade de HP que o item adiciona                                                               | int          | 4       | NOT NULL                 |
+| adHp         | Quantidade de HP que o item adiciona                                                               | int          | -       | NOT NULL                 |
 | valor        | Valor do item para venda e compra                                                                  | INT          | -       | DEFAULT                  |
 | peso         | Peso que o item possui                                                                             | INT          | -       | NOT NULL                 |
 | nome         | Nome do item                                                                                       | VARCHAR      | 25      | NOT NULL                 |
@@ -236,8 +236,8 @@
 
 |                 |                                                                       |
 | --------------- | --------------------------------------------------------------------- |
-| **Descrição**   |  Tabela que armazena as informações dos itens tido como "Chave"  | 
-| **Observações** |  Possui chave estrangeira referenciando a tabela Item      |  
+| **Descrição**   |  Tabela que armazena as informações dos itens tido como "Chave"       | 
+| **Observações** |  Possui chave estrangeira referenciando a tabela Item                 |  
 
 | Nome         | Descrição                                                                                          | Tipo de Dado | Tamanho | Restrições de domínio    |
 | ------------ | -------------------------------------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
@@ -252,26 +252,26 @@
 
 |                 |                                                                     |
 | --------------- | ------------------------------------------------------------------- | 
-| **Descrição**   | Armazena os dados do personagem jogável.                            |
-| **Observações** | Contem Chave Estrangeira referenciando as tabelas Personagem e Item |
+| **Descrição**   | Tabela que contém informações do personagem jogável.                |
+| **Observações** | Possui chave estrangeira referenciando as tabelas Personagem e Item |
 
-| Nome         | Descrição                                                 | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | --------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idPersonagem | Chave Estrangeira referenciando a tabela Personagem       | int          | 4       | PK, FK (Personagem)   |
-| acessorio1   | Chave Estrangeira referenciando a tabela Instancia Item   | int          | 4       | FK (Instancia Item)   |
-| acessorio2   | Chave Estrangeira referenciando a tabela Instancia Item   | int          | 4       | FK (Instancia Item)   |
-| arma         | Chave Estrangeira referenciando a tabela Instancia Item   | int          | 4       | FK (Instancia Item)   |
-| armadura     | Chave Estrangeira referenciando a tabela Instancia Item   | int          | 4       | FK (Instancia Item)   |
-| menteAtual   | Valor do atributo mente do personagem                     | int          | 4       | NOT NULL              |
-| menteMax     | Valor do atributo mente do personagem                     | int          | 4       | NOT NULL              |
-| hpAtual      |                                                           |              |         |                       |
-| hpMax        |                                                           |              |         |                       |
-| atq          | Valor do atributo ataque do personagem                    | int          | 4       | NOT NULL              |
-| agilidade    | Valor do atributo agilidade do personagem                 | int          | 4       | NOT NULL              |
-| defesaM      | Valor do atributo defesa mágica do personagem             | int          | 4       | NOT NULL              |
-| defesa       | Valor do atributo defesa do personagem                    | int          | 4       | NOT NULL              |
-| atqM         |                                                           |              |         |                       |
-| nome         | Nome do personagem                                        | varchar      | 255     | NOT NULL              |
+| Nome         | Descrição                                                           | Tipo de Dado | Tamanho | Restrições de domínio    |
+| ------------ | ------------------------------------------------------------------- | ------------ | ------- | ------------------------ |
+| idPersonagem | Chave Estrangeira referenciando a tabela Personagem                 | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY |
+| acessorio1   | Chave Estrangeira referenciando a tabela Instancia Item             | SERIAL       | -       | FOREIGN KEY              |
+| acessorio2   | Chave Estrangeira referenciando a tabela Instancia Item             | SERIAL       | -       | FOREIGN KEY              |
+| arma         | Chave Estrangeira referenciando a tabela Instancia Item             | SERIAL       | -       | FOREIGN KEY              |
+| armadura     | Chave Estrangeira referenciando a tabela Instancia Item             | SERIAL       | -       | FOREIGN KEY              |
+| menteAtual   | Atributo que carrega o valor da mente atual do personagem           | INT          | -       | NOT NULL                 |
+| menteMax     | Atributo que carrega o valor da mente máxima do personagem          | INT          | -       | NOT NULL                 |
+| hpAtual      | Atributo que carrega o valor da vida atual do personagem            | INT          | -       | NOT NULL                 |
+| hpMax        | Atributo que carrega o valor da vida máxima do personagem           | INT          | -       | NOT NULL                 |
+| atq          | Atributo que carrega o valor de ataque do personagem                | INT          | -       | DEFAULT                  |
+| agilidade    | Atributo que carrega o valor de agilidade do personagem             | INT          | -       | DEFAULT                  |
+| defesaM      | Atributo que carrega o valor de defesa mágica do personagem         | INT          | -       | DEFAULT                  |
+| defesa       | Atributo que carrega o valor de defesa do personagem                | INT          | -       | DEFAULT                  |
+| atqM         | Atributo que carrega o valor de ataque mágico do personagem         | INT          | -       | DEFAULT                  |
+| nome         | Atributo que carrega o nome do personagem                           | VARCHAR*     | 50      | NOT NULL                 |
 
 
 
@@ -279,77 +279,78 @@
 
 |                 |                                                            | 
 | --------------- | ---------------------------------------------------------- |
-| **Descrição**   | Armazenará as informações de Personagem Não Jogável        |
-| **Observações** | Contém chave estrangeira referenciando a tabela Personagem |
+| **Descrição**   | Tabela que contém informações do personagem não jogável.   |
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem |
 
-| Nome         | Descrição                                                                        | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | -------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
-| idPersonagem | Chave estrangeira referenciando o identificador da tabela Personagem             | varchar      | 255     | PK, FK (Personagem)   |
-| tipoPnj      | Atributo que determina o tipo do personagem não jogável, se é lojista ou inimigo | varchar      | 255     | NOT NULL              |
+| Nome         | Descrição                                                                            | Tipo de Dado | Tamanho | Restrições de domínio     |
+| ------------ | ------------------------------------------------------------------------------------ | ------------ | ------- | ------------------------- |
+| idPersonagem | Chave estrangeira referenciando o identificador da tabela Personagem                 | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY  |
+| tipoPnj      | Atributo que determina o tipo do personagem não jogável: se é (L)ojista ou (I)nimigo | VARCHAR      | 1       | NOT NULL                  |
 
 ## Tabela : **Lojista**
 
-|                 |                                                            | 
-| --------------- | ---------------------------------------------------------- | 
-| **Descrição**   | Armazenará as informações da Lojista                       |
-| **Observações** | Contém chave estrangeira referenciando a tabela Inventário | 
+|                 |                                                                         | 
+| --------------- | ----------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações do Lojista                                |
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem Nao Jogavel  | 
 
-| Nome         | Descrição                                                     | Tipo de Dado | Tamanho | Restrições de domínio            |
-| ------------ | ------------------------------------------------------------- | ------------ | ------- | -------------------------------- |
-| idPersonagem | Chave primaria única do lojista                               | int          | 4       | PK, FK (Personagem Nao Jogavel)  |
-| idLocal      | Chave estrangeira referenciando a tabela Local                | int          | 4       | FK                               |
-| fala         |                                                               |              |         |                                  |
-| imgTexto     |                                                               |              |         |                                  |
-| descricao    |                                                               |              |         |                                  |
-| atq          | Valor do atributo de ataque                                   | int          | 4       | DEFAULT                          | 
-| agilidade    | Valor do atributo de agilidade                                | int          | 4       | DEFAULT                          |
-| defM         | Valor do atributo de defesa mágica                            | int          | 4       | DEFAULT                          |
-| def          | Valor do atributo de defesa                                   | int          | 4       | DEFAULT                          | 
-| atqM         | Valor do atributo de ataque mágico                            | int          | 4       | DEFAULT                          | 
-| nome         | Nome do lojista                                               | varchar      | 255     | NOT NULL                         |
+| Nome         | Descrição                                                                            | Tipo de Dado | Tamanho | Restrições de domínio            |
+| ------------ | ------------------------------------------------------------------------------------ | ------------ | ------- | -------------------------------- |
+| idPersonagem | Chave estrangeira referenciando o identificador da tabela Personagem                 | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY         |
+| idLocal      | Chave estrangeira referenciando a tabela Local                                       | SERIAL       | -       | FOREIGN KEY                      |
+| fala         | Atributo que carrega frases genérica do Lojista                                      | TEXT         | -       | NULL*                            |
+| imgTexto     | Atributo que carrega o gráfico em imagem texto do Lojista                            | TEXT         | -       | NULL*                            |
+| descricao    | Atributo que carrega a descrição do personagem Lojista                               | TEXT         | -       | NULL*                            |
+| atq          | Atributo que carrega o valor do atributo de ataque do personagem Lojista             | INT          | -       | DEFAULT                          | 
+| agilidade    | Atributo que carrega o valor do atributo de agilidade do personagem Lojista          | INT          | -       | DEFAULT                          | 
+| defesaM      | Atributo que carrega o valor do atributo de defesa mágica do personagem Lojista      | INT          | -       | DEFAULT                          | 
+| def          | Atributo que carrega o valor do atributo de defesa do personagem Lojista             | INT          | -       | DEFAULT                          | 
+| atqM         | Atributo que carrega o valor do atributo de ataque mágico do personagem Lojista      | INT          | -       | DEFAULT                          | 
+| nome         | Atributo que carrega o nome do personagem Lojista                                    | VARCHAR*     | 50      | NOT NULL                         |
 
 ## Tabela : **Inimigo**
 
-|                 |                                      |
-| --------------- | ------------------------------------ | 
-| **Descrição**   | Armazenará as informações de Inimigo | 
-| **Observações** | -                                    |
+|                 |                                                                         |
+| --------------- | ----------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações do Inimigo                                | 
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem Nao Jogavel  |
 
-| Nome          | Descrição                          | Tipo de Dado | Tamanho | Restrições de domínio                     |
-| ------------- | ---------------------------------- | ------------ | ------- | ----------------------------------------- |
-| idPersonagem  | Identificador único de Personagem  | int          | 4       | PK, FK (Personagem Nao Jogavel)           |
-| imgTexto      |                                    |              |         |                                           |
-| descricao     |                                    |              |         |                                           |
-| atq           | Valor do atributo de ataque        | int          | 4       | DEFAULT                                   |
-| agilidade     | Valor do atributo de agilidade     | int          | 4       | DEFAULT                                   |
-| defesaM       | Valor do atributo de defesa magica | int          | 4       | DEFAULT                                   |
-| def           | Valor do atributo de defesa        | int          | 4       | DEFAULT                                   |
-| nome          | Nome do personagem                 | varchar      | 255     | NOT NULL                                  |
+| Nome          | Descrição                                                                            | Tipo de Dado | Tamanho | Restrições de domínio            |
+| ------------- | ------------------------------------------------------------------------------------ | ------------ | ------- | -------------------------------- |
+| idPersonagem  | Chave estrangeira referenciando o identificador da tabela Personagem                 | SERIAL       | -       | PRIMARY KEY, FOREIGN KEY         |
+| imgTexto      | Atributo que carrega o gráfico em imagem texto do Inimigo respectivo                 | TEXT         | -       | NULL*                            |
+| descricao     | Atributo que carrega a descrição do Inimigo respectivo                               | TEXT         | -       | NULL*                            |
+| atq           | Atributo que carrega o valor do atributo de ataque do Inimigo respectivo             | INT          | -       | DEFAULT                          | 
+| agilidade     | Atributo que carrega o valor do atributo de agilidade do Inimigo respectivo          | INT          | -       | DEFAULT                          | 
+| defesaM       | Atributo que carrega o valor do atributo de defesa mágica do Inimigo respectivo      | INT          | -       | DEFAULT                          | 
+| def           | Atributo que carrega o valor do atributo de defesa do Inimigo respectivo             | INT          | -       | DEFAULT                          | 
+| atqM          | Atributo que carrega o valor do atributo de ataque mágico do Inimigo respectivo      | INT          | -       | DEFAULT                          | 
+| nome          | Atributo que carrega o nome do personagem Inimigo respectivo                         | VARCHAR*     | 50      | NOT NULL                         |
 
 ## Tabela : **Alma**
 
-|                 |                                                    |
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   | Armazena os dados de classe do personagem.         |
-| **Observações** | Contem chave estrangeira referenciando Personagem. | 
+|                 |                                                            |
+| --------------- | ---------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações das almas                    |
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem | 
 
-| Nome         | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| ------------ | ------------------------------------------- | ------------ | ------- | --------------------- |
-| nome         | Identifica a classe do personagem           | varchar      | 255     | PK                    |
-| idpersonagem | Chave Estrangeira referenciando Personagem. | int          | 4       | FK                    |
-| descricao    |                                             |              |         |                       |
+| Nome         | Descrição                                               | Tipo de Dado | Tamanho | Restrições de domínio          |
+| ------------ | ------------------------------------------------------- | ------------ | ------- | ------------------------------ |
+| nome         | Atributo que carrega o identificador da alma            | VARCHAR      | 25      | PRIMARY KEY                    |
+| idpersonagem | Chave Estrangeira referenciando a tabela Personagem     | SERIAL       | -       | FOREIGN KEY                    |
+| descricao    | Atributo que carrega a descrição da alma                | TEXT         | -       | NULL*                          |
 
 ## Tabela : **Inventario**
 
-|                 |                                                    |
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   | Armazena os dados do inventário.                   |
-| **Observações** | Contem chave estrangeira referenciando Personagem. |
+|                 |                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações do inventário do personagem jogável                  |
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem                         |
 
 | Nome                       | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
 | -------------------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-| idInventario, idPersonagem | Chave Composta                              | int          | 4       | PK                    |
-| idPersonagem               | Chave Estrangeira referenciando Personagem. | int          | 4       | FK                    |
+| idInventario, idPersonagem |                                             |              |         | PK                    |
+| idPersonagem               |                                             |              |         | FK                    |
 | capTotal                   |                                             |              |         |                       |
 | capAtual                   |                                             |              |         |                       |
 | dinMax                     |                                             |              |         |                       |
@@ -370,74 +371,59 @@
 
 ## Tabela : **Vende**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                                         |  
+| --------------- | --------------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informações dos itens que são vendidos pelo lojista                   |
+| **Observações** | Possui chave estrangeira referenciando as tabelas Lojista e Instancia Item              | 
 
-| Nome                  | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| ----------------------| ------------------------------------------- | ------------ | ------- | --------------------- |
-| idLojista, idInstItem |                                             |              |         |                       |
-| idLojista             |                                             |              |         |                       |
-| idInstItem            |                                             |              |         |                       |
-
-## Tabela : **Parte**
-
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
-
-| Nome                  | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-| idParte, idPersonagem |                                             |              |         |                       |
-| hpMax                 |                                             |              |         |                       |
-| probAcerto            |                                             |              |         |                       |
-| hpAtual               |                                             |              |         |                       |
-| tipoParte             |                                             |              |         |                       |
-
+| Nome                  | Descrição                                                                                     | Tipo de Dado | Tamanho | Restrições de domínio |
+| ----------------------| --------------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idLojista, idInstItem | Chave primária composta que mostra a relação do lojista específico com seus respectivos itens | -            | -       | PRIMARY KEY           |
+| idLojista             | Chave estrangeira que referencia a tabela Lojista                                             | SERIAL       | -       | FOREIGN KEY           |
+| idInstItem            | Chave estrangeira que referencia a tabela Instancia Item                                      | SERIAL       | -       | FOREIGN KEY           |
 
 ## Tabela : **Parte**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                                                                  |  
+| --------------- | ---------------------------------------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informação das partes do corpo do personagem, que levam danos diferentes em batalha            |
+| **Observações** | Possui chave estrangeira referenciando a tabela Personagem                                                       | 
 
-| Nome                  | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| --------------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-| idParte, idPersonagem |                                             |              |         |                       |
-| hpMax                 |                                             |              |         |                       |
-| probAcerto            |                                             |              |         |                       |
-| hpAtual               |                                             |              |         |                       |
-| tipoParte             |                                             |              |         |                       |
+| Nome                  | Descrição                                                                                           | Tipo de Dado | Tamanho | Restrições de domínio |
+| --------------------- | --------------------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idParte, idPersonagem | Chave primária composta que advém da entidade fraca entre Parte e Personagem                        | -            | -       | PRIMARY KEY           |
+| hpMax                 | Atributo que carrega o valor da vida máxima daquela parte específica                                | INT          | -       | NOT NULL              |
+| probAcerto            | Atributo que carrega a probabilidade de acerto daquela parte específica                             | INT          | -       | NOT NULL              |
+| hpAtual               | Atributo que carrega o valor da vida atual daquela parte específica                                 | INT          | -       | NOT NULL              |
+| tipoParte             | Atributo que identifica qual é a parte específica: (B)raço, (C)abeça, (G)enital, (P)erna, (T)orço   | VARCHAR      | 1       | NOT NULL              |
+
 
 ## Tabela : **Instancia Item**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                                                                                                        |  
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | 
+| **Descrição**   | Tabela que contém informação dos itens e suas respectivas instâncias presentes no jogo                                                                 |
+| **Observações** | Possui chaves estrangeiras referenciando as tabelas Item e Instancia Item                                                                              | 
 
-| Nome           | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| -------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-| idInst, idItem |                                             |              |         |                       |
-| idItem         |                                             |              |         |                       |
-| idLocal        |                                             |              |         |                       |
+| Nome           | Descrição                                                                        | Tipo de Dado | Tamanho | Restrições de domínio |
+| -------------- | -------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idInst, idItem | Chave primária composta que advém da entidade fraca entre Item e Instancia Item  | -            | -       | PRIMARY KEY           |
+| idItem         | Chave Estrangeira que referencia a tabela Item                                   | SERIAL       | -       | FOREIGN KEY           |
+| idLocal        | Chave Estrangeira que referencia a tabela Local                                  | SERIAL       | -       | FOREIGN KEY           |
 
 
 ## Tabela : **Instancia Inimigo**
 
-|                 |                                                    |  
-| --------------- | -------------------------------------------------- | 
-| **Descrição**   |                                                    |
-| **Observações** |                                                    | 
+|                 |                                                                                    |  
+| --------------- | ---------------------------------------------------------------------------------- | 
+| **Descrição**   | Tabela que contém informação das instâncias existentes dos inimigos nos locais     |
+| **Observações** | Possui chaves estrangeiras referenciando as tabelas Personagem e Local             | 
 
-| Nome                 | Descrição                                   | Tipo de Dado | Tamanho | Restrições de domínio |
-| -------------------- | ------------------------------------------- | ------------ | ------- | --------------------- |
-| idInst, idPersonagem |                                             |              |         |                       |
-| idPersonagem         |                                             |              |         |                       |
-| idLocal              |                                             |              |         |                       |
+| Nome                 | Descrição                                                                                             | Tipo de Dado | Tamanho | Restrições de domínio |
+| -------------------- | ----------------------------------------------------------------------------------------------------- | ------------ | ------- | --------------------- |
+| idInst, idPersonagem | Chave primária composta que advém da relação das instâncias dos inimigos com seus respectivos locais  | -            | -       | PRIMARY KEY           |
+| idPersonagem         | Chave Estrangeira que referencia a tabela Personagem                                                  | SERIAL       | -       | FOREIGN KEY           |
+| idLocal              | Chave Estrangeira que referencia a tabela Local                                                       | SERIAL       | -       | FOREIGN KEY           |
 
 ## Tabela : **Lista Inventario**
 
