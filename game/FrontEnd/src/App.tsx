@@ -30,7 +30,7 @@ function App() {
       ),
     },
     {
-      path: "/game",
+      path: "/game/:idLocal",
       element: <Game />,
     },
     {

@@ -3,9 +3,12 @@ import api from "../../api";
 import { Container, RegiaoContainer, WholePage } from "./styles";
 
 import { IRegiao } from "../../types";
+import { useNavigate } from "react-router-dom";
 
 export default function Regiao() {
   const [regioes, setRegioes] = useState<IRegiao[]>([]);
+
+  const navigate = useNavigate();
 
   const getRegioes = async () => {
     try {
@@ -21,6 +24,10 @@ export default function Regiao() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleClick = (id: number) => {
+    navigate(`/game/${id}`); // Redireciona para o caminho desejado
+  };
+
   return (
     <WholePage>
       <Container>
@@ -29,7 +36,11 @@ export default function Regiao() {
         ) : (
           <>
             {regioes?.map((regiao) => {
-              return <RegiaoContainer>{regiao.nomer}</RegiaoContainer>;
+              return (
+                <RegiaoContainer onClick={() => handleClick(regiao.idregiao)}>
+                  {regiao.nomer}
+                </RegiaoContainer>
+              );
             })}
           </>
         )}
