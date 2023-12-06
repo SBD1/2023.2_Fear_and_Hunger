@@ -1,16 +1,16 @@
 CREATE TABLE Regiao (
-    idRegiao SERIAL PRIMARY KEY,
-    nomeR VARCHAR(25) NOT NULL,
-    descricao TEXT DEFAULT '',
-	tranca bool DEFAULT FALSE,
-  imgTexto TEXT DEFAULT '',
+  idRegiao SERIAL PRIMARY KEY,
+  nomeR VARCHAR(25) NOT NULL,
+  descricao TEXT DEFAULT '',
+  tranca bool DEFAULT FALSE,
+  imgTexto TEXT DEFAULT ''
 );
 
 CREATE TABLE Local (
-    idLocal SERIAL,
+  idLocal SERIAL,
 	idRegiao SERIAL REFERENCES Regiao(idRegiao),
-    nomeL VARCHAR(25) NOT NULL,
-    imgTexto TEXT DEFAULT '',
+  nomeL VARCHAR(25) NOT NULL,
+  imgTexto TEXT DEFAULT '',
 	CONSTRAINT pk_CE primary key(idLocal, idRegiao)
 );
 
