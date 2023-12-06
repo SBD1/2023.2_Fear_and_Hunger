@@ -19,6 +19,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1%;
+  border-radius: 10px;
+  padding: 1%;
 `;
 
 export const RegiaoContainer = styled.div`
@@ -31,4 +33,12 @@ export const RegiaoContainer = styled.div`
   align-items: center;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
+  cursor: pointer;
+
+  transition: transform 0.7s ease;
+
+  &:hover {
+    transform: scale(1.025);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
