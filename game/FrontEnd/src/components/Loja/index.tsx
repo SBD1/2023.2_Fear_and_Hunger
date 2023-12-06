@@ -67,7 +67,20 @@ const ItensForm: React.FC = () => {
 
   return (
     <>
-      <div className="content-loja">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minWidth: "fit-content",
+          width: "25%",
+          height: "70%",
+          borderRadius: "10px",
+          listStyle: "none",
+          alignItems: "center",
+          justifyContent: "space-around",
+          boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.75)",
+        }}
+      >
         <h3 className="title-loja">Loja</h3>
         <form>
           {itens.map((item) => (

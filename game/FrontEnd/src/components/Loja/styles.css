@@ -2,11 +2,9 @@
   width: 290px;
   border-radius: 8px;
   height: 220px;
-  padding: 1rem;
   display: flex;
   justify-content: center;
   background-color: #1d1a17;
-  margin-top: 1rem;
   list-style: none;
   align-items: center;
   flex-direction: column;
@@ -17,7 +15,6 @@
 }
 
 .btn-loja {
-  margin-top: 1rem;
   width: 8rem;
   height: 2.5rem;
   border-radius: 8px;
