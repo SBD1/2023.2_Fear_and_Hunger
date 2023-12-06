@@ -164,6 +164,14 @@
 --     nome VARCHAR(255) NOT NULL
 -- );
 
+CREATE TABLE regiao (
+    idRegiao SERIAL PRIMARY KEY,
+    nomeR VARCHAR(50) NOT NULL,
+    descricao TEXT DEFAULT '',
+	tranca bool DEFAULT FALSE,
+    imgTexto TEXT DEFAULT ''
+);
+
 
 -- Tabela de Personagens
 CREATE TABLE personagem (
@@ -200,22 +208,28 @@ CREATE TABLE compra_log (
 -- Trigger para atualizar dinheiro e adicionar item ao inventário após a compra
 CREATE OR REPLACE FUNCTION realizar_compra()
 RETURNS TRIGGER AS $$
+DECLARE
+    inventario_existente INTEGER;
 BEGIN
     -- Verifica se o personagem tem dinheiro suficiente
-    IF NEW.valor_total <= (SELECT dinheiro FROM personagem WHERE id_personagem = NEW.id_personagem) THEN
-        -- Atualiza o dinheiro do personagem
-        UPDATE personagem SET dinheiro = dinheiro - NEW.valor_total WHERE id_personagem = NEW.id_personagem;
-        -- Adiciona o item ao inventário
-        INSERT INTO inventario (id_personagem, id_item, quantidade) VALUES (NEW.id_personagem, NEW.id_item, NEW.quantidade);
-        RETURN NEW;
-    ELSE
+    IF NEW.valor_total > (SELECT dinheiro FROM personagem WHERE id_personagem = NEW.id_personagem) THEN
         RAISE EXCEPTION 'Personagem não possui dinheiro suficiente para realizar a compra.';
     END IF;
+
+    -- Atualiza o dinheiro do personagem
+    UPDATE personagem SET dinheiro = dinheiro - NEW.valor_total WHERE id_personagem = NEW.id_personagem;
+
+    -- Verifica se o item já está no inventário
+    SELECT INTO inventario_existente quantidade FROM inventario WHERE id_personagem = NEW.id_personagem AND id_item = NEW.id_item;
+
+    IF FOUND THEN
+        -- Atualiza a quantidade se o item já estiver no inventário
+        UPDATE inventario SET quantidade = quantidade + NEW.quantidade WHERE id_personagem = NEW.id_personagem AND id_item = NEW.id_item;
+    ELSE
+        -- Insere o item no inventário se não estiver presente
+        INSERT INTO inventario (id_personagem, id_item, quantidade) VALUES (NEW.id_personagem, NEW.id_item, NEW.quantidade);
+    END IF;
+
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
--- Criação da Trigger
-CREATE TRIGGER trigger_realizar_compra
-AFTER INSERT ON compra_log
-FOR EACH ROW
-EXECUTE FUNCTION realizar_compra();

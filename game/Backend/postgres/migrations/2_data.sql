@@ -53,10 +53,28 @@
 -- INSERT INTO Inimigo(idPersonagem, defesa, ataque, nome, defesaMagica, agilidade) 
 -- VALUES (6, 40, 45, 'Palhaço', 15, 0);
 
--- Inserir Personagem
-INSERT INTO personagem (nome, dinheiro) VALUES ('Herói', 1000);
+-- Inserir dados na tabela regiao
+INSERT INTO regiao (nomeR, descricao, tranca) 
+VALUES
+('Praça Central', 'Aqui é o centro da cidade. Aonde a população costumava se reunir para conversar e comercializar.', FALSE),
+('Igreja', 'A única igreja da cidade. Aqui os moradores dedicavam preces a All-mer, o último dos deuses antigos, também conhecido como "aquele que ascendeu".', TRUE),
+('Circo', 'Um lugar que antes era usado para diversão e entretenimento, mas que atualmente tem um aspecto sinistro e abandonado.', TRUE),
+('Truques e mágica Dr. Kefer', 'Um pequeno edifício de aparência desgastada.', FALSE),
+('Livraria', 'A livraria comercializava todo tipo de livro dos mais variados assuntos.', FALSE),
+('Floresta', 'O bosque que fica ao redor da cidade.', FALSE),
+('Casa do lenhador', 'A casa do lenhador do vilarejo', FALSE);
+
+-- Inserir dados na tabela personagem
+INSERT INTO personagem (nome, dinheiro) 
+VALUES 
+('Herói', 1000),
+('Herói1', 1001);
+
 
 -- Inserir Itens na Loja
-INSERT INTO item (nome, valor) VALUES ('Espada de Ferro', 200);
-INSERT INTO item (nome, valor) VALUES ('Poção de Cura', 50);
-INSERT INTO item (nome, valor) VALUES ('Arco e Flecha', 150);
+INSERT INTO item (nome, valor) VALUES ('Espada de Ferro', 200),
+ ('Poção de Cura', 50),
+ ('Arco e Flecha', 150);
+
+ -- Se estiver usando transações, assegure-se de cometer as alterações
+COMMIT;
