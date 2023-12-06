@@ -5,6 +5,7 @@ import InventarioController from "../controller/InventarioController.js";
 import LojistaController from "../controller/LojistaController.js";
 import InimigoController from "../controller/InimigoController.js";
 import PJController from "../controller/PJController.js";
+import RegiaoController from "../controller/RegiaoController.js";
 
 const routes = new Router();
 
@@ -33,5 +34,7 @@ routes.post("/lojista", LojistaController.postItemLojista);
 
 // Rota Inimigo
 routes.get("/inimigo", InimigoController.getItemInimigo);
+
+routes.get("/regiao", RegiaoController.getRegioes);
 
 export default routes;
