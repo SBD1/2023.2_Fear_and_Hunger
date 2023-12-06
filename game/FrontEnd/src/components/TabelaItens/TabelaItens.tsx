@@ -19,8 +19,21 @@ interface TabelaItensProps {
 
 const TabelaItens: React.FC<TabelaItensProps> = ({ itens }) => {
   return (
-    <div className="content-table">
-      <h3 className="title-table">Inventario</h3>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minWidth: "fit-content",
+        width: "25%",
+        height: "70%",
+        borderRadius: "10px",
+        listStyle: "none",
+        alignItems: "center",
+        justifyContent: "space-around",
+        boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.75)",
+      }}
+    >
+      <h3>Inventario</h3>
       <table>
         <thead>
           <tr>

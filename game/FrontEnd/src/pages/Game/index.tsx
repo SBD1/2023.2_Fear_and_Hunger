@@ -4,7 +4,7 @@ import ItensForm from "../../components/Loja";
 import TabelaItens, {
   Inventario,
 } from "../../components/TabelaItens/TabelaItens";
-import "./styles.css";
+import { Container, Content, Header, WholePage } from "./styles";
 
 interface Personagem {
   id_personagem?: number;
@@ -64,11 +64,27 @@ const Game = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="content">
-        <h1>Fear Hunger</h1>
-        <div className="grid">
-          <ul>
+    <WholePage>
+      <Container>
+        <Header>
+          <h1>Fear Hunger</h1>
+        </Header>
+        <Content>
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: "fit-content",
+              width: "25%",
+              height: "70%",
+              borderRadius: "10px",
+              listStyle: "none",
+              alignItems: "center",
+              justifyContent: "space-around",
+              boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.75)",
+            }}
+          >
+            <h1>Personagens</h1>
             {personagens.map((personagem) => (
               <li key={personagem.id_personagem}>
                 <h3>Informações do Personagem</h3>
@@ -86,9 +102,9 @@ const Game = () => {
           </ul>
           <ItensForm />
           <TabelaItens itens={item} />
-        </div>
-      </div>
-    </div>
+        </Content>
+      </Container>
+    </WholePage>
   );
 };
 
