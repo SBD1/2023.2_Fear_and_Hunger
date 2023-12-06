@@ -29,6 +29,7 @@ routes.get("/inventario", InventarioController.getItemInventario);
 
 // Rota Lojista
 routes.get("/lojista", LojistaController.getItemLojista);
+routes.post("/lojista", LojistaController.postItemLojista);
 
 // Rota Inimigo
 routes.get("/inimigo", InimigoController.getItemInimigo);
