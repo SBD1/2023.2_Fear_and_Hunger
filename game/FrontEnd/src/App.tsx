@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import api from "./api";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
 import Game from "./pages/Game";
+import Home from "./pages/Home";
 import Regiao from "./pages/Regiao";
 
 function App() {
@@ -22,7 +22,12 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: (
+        <>
+          <Home />
+          <p className="api">{data}</p>
+        </>
+      ),
     },
     {
       path: "/game",
@@ -37,7 +42,6 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <p className="api">{data}</p>
     </>
   );
 }
