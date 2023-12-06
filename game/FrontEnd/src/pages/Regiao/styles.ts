@@ -13,7 +13,7 @@ export const Container = styled.div`
   display: flex;
   height: 80%;
   width: 80%;
-  background-color: #f5f5f5;
+  background-color: #1d1a17;
   box-sizing: border-box;
   flex-wrap: wrap;
   justify-content: center;
@@ -28,12 +28,13 @@ export const RegiaoContainer = styled.div`
   height: 30%;
   width: 30%;
   box-sizing: border-box;
-  color: #000;
+  color: #f5f5f5;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   cursor: pointer;
+  background-color: #1d1a17;
 
   transition: transform 0.7s ease;
 
