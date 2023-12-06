@@ -1,9 +1,9 @@
-import { WholePage } from "./styles";
+import { WholePage, Container } from "./styles";
 
 export default function Regiao() {
   return (
     <WholePage>
-      <h1>Região</h1>
+      <Container></Container>
     </WholePage>
   );
 }
