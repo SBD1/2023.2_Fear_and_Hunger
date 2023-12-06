@@ -25,7 +25,7 @@ const Home = () => {
         sobreviverão.
       </p>
 
-      <Link className="btn-jogar" to="/game" preventScrollReset={true}>
+      <Link className="btn-jogar" to="/regiao" preventScrollReset={true}>
         Jogar
       </Link>
     </div>
