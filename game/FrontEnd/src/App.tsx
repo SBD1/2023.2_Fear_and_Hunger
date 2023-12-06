@@ -4,6 +4,7 @@ import api from "./api";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Game from "./pages/Game";
+import Regiao from "./pages/Regiao";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -11,7 +12,7 @@ function App() {
 
   const testApi = async () => {
     const { data } = await api.get("/");
-    setData(data.message);    
+    setData(data.message);
   };
 
   useEffect(() => {
@@ -25,7 +26,11 @@ function App() {
     },
     {
       path: "/game",
-      element: <Game/>,
+      element: <Game />,
+    },
+    {
+      path: "/regiao",
+      element: <Regiao />,
     },
   ]);
 
