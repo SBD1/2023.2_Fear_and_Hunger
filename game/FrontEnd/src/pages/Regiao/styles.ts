@@ -6,12 +6,29 @@ export const WholePage = styled.div`
   align-items: center;
   height: 100svh;
   width: 100vw;
+  box-sizing: border-box;
 `;
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   height: 80%;
   width: 80%;
   background-color: #f5f5f5;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+`;
+
+export const RegiaoContainer = styled.div`
+  display: flex;
+  height: 30%;
+  width: 30%;
+  box-sizing: border-box;
+  color: #000;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
 `;
