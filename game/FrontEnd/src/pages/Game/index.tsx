@@ -20,6 +20,9 @@ const Game = () => {
   const [inventario, setInventario] = useState<Inventario[]>([]);
   const [item, setItem] = useState<string[]>([]);
 
+  // id que sera usado para fazer a query dos locais
+  // const { idLocal } = useParams();
+
   const getPersonagem = async () => {
     try {
       const { data } = await api.get("/personagem");
