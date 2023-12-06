@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api";
-import "./styles.css";
 import ItensForm from "../../components/Loja";
-import TabelaItens, { Inventario } from "../../components/TabelaItens/TabelaItens";
+import TabelaItens, {
+  Inventario,
+} from "../../components/TabelaItens/TabelaItens";
+import "./styles.css";
 
 interface Personagem {
   id_personagem?: number;
@@ -27,7 +29,6 @@ const Game = () => {
     }
   };
 
-
   const getInventario = async () => {
     try {
       const { data } = await api.get("/inventario");
@@ -40,12 +41,13 @@ const Game = () => {
   const getItens = async () => {
     try {
       const { data } = await api.get("/lojista");
-      
+
       const result = inventario.map((item) => {
-        return data.find((i: { id_item: number; }) => i.id_item === item.id_item).nome;
-      });      
+        return data.find((i: { id_item: number }) => i.id_item === item.id_item)
+          .nome;
+      });
       console.log(result);
-      setItem(result)
+      setItem(result);
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
     }
@@ -54,10 +56,9 @@ const Game = () => {
   useEffect(() => {
     getPersonagem();
     getInventario();
-    getItens()
+    getItens();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  
 
   return (
     <div className="container">
@@ -81,7 +82,7 @@ const Game = () => {
             ))}
           </ul>
           <ItensForm />
-          <TabelaItens itens={item}/>
+          <TabelaItens itens={item} />
         </div>
       </div>
     </div>
