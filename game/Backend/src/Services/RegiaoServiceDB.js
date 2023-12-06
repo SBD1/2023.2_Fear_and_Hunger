@@ -1,6 +1,6 @@
 import getDBConnection from "./getDBConnection.js";
 
-export const getItemInventario = async () => {
-  const query = "SELECT * FROM inventario";
+export const getRegioes = async () => {
+  const query = "SELECT * FROM Regiao";
   return await getDBConnection(query);
 };
