@@ -33,8 +33,6 @@ export const Content = styled.div`
   display: flex;
   width: 100%;
   height: 90%;
-  align-items: center;
-  justify-content: center;
   gap: 2%;
   position: relative;
 `;
@@ -63,6 +61,7 @@ export const LocalRow = styled.div<ILocalRow>`
   max-height: 33%;
   min-height: 20%;
   justify-content: center;
+  border-radius: 10px;
   align-items: center;
   background-color: ${({ isSelected }) => (isSelected ? "#2e2b28" : "")};
   cursor: pointer;
@@ -77,4 +76,13 @@ export const LocaisList = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+`;
+
+export const LocalDetailsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 `;

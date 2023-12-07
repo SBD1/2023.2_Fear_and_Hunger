@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api";
 import { ILocal, IPersonagem } from "../../types";
@@ -8,6 +8,7 @@ import {
   Header,
   LocaisCotaniner,
   LocaisList,
+  LocalDetailsContainer,
   LocalRow,
   WholePage,
 } from "./styles";
@@ -57,15 +58,27 @@ const Game = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const local: ILocal | undefined = useMemo(() => {
+    return locais.find((local) => local.idlocal === selectedLocalId);
+  }, [locais, selectedLocalId]);
+
+  console.log("local", local);
+
   return (
     <WholePage>
       <Container>
         <Header>
           <h1>{`Local: ${
-            locais.find((local) => local.idlocal === selectedLocalId)?.nomel
+            locais.find((local) => local.idlocal === selectedLocalId)?.nomel ??
+            "Sem local na região"
           }`}</h1>
         </Header>
         <Content>
+          <LocalDetailsContainer>
+            {local?.imgtexto === ""
+              ? "Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda"
+              : local?.imgtexto}
+          </LocalDetailsContainer>
           <LocaisCotaniner>
             <h1>Locais</h1>
             <LocaisList>
@@ -86,37 +99,3 @@ const Game = () => {
 };
 
 export default Game;
-
-{
-  /* <ul
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    minWidth: "fit-content",
-    width: "25%",
-    height: "70%",
-    borderRadius: "10px",
-    listStyle: "none",
-    alignItems: "center",
-    justifyContent: "space-around",
-  }}
->
-  <h1>Locais</h1>
-  {locais?.map((local) => (
-    <li key={local.idlocal}>
-      <strong
-        style={{
-          color: selectedLocalId === local.idlocal ? "red" : "",
-          cursor: "pointer",
-        }}
-        onClick={() => setSelectedLocalId(local.idlocal)}
-      >
-        Nome:
-      </strong>{" "}
-      {local.nomel}
-      <br />
-      <hr />
-    </li>
-  ))}
-</ul> */
-}
