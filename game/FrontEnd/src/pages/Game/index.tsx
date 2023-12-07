@@ -23,7 +23,9 @@ const Game = () => {
   const [locais, setLocais] = useState<ILocal[]>([]);
   const [item, setItem] = useState<string[]>([]);
 
-  const [selectedLocalId, setSelectedLocalId] = useState<number>(1);
+  const [selectedLocalId, setSelectedLocalId] = useState<number>(
+    locais[0]?.idlocal
+  );
 
   // id que sera usado para fazer a query dos locais
   const { idRegiao } = useParams();
@@ -34,6 +36,10 @@ const Game = () => {
     try {
       const { data } = await api.get(`/local/${idRegiao}`);
       setLocais(data);
+
+      if (selectedLocalId === undefined) {
+        setSelectedLocalId(data[0]?.idlocal);
+      }
     } catch (error) {
       console.error("Erro ao obter locais:", error);
     }
@@ -82,6 +88,7 @@ const Game = () => {
     getInventario();
     getItens();
     getLocais();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
