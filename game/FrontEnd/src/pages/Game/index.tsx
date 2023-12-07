@@ -5,6 +5,8 @@ import TabelaItens, {
   Inventario,
 } from "../../components/TabelaItens/TabelaItens";
 import { Container, Content, Header, WholePage } from "./styles";
+import { useParams } from "react-router-dom";
+import { ILocal } from "../../types";
 
 interface Personagem {
   id_personagem?: number;
@@ -18,10 +20,20 @@ interface Personagem {
 const Game = () => {
   const [personagens, setPersonagem] = useState<Personagem[]>([]);
   const [inventario, setInventario] = useState<Inventario[]>([]);
+  const [locais, setLocais] = useState<ILocal[]>([]);
   const [item, setItem] = useState<string[]>([]);
 
   // id que sera usado para fazer a query dos locais
-  // const { idLocal } = useParams();
+  const { idLocal } = useParams();
+
+  const getLocais = async () => {
+    try {
+      const { data } = await api.get(`/local/${idLocal}`);
+      setLocais(data);
+    } catch (error) {
+      console.error("Erro ao obter locais:", error);
+    }
+  };
 
   const getPersonagem = async () => {
     try {
@@ -60,6 +72,7 @@ const Game = () => {
     getPersonagem();
     getInventario();
     getItens();
+    getLocais();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,6 +108,30 @@ const Game = () => {
                 <strong>Dinheiro:</strong> {personagem.dinheiro}
                 <br />
                 {/* <strong>Tipo P:</strong> {personagem.tipop} */}
+                <br />
+                <hr />
+              </li>
+            ))}
+          </ul>
+
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: "fit-content",
+              width: "25%",
+              height: "70%",
+              borderRadius: "10px",
+              listStyle: "none",
+              alignItems: "center",
+              justifyContent: "space-around",
+              boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.75)",
+            }}
+          >
+            <h1>Locais</h1>
+            {locais?.map((local) => (
+              <li key={local.idlocal}>
+                <strong>Nome:</strong> {local.nomel}
                 <br />
                 <hr />
               </li>
