@@ -25,7 +25,7 @@ const Game = () => {
 
   const personagemJogador: IPersonagem | undefined = useMemo(() => {
     return personagens?.find((personagem) =>
-      personagem.nome?.includes("Jogador")
+      personagem.tipop?.includes("personagem_jogavel")
     );
   }, [personagens]);
 
