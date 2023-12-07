@@ -1,6 +1,6 @@
 import getDBConnection from "./getDBConnection.js";
 
-export const getItemPJ = async () => {
-  const query = "SELECT * FROM PersonagemJogavel";
+export const getItens = async () => {
+  const query = "SELECT * FROM item";
   return await getDBConnection(query);
 };

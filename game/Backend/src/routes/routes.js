@@ -1,11 +1,8 @@
 import { Router } from "express";
-import PersonagemController from "../controller/PersonagemController.js";
-import PNJController from "../controller/PNJController.js";
 import InventarioController from "../controller/InventarioController.js";
-import LojistaController from "../controller/LojistaController.js";
-import InimigoController from "../controller/InimigoController.js";
-import PJController from "../controller/PJController.js";
+import PersonagemController from "../controller/PersonagemController.js";
 import RegiaoController from "../controller/RegiaoController.js";
+import ItensController from "../controller/ItensController.js";
 
 const routes = new Router();
 
@@ -19,19 +16,6 @@ routes.get("/", (req, res) => {
 routes.get("/personagem", PersonagemController.getItemPersonagem);
 routes.get("/personagem/:localId", PersonagemController.getPersonagensPorLocal);
 
-// Rota PNJ
-routes.get("/PNJ", PNJController.getItemPNJ);
-
-// Rota PJ
-routes.get("/PJ", PJController.getItemPJ);
-
-// Rota Lojista
-routes.get("/lojista", LojistaController.getItemLojista);
-routes.post("/lojista", LojistaController.postItemLojista);
-
-// Rota Inimigo
-routes.get("/inimigo", InimigoController.getItemInimigo);
-
 // Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
 
@@ -43,5 +27,9 @@ routes.get(
   "/inventario/:idPersonagem",
   InventarioController.getInventarioPersonagem
 );
+
+// Rota para todos os items
+
+routes.get("/item", ItensController.getItens);
 
 export default routes;

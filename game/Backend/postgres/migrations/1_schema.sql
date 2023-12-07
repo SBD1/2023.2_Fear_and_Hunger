@@ -62,3 +62,44 @@ CREATE TABLE personagem_nao_jogavel (
     tipoPnj TEXT -- Supondo que 'tipoPnj' seja um texto que descreve o tipo do PNJ
     -- Se 'tipoPnj' for uma chave estrangeira para outra tabela, você precisará adicionar a chave estrangeira aqui.
 );
+
+-- Assuming 'Item' is an entity that includes 'nome', 'descricao', 'valor', 'peso'
+CREATE TABLE item (
+    idItem SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    descricao TEXT DEFAULT '',
+    valor INTEGER NOT NULL,
+    peso INTEGER NOT NULL
+);
+
+-- Assuming 'Legal' is a category of items that might have additional attributes
+CREATE TABLE legivel (
+    idLegivel SERIAL PRIMARY KEY,
+    conteudo TEXT DEFAULT '',
+    FOREIGN KEY (idLegivel) REFERENCES item(idItem) ON DELETE CASCADE
+);
+
+-- Table for 'Acessorio' which is a type of item
+CREATE TABLE acessorio (
+    idAcessorio SERIAL PRIMARY KEY,
+    detalhe TEXT DEFAULT '',
+    FOREIGN KEY (idAcessorio) REFERENCES item(idItem) ON DELETE CASCADE
+);
+
+-- Table for 'Arma' which is a type of item
+CREATE TABLE arma (
+    idArma SERIAL PRIMARY KEY,
+    ataque INTEGER NOT NULL,
+    defesa INTEGER,
+    FOREIGN KEY (idArma) REFERENCES item(idItem) ON DELETE CASCADE
+);
+
+-- Table for 'Armadura' which is a type of item
+CREATE TABLE armadura (
+    idArmadura SERIAL PRIMARY KEY,
+    defesaFisica INTEGER NOT NULL,
+    defesaMagica INTEGER,
+    FOREIGN KEY (idArmadura) REFERENCES item(idItem) ON DELETE CASCADE
+);
+
+-- Add any other necessary tables here following the same pattern.

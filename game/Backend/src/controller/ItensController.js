@@ -1,9 +1,9 @@
-import { getItemPJ } from "../Services/PJService.js";
-class PNJController {
-  async getItemPJ(req, res) {
+import { getItens } from "../Services/ItemServiceDB.js";
+class ItensController {
+  async getItens(req, res) {
     // Adicionei req e res como parâmetros
     try {
-      const response = await getItemPJ();
+      const response = await getItens();
       return res.status(200).json(response);
     } catch (error) {
       console.error(error.message);
@@ -12,4 +12,4 @@ class PNJController {
   }
 }
 
-export default new PNJController();
+export default new ItensController();

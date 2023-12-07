@@ -28,6 +28,30 @@ INSERT INTO personagem (nome, idLocal) VALUES ('NPC Misterioso', 1) RETURNING id
 INSERT INTO personagem_nao_jogavel (id_personagem, descricao, fala, imgTexto, tipoPnj) 
 VALUES (2, 'Um misterioso Logista que oferece conselhos.', 'Olá, aventureiro!', 'imagem_do_npc.png', 'Logista');
 
+-- Inserting items into the 'item' table
+INSERT INTO item (nome, descricao, valor, peso) VALUES
+('Espada Longa', 'Uma espada longa e afiada.', 150, 5),
+('Capa da Invisibilidade', 'Uma capa que torna o usuário invisível.', 500, 1),
+('Escudo de Bronze', 'Um escudo resistente feito de bronze.', 100, 10),
+('Botas de Velocidade', 'Botas que aumentam a agilidade do usuário.', 200, 2),
+('Elmo de Guerra', 'Um elmo protege a cabeça durante a batalha.', 80, 3);
+
+-- Now, inserting into the 'acessorio' table, assuming the 'idAcessorio' matches 'idItem'
+INSERT INTO acessorio (idAcessorio, detalhe) VALUES
+((SELECT idItem FROM item WHERE nome = 'Capa da Invisibilidade'), 'Torna o usuário invisível por curtos períodos de tempo.'),
+((SELECT idItem FROM item WHERE nome = 'Botas de Velocidade'), 'Aumenta a agilidade do usuário ao correr.');
+
+-- Inserting into the 'arma' table
+INSERT INTO arma (idArma, ataque, defesa) VALUES
+((SELECT idItem FROM item WHERE nome = 'Espada Longa'), 10, 0);
+
+-- Inserting into the 'escudo' (assuming it is a type of 'arma') table
+INSERT INTO arma (idArma, ataque, defesa) VALUES
+((SELECT idItem FROM item WHERE nome = 'Escudo de Bronze'), 2, 5);
+
+-- Inserting into the 'armadura' table
+INSERT INTO armadura (idArmadura, defesaFisica, defesaMagica) VALUES
+((SELECT idItem FROM item WHERE nome = 'Elmo de Guerra'), 3, 1);
 
 COMMIT;
 
