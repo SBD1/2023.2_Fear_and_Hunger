@@ -18,7 +18,6 @@ routes.get("/", (req, res) => {
 // Rota Personagem
 routes.get("/personagem", PersonagemController.getItemPersonagem);
 routes.get("/personagem/:localId", PersonagemController.getPersonagensPorLocal);
-routes.post("/newPersonagem", PersonagemController.postNewPersonagem);
 
 // Rota PNJ
 routes.get("/PNJ", PNJController.getItemPNJ);
