@@ -35,6 +35,10 @@ routes.post("/lojista", LojistaController.postItemLojista);
 // Rota Inimigo
 routes.get("/inimigo", InimigoController.getItemInimigo);
 
+// Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
+
+// Rota de local por regiao
+routes.get("/local/:idRegiao", RegiaoController.getLocais);
 
 export default routes;

@@ -173,6 +173,15 @@ CREATE TABLE regiao (
 );
 
 
+CREATE TABLE local (
+  idLocal SERIAL,
+  idRegiao SERIAL REFERENCES Regiao(idRegiao),
+  nomeL VARCHAR(25) NOT NULL,
+  imgTexto TEXT DEFAULT '',
+  CONSTRAINT pk_CE primary key(idLocal, idRegiao)
+);
+
+
 -- Tabela de Personagens
 CREATE TABLE personagem (
     id_personagem SERIAL PRIMARY KEY,

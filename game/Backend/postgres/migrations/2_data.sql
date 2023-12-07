@@ -64,6 +64,11 @@ VALUES
 ('Floresta', 'O bosque que fica ao redor da cidade.', FALSE),
 ('Casa do lenhador', 'A casa do lenhador do vilarejo', FALSE);
 
+INSERT INTO Local (idRegiao, nomeL) VALUES
+(1, 'Fonte'),
+(1, 'Bancas abandonadas'),
+(1, 'Árvore da Praça');
+
 -- Inserir dados na tabela personagem
 INSERT INTO personagem (nome, dinheiro) 
 VALUES 
