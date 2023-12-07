@@ -24,3 +24,11 @@ export interface IPersonagem {
   defesam?: number;
   defesa?: number;
 }
+
+export interface IInventario {
+  id_personagem: number;
+  dinatual: number;
+  dinmax: number;
+  capatual: number;
+  captotal: number;
+}

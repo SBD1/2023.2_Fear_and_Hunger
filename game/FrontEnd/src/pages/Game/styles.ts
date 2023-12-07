@@ -86,3 +86,18 @@ export const LocalDetailsContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const InventarioContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 10%;
+  position: absolute;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
