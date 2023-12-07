@@ -22,8 +22,6 @@ const Game = () => {
   // id que sera usado para fazer a query dos locais
   const { idRegiao } = useParams();
 
-  console.log(selectedLocalId);
-
   const getLocais = async () => {
     try {
       const { data } = await api.get(`/local/${idRegiao}`);
@@ -61,8 +59,6 @@ const Game = () => {
   const local: ILocal | undefined = useMemo(() => {
     return locais.find((local) => local.idlocal === selectedLocalId);
   }, [locais, selectedLocalId]);
-
-  console.log("local", local);
 
   return (
     <WholePage>
