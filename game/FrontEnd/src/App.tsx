@@ -30,7 +30,7 @@ function App() {
       ),
     },
     {
-      path: "/game/:idLocal",
+      path: "/game/:idRegiao",
       element: <Game />,
     },
     {

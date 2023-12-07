@@ -69,11 +69,19 @@ INSERT INTO Local (idRegiao, nomeL) VALUES
 (1, 'Bancas abandonadas'),
 (1, 'Árvore da Praça');
 
--- Inserir dados na tabela personagem
-INSERT INTO personagem (nome, dinheiro) 
-VALUES 
-('Herói', 1000),
-('Herói1', 1001);
+-- Primeiro, inserimos um personagem que será jogável
+INSERT INTO personagem (nome, idLocal) VALUES ('Jogador Heroico', 1) RETURNING id_personagem;
+
+-- Suponha que o ID retornado seja 1, usamos esse ID para inserir na tabela PersonagemJogavel
+INSERT INTO personagem_jogavel (id_personagem, hpAtual, hpMax, menteAtual, menteMax, arma, armadura) 
+VALUES (1, 100, 100, 50, 50, 'Espada Longa', 'Cota de Malha');
+
+-- Em seguida, inserimos um personagem que não será jogável
+INSERT INTO personagem (nome, idLocal) VALUES ('NPC Misterioso', 1) RETURNING id_personagem;
+
+-- Suponha que o ID retornado seja 2, usamos esse ID para inserir na tabela PersonagemNaoJogavel
+INSERT INTO personagem_nao_jogavel (id_personagem, descricao, fala, imgTexto, tipoPnj) 
+VALUES (2, 'Um misterioso Logista que oferece conselhos.', 'Olá, aventureiro!', 'imagem_do_npc.png', 'Logista');
 
 
 -- Inserir Itens na Loja

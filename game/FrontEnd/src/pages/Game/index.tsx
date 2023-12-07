@@ -23,12 +23,16 @@ const Game = () => {
   const [locais, setLocais] = useState<ILocal[]>([]);
   const [item, setItem] = useState<string[]>([]);
 
+  const [selectedLocalId, setSelectedLocalId] = useState<number>(1);
+
   // id que sera usado para fazer a query dos locais
-  const { idLocal } = useParams();
+  const { idRegiao } = useParams();
+
+  console.log(selectedLocalId);
 
   const getLocais = async () => {
     try {
-      const { data } = await api.get(`/local/${idLocal}`);
+      const { data } = await api.get(`/local/${idRegiao}`);
       setLocais(data);
     } catch (error) {
       console.error("Erro ao obter locais:", error);
@@ -37,7 +41,7 @@ const Game = () => {
 
   const getPersonagem = async () => {
     try {
-      const { data } = await api.get("/personagem");
+      const { data } = await api.get(`/personagem/${selectedLocalId}`);
       setPersonagem(data);
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
@@ -67,6 +71,11 @@ const Game = () => {
       console.error("Erro ao obter personagens:", error);
     }
   };
+
+  useEffect(() => {
+    getPersonagem();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLocalId]);
 
   useEffect(() => {
     getPersonagem();
@@ -131,7 +140,16 @@ const Game = () => {
             <h1>Locais</h1>
             {locais?.map((local) => (
               <li key={local.idlocal}>
-                <strong>Nome:</strong> {local.nomel}
+                <strong
+                  style={{
+                    color: selectedLocalId === local.idlocal ? "red" : "",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setSelectedLocalId(local.idlocal)}
+                >
+                  Nome:
+                </strong>{" "}
+                {local.nomel}
                 <br />
                 <hr />
               </li>
