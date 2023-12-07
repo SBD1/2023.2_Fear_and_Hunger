@@ -13,7 +13,6 @@ class RegiaoController {
   }
 
   async getLocais(req, res) {
-    console.log(req.params);
     try {
       // Acessando o parâmetro da rota
       const { idRegiao } = req.params;

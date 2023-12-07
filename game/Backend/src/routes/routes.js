@@ -25,9 +25,6 @@ routes.get("/PNJ", PNJController.getItemPNJ);
 // Rota PJ
 routes.get("/PJ", PJController.getItemPJ);
 
-// Rota Inventario
-routes.get("/inventario", InventarioController.getItemInventario);
-
 // Rota Lojista
 routes.get("/lojista", LojistaController.getItemLojista);
 routes.post("/lojista", LojistaController.postItemLojista);
@@ -40,5 +37,11 @@ routes.get("/regiao", RegiaoController.getRegioes);
 
 // Rota de local por regiao
 routes.get("/local/:idRegiao", RegiaoController.getLocais);
+
+// Rota de inventario por personagem_jogavel
+routes.get(
+  "/inventario/:idPersonagem",
+  InventarioController.getInventarioPersonagem
+);
 
 export default routes;
