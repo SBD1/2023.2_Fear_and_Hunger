@@ -29,10 +29,6 @@ INSERT INTO personagem_nao_jogavel (id_personagem, descricao, fala, imgTexto, ti
 VALUES (2, 'Um misterioso Logista que oferece conselhos.', 'Olá, aventureiro!', 'imagem_do_npc.png', 'Logista');
 
 
--- Inserir Itens na Loja
-INSERT INTO item (nome, valor) VALUES ('Espada de Ferro', 200),
- ('Poção de Cura', 50),
- ('Arco e Flecha', 150);
-
- -- Se estiver usando transações, assegure-se de cometer as alterações
 COMMIT;
+
+

@@ -44,6 +44,16 @@ CREATE TABLE personagem_jogavel (
 );
 
 
+CREATE TABLE inventario (
+    id_personagem SERIAL PRIMARY KEY,
+    dinAtual INTEGER NOT NULL DEFAULT 0,
+    dinMax INTEGER NOT NULL DEFAULT 100,
+    capAtual INTEGER NOT NULL DEFAULT 0,
+    capTotal INTEGER NOT NULL DEFAULT 50,
+    FOREIGN KEY (id_personagem) REFERENCES personagem_jogavel (id_personagem) ON DELETE CASCADE
+);
+
+
 CREATE TABLE personagem_nao_jogavel (
     id_personagem SERIAL PRIMARY KEY,
     descricao TEXT,
@@ -52,29 +62,3 @@ CREATE TABLE personagem_nao_jogavel (
     tipoPnj TEXT -- Supondo que 'tipoPnj' seja um texto que descreve o tipo do PNJ
     -- Se 'tipoPnj' for uma chave estrangeira para outra tabela, você precisará adicionar a chave estrangeira aqui.
 );
-
--- Tabela de Itens
-CREATE TABLE item (
-    id_item SERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
-    valor INTEGER NOT NULL
-);
-
--- Tabela de Inventário
-CREATE TABLE inventario (
-    id_personagem INTEGER REFERENCES personagem(id_personagem),
-    id_item INTEGER REFERENCES item(id_item),
-    quantidade INTEGER NOT NULL,
-    PRIMARY KEY (id_personagem, id_item)
-);
-
--- Tabela de Compra Log
-CREATE TABLE compra_log (
-    id_compra SERIAL PRIMARY KEY,
-    id_personagem INTEGER REFERENCES personagem(id_personagem),
-    id_item INTEGER REFERENCES item(id_item),
-    quantidade INTEGER NOT NULL,
-    valor_total INTEGER NOT NULL,
-    data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
