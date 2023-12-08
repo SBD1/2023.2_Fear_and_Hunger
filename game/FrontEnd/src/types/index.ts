@@ -32,3 +32,11 @@ export interface IInventario {
   capatual: number;
   captotal: number;
 }
+
+export interface Item {
+  iditem: number;
+  nome: string;
+  descricao: string;
+  valor: number;
+  peso: number;
+}

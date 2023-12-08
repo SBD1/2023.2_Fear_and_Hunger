@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
-import { IInventario, ILocal, IPersonagem } from "../../types";
+import InventarioModal from "../../components/InventarioModal";
+import LojaModal from "../../components/LojaModal";
+import { IInventario, ILocal, IPersonagem, Item } from "../../types";
 import {
   ArrowLink,
+  BtnBack,
   Container,
   Content,
   Header,
@@ -12,20 +15,24 @@ import {
   LocaisList,
   LocalDetailsContainer,
   LocalRow,
+  LojistaContainer,
+  SubMenoRow,
   WholePage,
 } from "./styles";
-import InventarioModal from "../../components/InventarioModal";
 
 import { GoArrowLeft } from "react-icons/go";
 
 const Game = () => {
   const [invertarioOpen, setInvertarioOpen] = useState(false);
+  const [lojaOpen, setLojaOpen] = useState(false);
   const [personagens, setPersonagem] = useState<IPersonagem[]>([]);
   const [locais, setLocais] = useState<ILocal[]>([]);
   const [inventario, setInventario] = useState<IInventario>({} as IInventario);
+  const [itemList, setItemList] = useState<Item[]>([]);
 
   const [selectedLocalId, setSelectedLocalId] = useState<number | null>(null);
 
+  const navigate = useNavigate();
   const personagemJogador: IPersonagem | undefined = useMemo(() => {
     return personagens?.find((personagem) =>
       personagem.tipop?.includes("personagem_jogavel")
@@ -68,6 +75,15 @@ const Game = () => {
     }
   };
 
+  const getItens = async () => {
+    try {
+      const { data } = await api.get(`/item`);
+      setItemList(data);
+    } catch (error) {
+      console.error("Erro ao obter inventario:", error);
+    }
+  };
+
   useEffect(() => {
     getPersonagens();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,14 +101,25 @@ const Game = () => {
 
     if (locais.length === 0) {
       getLocais();
+
+      if (itemList.length === 0) {
+        getItens();
+      }
     }
-  }, [getLocais, getPersonagens, locais.length, personagens.length]);
+  }, [
+    getLocais,
+    getPersonagens,
+    itemList.length,
+    locais.length,
+    personagens.length,
+  ]);
 
   const local: ILocal | undefined = useMemo(() => {
     return locais.find((local) => local.idlocal === selectedLocalId);
   }, [locais, selectedLocalId]);
 
   const inventarioModalRef = useRef<HTMLDivElement>(null); // Tipagem correta para o ref
+  const lojaModalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -102,6 +129,11 @@ const Game = () => {
         !inventarioModalRef.current.contains(event.target as Node)
       ) {
         setInvertarioOpen(false);
+      } else if (
+        lojaModalRef.current &&
+        !lojaModalRef.current.contains(event.target as Node)
+      ) {
+        setLojaOpen(false);
       }
     };
 
@@ -120,6 +152,7 @@ const Game = () => {
       </Link>
       <Container>
         <Header>
+          <BtnBack onClick={() => navigate(-1)}>Voltar</BtnBack>
           <h1>{`Local: ${
             locais.find((local) => local.idlocal === selectedLocalId)?.nomel ??
             "Sem local na região"
@@ -142,17 +175,23 @@ const Game = () => {
               ))}
             </LocaisList>
           </LocaisCotaniner>
-          <InventarioContainer
-            onClick={() =>
-              setInvertarioOpen(
-                personagemJogador === undefined
-                  ? invertarioOpen
-                  : !invertarioOpen
-              )
-            }
-          >
-            Inventario
-          </InventarioContainer>
+          <SubMenoRow>
+            <InventarioContainer
+              onClick={() =>
+                setInvertarioOpen(
+                  personagemJogador === undefined
+                    ? invertarioOpen
+                    : !invertarioOpen
+                )
+              }
+            >
+              Inventario
+            </InventarioContainer>
+
+            <LojistaContainer onClick={() => setLojaOpen(true)}>
+              Lojista
+            </LojistaContainer>
+          </SubMenoRow>
           {invertarioOpen && inventario != null && (
             <div
               ref={inventarioModalRef}
@@ -165,6 +204,20 @@ const Game = () => {
               }}
             >
               <InventarioModal inventario={inventario} />
+            </div>
+          )}
+          {lojaOpen && inventario != null && (
+            <div
+              ref={lojaModalRef}
+              style={{
+                position: "absolute",
+                width: " 90%",
+                height: " 90%",
+                left: "5%",
+                top: "5%",
+              }}
+            >
+              <LojaModal inventario={inventario} itemList={itemList} />
             </div>
           )}
         </Content>
