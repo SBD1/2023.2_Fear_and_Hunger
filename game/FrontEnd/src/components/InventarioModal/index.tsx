@@ -5,8 +5,7 @@ interface IIventarioModal {
   inventario: IInventario;
 }
 
-export default function InventarioModal({ inventario }: IIventarioModal) {
-  console.log(inventario);
+export default function InventarioModal({ inventario }: IIventarioModal) {  
   return (
     <ModalContainer>
       <Header>
