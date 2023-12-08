@@ -7,6 +7,29 @@ export const WholePage = styled.div`
   height: 100svh;
   width: 100vw;
   box-sizing: border-box;
+  position: relative;
+`;
+
+export const ArrowLink = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4%;
+  height: 6%;
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  color: #f5f5f5;
+
+  transition: transform 0.7s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
 
 export const Container = styled.div`

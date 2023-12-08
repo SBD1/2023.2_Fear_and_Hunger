@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import { IInventario, ILocal, IPersonagem } from "../../types";
 import {
+  ArrowLink,
   Container,
   Content,
   Header,
@@ -14,6 +15,8 @@ import {
   WholePage,
 } from "./styles";
 import InventarioModal from "../../components/InventarioModal";
+
+import { GoArrowLeft } from "react-icons/go";
 
 const Game = () => {
   const [invertarioOpen, setInvertarioOpen] = useState(false);
@@ -107,6 +110,11 @@ const Game = () => {
 
   return (
     <WholePage>
+      <Link to="/regiao">
+        <ArrowLink>
+          <GoArrowLeft />
+        </ArrowLink>
+      </Link>
       <Container>
         <Header>
           <h1>{`Local: ${
