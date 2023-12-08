@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import { IInventario, ILocal, IPersonagem } from "../../types";
@@ -35,7 +35,7 @@ const Game = () => {
   // id que sera usado para fazer a query dos locais
   const { idRegiao } = useParams();
 
-  const getLocais = async () => {
+  const getLocais = useCallback(async () => {
     try {
       const { data } = await api.get(`/local/${idRegiao}`);
       setLocais(data);
@@ -46,16 +46,16 @@ const Game = () => {
     } catch (error) {
       console.error("Erro ao obter locais:", error);
     }
-  };
+  }, [idRegiao, selectedLocalId]); // Dependências da função
 
-  const getPersonagem = async () => {
+  const getPersonagens = useCallback(async () => {
     try {
       const { data } = await api.get(`/personagem/${selectedLocalId}`);
       setPersonagem(data);
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
     }
-  };
+  }, [selectedLocalId]); // Dependências da função
 
   const getInventario = async () => {
     try {
@@ -69,7 +69,7 @@ const Game = () => {
   };
 
   useEffect(() => {
-    getPersonagem();
+    getPersonagens();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocalId]);
 
@@ -79,11 +79,14 @@ const Game = () => {
   }, [personagemJogador]);
 
   useEffect(() => {
-    getPersonagem();
-    getLocais();
+    if (personagens.length === 0) {
+      getPersonagens();
+    }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (locais.length === 0) {
+      getLocais();
+    }
+  }, [getLocais, getPersonagens, locais.length, personagens.length]);
 
   const local: ILocal | undefined = useMemo(() => {
     return locais.find((local) => local.idlocal === selectedLocalId);
@@ -124,9 +127,7 @@ const Game = () => {
         </Header>
         <Content>
           <LocalDetailsContainer>
-            {local?.imgtexto === ""
-              ? "Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda, Testando com texto porque o local nao tem descrição ainda"
-              : local?.imgtexto}
+            {local?.imgtexto === "" ? "Sem Descrição" : local?.imgtexto}
           </LocalDetailsContainer>
           <LocaisCotaniner>
             <h1>Locais</h1>
@@ -141,7 +142,15 @@ const Game = () => {
               ))}
             </LocaisList>
           </LocaisCotaniner>
-          <InventarioContainer onClick={() => setInvertarioOpen(true)}>
+          <InventarioContainer
+            onClick={() =>
+              setInvertarioOpen(
+                personagemJogador === undefined
+                  ? invertarioOpen
+                  : !invertarioOpen
+              )
+            }
+          >
             Inventario
           </InventarioContainer>
           {invertarioOpen && inventario != null && (
