@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
-import { Container, RegiaoContainer, WholePage } from "./styles";
+import {
+  Container,
+  Content,
+  Header,
+  RegiaoContainer,
+  WholePage,
+} from "./styles";
 
 import { IRegiao } from "../../types";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +44,12 @@ export default function Regiao() {
             {regioes?.map((regiao) => {
               return (
                 <RegiaoContainer onClick={() => handleClick(regiao.idregiao)}>
-                  {regiao.nomer}
+                  <Header>
+                    <h2>{regiao.nomer}</h2>
+                  </Header>
+                  <Content>
+                    <p>{regiao.descricao}</p>
+                  </Content>
                 </RegiaoContainer>
               );
             })}
