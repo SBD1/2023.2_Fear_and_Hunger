@@ -9,10 +9,10 @@ VALUES
 ('Floresta', 'O bosque que fica ao redor da cidade.', FALSE),
 ('Casa do lenhador', 'A casa do lenhador do vilarejo', FALSE);
 
-INSERT INTO Local (idRegiao, nomeL) VALUES
-(1, 'Fonte'),
-(1, 'Bancas abandonadas'),
-(1, 'Árvore da Praça');
+INSERT INTO Local (idRegiao, nomeL, imgTexto) VALUES
+(1, 'Fonte', 'O ponto central da Praça Central é esta fonte antiga que, ocasionalmente, ainda esguicha água. É adornada com entalhes intricados que contam a história da fundação da cidade. Musgo e trepadeiras sobem pelas suas laterais, e os moradores frequentemente contam histórias de desejos realizados àqueles que jogam uma moeda em suas profundezas em noites de lua cheia.'),
+(1, 'Bancas abandonadas', 'O que costumava ser barracas de mercado vibrantes agora são apenas esqueletos de madeira. Os toldos coloridos há muito perderam sua vivacidade, e os balcões que uma vez exibiam mercadorias frescas agora estão cobertos de poeira. Há um senso de nostalgia que pesa no ar, como se as risadas e conversas dos dias de glória do mercado ainda pudessem ser ouvidas ao vento.'),
+(1, 'Árvore da Praça', 'Erguendo-se sobre a praça, a velha árvore tem sido uma testemunha silenciosa do fluxo da vida da cidade. Seus galhos se estendem, fornecendo sombra para um círculo de bancos bem desgastados. Esculturas de iniciais e símbolos, gravadas na casca por gerações de moradores, falam de inúmeras histórias e segredos compartilhados sob sua folhagem.');
 
 -- Primeiro, inserimos um personagem que será jogável
 INSERT INTO personagem (nome, idLocal, tipoP) VALUES ('Jogador Heroico', 1, 'personagem_jogavel') RETURNING id_personagem;
