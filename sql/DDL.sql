@@ -1,4 +1,4 @@
-CREATE TABLE Regiao (
+CREATE TABLE regiao (
   idRegiao SERIAL PRIMARY KEY,
   nomeR VARCHAR(25) NOT NULL,
   descricao TEXT DEFAULT '',
@@ -6,21 +6,21 @@ CREATE TABLE Regiao (
   imgTexto TEXT DEFAULT ''
 );
 
-CREATE TABLE Local (
+CREATE TABLE local (
   idLocal SERIAL,
-	idRegiao SERIAL REFERENCES Regiao(idRegiao),
+	idRegiao SERIAL REFERENCES regiao(idRegiao),
   nomeL VARCHAR(25) NOT NULL,
   imgTexto TEXT DEFAULT '',
-	CONSTRAINT pk_CE primary key(idLocal, idRegiao)
+	CONSTRAINT pk_LO primary key(idLocal, idRegiao)
 );
 
-CREATE TABLE Item (
+CREATE TABLE item (
     idItem SERIAL PRIMARY KEY,
 	  tipoItem TEXT NOT NULL
 );
 
-CREATE TABLE Acessorio(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
+CREATE TABLE acessorio(
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
     adAtqM int DEFAULT 0,
     adAgil int DEFAULT 0,
     adDefM int DEFAULT 0,
@@ -32,8 +32,8 @@ CREATE TABLE Acessorio(
     descricao text DEFAULT ''
 );
 
-CREATE TABLE Armadura(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
+CREATE TABLE armadura(
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
     adAgil int DEFAULT 0,
     adDefM int DEFAULT 0,
     adDef int default 0, 
@@ -43,8 +43,8 @@ CREATE TABLE Armadura(
     descricao text DEFAULT ''
 );
 
-CREATE TABLE Legivel(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
+CREATE TABLE legivel(
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
     conteudo TEXT NOT NULL,
     valor int default 0,
     peso int NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE Legivel(
 );
 
 CREATE TABLE Arma(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
     adAtqM int DEFAULT 0,
     adDef int default 0, 
     adAtqF int default 0,
@@ -64,7 +64,7 @@ CREATE TABLE Arma(
 );
 
 CREATE TABLE Consumivel(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
     conteudo TEXT DEFAULT '',
     adMente int default 0,
     adDefM int default 0, 
@@ -76,26 +76,26 @@ CREATE TABLE Consumivel(
     descricao text DEFAULT ''
 );
 
-CREATE TABLE Chave(
-    idItem SERIAL PRIMARY KEY REFERENCES Item (idItem),
-    Regiao SERIAL REFERENCES Regiao(idRegial) NOT NULL,
+CREATE TABLE chave(
+    idItem SERIAL PRIMARY KEY REFERENCES item (idItem),
+    Regiao SERIAL REFERENCES regiao(idRegiao) NOT NULL,
     valor int default 0,
     peso int NOT NULL,
     nome VARCHAR(25) NOT NULL,
     descricao text DEFAULT ''
 );
 
-CREATE TABLE Personagem(
+CREATE TABLE personagem(
   idPersonagem SERIAL PRIMARY KEY,
   tipoP VARCHAR(3) NOT NULL
 );
 
-CREATE TABLE PersonagemJogavel(
-  idPersonagem SERIAL PRIMARY KEY REFERENCES Personagem (idPersonagem),
-  acessorio1 SERIAL REFERENCES Acessorio (idItem),
-  acessorio2 SERIAL REFERENCES Acessorio (idItem),
-  armadura SERIAL REFERENCES Armadura (idItem),
-  arma SERIAL REFERENCES Arma (idItem),
+CREATE TABLE personagem_jogavel(
+  idPersonagem SERIAL PRIMARY KEY REFERENCES personagem (idPersonagem),
+  acessorio1 SERIAL REFERENCES acessorio (idItem),
+  acessorio2 SERIAL REFERENCES acessorio (idItem),
+  armadura SERIAL REFERENCES armadura (idItem),
+  arma SERIAL REFERENCES arma (idItem),
   menteAtual INT NOT NULL,
   menteMax INT NOT NULL,
   hpAtual INT NOT NULL,
@@ -108,19 +108,19 @@ CREATE TABLE PersonagemJogavel(
   nome text NOT NULL,
   local SERIAL,
 	regiao SERIAL,
-  FOREIGN KEY(local, regiao) REFERENCES Local(idLocal, idRegiao)
+  FOREIGN KEY(local, regiao) REFERENCES local(idLocal, idRegiao)
 );
 
-CREATE TABLE PersonagemNaoJogavel(
-  idPersonagem SERIAL PRIMARY KEY REFERENCES Personagem(idPersonagem),
+CREATE TABLE personagem_nao_jogavel(
+  idPersonagem SERIAL PRIMARY KEY REFERENCES personagem(idPersonagem),
   tipoPnj VARCHAR(1) NOT NULL
   );
 
-CREATE TABLE Lojista(
-  idPersonagem SERIAL PRIMARY KEY REFERENCES PersonagemNaoJogavel(idPersonagem),
+CREATE TABLE lojista(
+  idPersonagem SERIAL PRIMARY KEY REFERENCES personagem_nao_jogavel(idPersonagem),
 	local SERIAL,
 	regiao SERIAL,
-  FOREIGN KEY(local, regiao) REFERENCES Local(idLocal, idRegiao),
+  FOREIGN KEY(local, regiao) REFERENCES local(idLocal, idRegiao),
   fala TEXT DEFAULT '',
   imgTexto TEXT DEFAULT '',
   descricao TEXT DEFAULT '',
@@ -132,8 +132,8 @@ CREATE TABLE Lojista(
   nome TEXT NOT NULL
 );
 
-CREATE TABLE Inimigo(
-  idPersonagem SERIAL PRIMARY KEY REFERENCES PersonagemNaoJogavel(idPersonagem),
+CREATE TABLE inimigo(
+  idPersonagem SERIAL PRIMARY KEY REFERENCES personagem_nao_jogavel(idPersonagem),
   fala TEXT DEFAULT '',
   imgTexto TEXT DEFAULT '',
   descricao TEXT DEFAULT '',
@@ -145,15 +145,15 @@ CREATE TABLE Inimigo(
   nome TEXT NOT NULL
 );
 
-CREATE TABLE Alma(
+CREATE TABLE alma(
   nome VARCHAR(25) PRIMARY KEY,
-  idPersonagem SERIAL REFERENCES PersonagemJogavel(idPersonagem),
+  idPersonagem SERIAL REFERENCES personagem_jogavel(idPersonagem),
   descricao TEXT DEFAULT ''
 );
 
-ALTER TABLE personagem ADD COLUMN alma TEXT REFERENCES Alma (nome);
+ALTER TABLE personagem ADD COLUMN alma TEXT REFERENCES alma (nome);
 
-CREATE TABLE Parte(
+CREATE TABLE parte(
   idParte SERIAL,
   idPersonagem INT,
   hpMax INT NOT NULL,
@@ -164,43 +164,43 @@ CREATE TABLE Parte(
   FOREIGN KEY (idPersonagem) REFERENCES personagem (idPersonagem)
 );
 
-CREATE TABLE InstanciaInimigo(
+CREATE TABLE instancia_inimigo(
   idInst SERIAL,
   idPersonagem SERIAL,
   idLocal Serial,
   regiao SERIAL,
   PRIMARY KEY (idInst, idPersonagem),
   FOREIGN KEY (idPersonagem) REFERENCES personagem (idPersonagem),
-  FOREIGN KEY (idLocal, regiao) REFERENCES Local(idLocal, idRegiao)
+  FOREIGN KEY (idLocal, regiao) REFERENCES local(idLocal, idRegiao)
 );
 
-CREATE TABLE InstanciaItem(
+CREATE TABLE instancia_item(
   idInst SERIAL,
   idItem SERIAL,
   idLocal SERIAL,
   idRegiao SERIAL,
   PRIMARY KEY(idInst, idItem),
-  FOREIGN KEY (idItem) REFERENCES Item (idItem),
-  FOREIGN KEY (idLocal, idRegiao) REFERENCES Local (idLocal, idRegiao)
+  FOREIGN KEY (idItem) REFERENCES item (idItem),
+  FOREIGN KEY (idLocal, idRegiao) REFERENCES local (idLocal, idRegiao)
 );
 
-CREATE TABLE Vende(
+CREATE TABLE vende(
   idLojista SERIAL,
   idInstItem SERIAL,
 	idItem SERIAL,
   PRIMARY KEY (idLojista, idInstItem),
-  FOREIGN KEY (idLojista) REFERENCES Lojista (idPersonagem),
-  FOREIGN KEY (idInstItem, idItem) REFERENCES InstanciaItem (idinst, iditem)
+  FOREIGN KEY (idLojista) REFERENCES lojista (idPersonagem),
+  FOREIGN KEY (idInstItem, idItem) REFERENCES instancia_item (idinst, iditem)
 );
 
-CREATE TABLE Habilidade(
+CREATE TABLE habilidade(
   idHabilidade SERIAL PRIMARY KEY,
-  alma TEXT REFERENCES Alma (nome),
+  alma TEXT REFERENCES alma (nome),
   tipoHab VARCHAR(1) NOT NULL
 );
 
-CREATE TABLE Passiva(
-  idHabilidade SERIAL PRIMARY KEY REFERENCES Habilidade (idHabilidade),
+CREATE TABLE passiva(
+  idHabilidade SERIAL PRIMARY KEY REFERENCES habilidade (idHabilidade),
   adAtqM INT DEFAULT 0,
   adDefM INT DEFAULT 0,
   adMenteMax INT DEFAULT 0,
@@ -213,8 +213,8 @@ CREATE TABLE Passiva(
   descricao TEXT DEFAULT ''
 );
 
-CREATE TABLE Ataque(
-  idHabilidade SERIAL PRIMARY KEY REFERENCES Habilidade (idHabilidade),
+CREATE TABLE ataque(
+  idHabilidade SERIAL PRIMARY KEY REFERENCES habilidade (idHabilidade),
   danoFisico INT DEFAULT 0,
   danoMagico INT DEFAULT 0,
   nome TEXT NOT NULL,
@@ -222,8 +222,8 @@ CREATE TABLE Ataque(
   descricao TEXT DEFAULT ''
 );
 
-CREATE TABLE Suporte(
-  idHabilidade SERIAL PRIMARY KEY REFERENCES Habilidade (idHabilidade),
+CREATE TABLE suporte(
+  idHabilidade SERIAL PRIMARY KEY REFERENCES habilidade (idHabilidade),
   adAtqM INT DEFAULT 0,
   adDefM INT DEFAULT 0,
   adAgil INT DEFAULT 0,
@@ -233,21 +233,21 @@ CREATE TABLE Suporte(
   descricao TEXT DEFAULT ''
 );
 
-CREATE TABLE Inventario(
+CREATE TABLE inventario(
   idInventario SERIAL,
   idPersonagem SERIAL,
   PRIMARY KEY(idInventario, idPersonagem),
-  FOREIGN KEY (idPersonagem) REFERENCES Personagem(idPersonagem),
+  FOREIGN KEY (idPersonagem) REFERENCES personagem(idPersonagem),
   capTotal INT NOT NULL,
   capAtual INT NOT NULL,
   dinMax INT NOT NULL,
   dinAtual INT NOT NULL
 );
 
-CREATE TABLE ListaInventario(
-  idPj INT REFERENCES PersonagemJogavel(idPersonagem),
+CREATE TABLE lista_inventario(
+  idPj INT REFERENCES personagem_jogavel(idPersonagem),
   idItem SERIAL,
   idInstItem SERIAL,
   PRIMARY KEY (idPj),
-  FOREIGN KEY (idItem, idInstItem) REFERENCES InstanciaItem(idItem, idInst)
+  FOREIGN KEY (idItem, idInstItem) REFERENCES instancia_item(idItem, idInst)
 );
