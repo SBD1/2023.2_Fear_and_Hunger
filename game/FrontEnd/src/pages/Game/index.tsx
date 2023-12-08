@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import InventarioModal from "../../components/InventarioModal";
 import LojaModal from "../../components/LojaModal";
 import { IInventario, ILocal, IPersonagem, Item } from "../../types";
 import {
   ArrowLink,
-  BtnBack,
   Container,
   Content,
   Header,
@@ -32,7 +31,6 @@ const Game = () => {
 
   const [selectedLocalId, setSelectedLocalId] = useState<number | null>(null);
 
-  const navigate = useNavigate();
   const personagemJogador: IPersonagem | undefined = useMemo(() => {
     return personagens?.find((personagem) =>
       personagem.tipop?.includes("personagem_jogavel")
@@ -152,7 +150,6 @@ const Game = () => {
       </Link>
       <Container>
         <Header>
-          <BtnBack onClick={() => navigate(-1)}>Voltar</BtnBack>
           <h1>{`Local: ${
             locais.find((local) => local.idlocal === selectedLocalId)?.nomel ??
             "Sem local na região"
