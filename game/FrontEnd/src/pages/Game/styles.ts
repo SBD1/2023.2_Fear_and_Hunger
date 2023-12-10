@@ -151,13 +151,3 @@ export const LojistaContainer = styled.div`
   box-sizing: border-box;
   cursor: pointer;
 `;
-
-export const BtnBack = styled.button`
-  width: 3.5rem;
-  height: 2.5rem;    
-  flex: 0 0 auto;
-  cursor: pointer;
-  border-radius: 10px;
-  align-items: center;
-  background-color: #2e2b28;
-`;
