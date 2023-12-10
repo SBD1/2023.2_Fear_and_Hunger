@@ -25,6 +25,19 @@ export interface IPersonagem {
   defesa?: number;
 }
 
+export interface IPersonagemJogavel {
+  id_personagem: number;
+  hpatual: number;
+  hpmax: number;
+  menteatual: number;
+  mentemax: number;
+  arma: "Espada Longa";
+  armadura: "Cota de Malha";
+  acessorio1?: string;
+  acessorio2?: string;
+  nome: string;
+}
+
 export interface IInventario {
   id_personagem: number;
   dinatual: number;

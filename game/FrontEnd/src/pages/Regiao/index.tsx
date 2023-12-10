@@ -9,12 +9,16 @@ import {
 } from "./styles";
 
 import { IRegiao } from "../../types";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ArrowLink } from "../Game/styles";
+import { GoArrowLeft } from "react-icons/go";
 
 export default function Regiao() {
   const [regioes, setRegioes] = useState<IRegiao[]>([]);
 
   const navigate = useNavigate();
+
+  const { idPersonagemJogavel } = useParams();
 
   const getRegioes = async () => {
     try {
@@ -31,11 +35,16 @@ export default function Regiao() {
   }, []);
 
   const handleClick = (id: number) => {
-    navigate(`/game/${id}`); // Redireciona para o caminho desejado
+    navigate(`/game/${id}/${idPersonagemJogavel}`); // Redireciona para o caminho desejado
   };
 
   return (
     <WholePage>
+      <Link to="/personagem">
+        <ArrowLink>
+          <GoArrowLeft />
+        </ArrowLink>
+      </Link>
       <Container>
         {regioes?.length === 0 ? (
           <div style={{ color: "#000" }}>No Data</div>

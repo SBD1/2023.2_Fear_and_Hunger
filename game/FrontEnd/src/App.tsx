@@ -4,6 +4,7 @@ import "./App.css";
 import api from "./api";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
+import Personagem from "./pages/Personagem";
 import Regiao from "./pages/Regiao";
 
 function App() {
@@ -30,12 +31,16 @@ function App() {
       ),
     },
     {
-      path: "/game/:idRegiao",
-      element: <Game />,
+      path: "/personagem",
+      element: <Personagem />,
     },
     {
-      path: "/regiao",
+      path: "/regiao/:idPersonagemJogavel",
       element: <Regiao />,
+    },
+    {
+      path: "/game/:idRegiao/:idPersonagemJogavel",
+      element: <Game />,
     },
   ]);
 

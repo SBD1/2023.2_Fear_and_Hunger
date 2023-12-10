@@ -40,14 +40,8 @@ const Game = () => {
   //UseStete  para loja ou combate
   const [allowStore, setAllowStore] = useState(false);
   const [allowEnemy, setAllowEnemy] = useState(false);
-  // const personagemJogador: IPersonagem | undefined = useMemo(() => {
-  //   return personagens?.find((personagem) =>
-  //     personagem.tipop?.includes("personagem_jogavel")
-  //   );
-  // }, [personagens]);
 
-  // id que sera usado para fazer a query dos locais
-  const { idRegiao } = useParams();
+  const { idRegiao, idPersonagemJogavel } = useParams();
 
   const getLocais = useCallback(async () => {
     try {
@@ -62,14 +56,14 @@ const Game = () => {
     }
   }, [idRegiao, selectedLocalId]); // Dependências da função
 
-  const getHero = async () => {
+  const getHero = useCallback(async () => {
     try {
-      const { data } = await api.get("/personagem/only/1");
+      const { data } = await api.get(`/personagem/only/${idPersonagemJogavel}`);
       setHeroi(data[0]);
     } catch (error) {
       console.error("Erro ao obter personagem heroico:", error);
     }
-  };
+  }, [idPersonagemJogavel]); // Dependências da função
 
   // Personagem disponiveis na região
   const getPersonagens = useCallback(async () => {
@@ -91,7 +85,7 @@ const Game = () => {
 
   const getInventario = async () => {
     try {
-      const { data } = await api.get(`/inventario/${heroi?.id_personagem}`);
+      const { data } = await api.get(`/inventario/${idPersonagemJogavel}`);
       setInventario(data[0]);
     } catch (error) {
       console.error("Erro ao obter inventario:", error);
@@ -117,8 +111,19 @@ const Game = () => {
     }
   };
 
+  const movePersonagemJogavel = useCallback(async () => {
+    try {
+      await api.put(
+        `/personagem/move/${idPersonagemJogavel}/${selectedLocalId}`
+      );
+    } catch (error) {
+      console.error("Erro ao mover personagem:", error);
+    }
+  }, [idPersonagemJogavel, selectedLocalId]);
+
   useEffect(() => {
     getPersonagens();
+    movePersonagemJogavel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocalId]);
 
@@ -142,6 +147,7 @@ const Game = () => {
       }
     }
   }, [
+    getHero,
     getLocais,
     getPersonagens,
     itemList.length,
@@ -186,7 +192,7 @@ const Game = () => {
 
   return (
     <WholePage>
-      <Link to="/regiao">
+      <Link to={`/regiao/${idPersonagemJogavel}`}>
         <ArrowLink>
           <GoArrowLeft />
         </ArrowLink>
