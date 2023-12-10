@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import InventarioModal from "../../components/InventarioModal";
 import LojaModal from "../../components/LojaModal";
 import { IInventario, ILocal, IPersonagem, Item, ItemRPG } from "../../types";
 import {
   ArrowLink,
-  BtnBack,
   Container,
   Content,
   Header,
@@ -41,7 +40,6 @@ const Game = () => {
   //UseStete  para loja ou combate
   const [allowStore, setAllowStore] = useState(false);
   const [allowEnemy, setAllowEnemy] = useState(false);
-  const navigate = useNavigate();
   // const personagemJogador: IPersonagem | undefined = useMemo(() => {
   //   return personagens?.find((personagem) =>
   //     personagem.tipop?.includes("personagem_jogavel")
@@ -84,7 +82,7 @@ const Game = () => {
             personagem.tipop === "personagem_nao_jogavel"
         )
       );
-      setAllowEnemy(false)
+      setAllowEnemy(false);
       setPersonagem(data);
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
@@ -195,7 +193,6 @@ const Game = () => {
       </Link>
       <Container>
         <Header>
-          <BtnBack onClick={() => navigate(-1)}>Voltar</BtnBack>
           <h1>{`Local: ${
             locais.find((local) => local.idlocal === selectedLocalId)?.nomel ??
             "Sem local na região"
