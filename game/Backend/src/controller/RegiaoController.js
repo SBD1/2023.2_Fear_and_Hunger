@@ -16,6 +16,7 @@ class RegiaoController {
     try {
       // Acessando o parâmetro da rota
       const { idRegiao } = req.params;
+      console.log("idRegiao",idRegiao);
       const response = (await getLocais(idRegiao)) ?? null;
       return res.status(200).json(response);
     } catch (error) {

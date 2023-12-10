@@ -18,7 +18,7 @@ CREATE TABLE local (
 -- Tabela de Personagens
 CREATE TABLE personagem (
     id_personagem SERIAL PRIMARY KEY,
-    idLocal INTEGER REFERENCES local(idLocal) DEFAULT 1, -- Relação com a tabela Local
+    idLocal INTEGER REFERENCES local(idLocal) DEFAULT 1, -- Relação com a tabela Local    
     nome VARCHAR(50) NOT NULL,
     dinheiro INTEGER NOT NULL DEFAULT 0,
     tipoP VARCHAR(25), -- Tipo de personagem
@@ -103,3 +103,11 @@ CREATE TABLE armadura (
 );
 
 -- Add any other necessary tables here following the same pattern.
+CREATE TABLE compra (
+    idCompra SERIAL PRIMARY KEY,
+    id_personagem SERIAL REFERENCES personagem(id_personagem),
+    idItem SERIAL REFERENCES item(idItem),
+    quantidade INTEGER NOT NULL,
+    valorTotal INTEGER NOT NULL,
+    dataCompra TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

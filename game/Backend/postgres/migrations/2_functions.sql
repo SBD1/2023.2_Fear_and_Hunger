@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION criar_inventario()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO inventario (id_personagem) VALUES (NEW.id_personagem);
+    INSERT INTO inventario (id_personagem,dinAtual) VALUES (NEW.id_personagem, 1000);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -72,4 +72,53 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trigger_check_exclusive_item_type
 BEFORE INSERT OR UPDATE ON item
 FOR EACH ROW EXECUTE FUNCTION check_exclusive_item_type();
+
+
+CREATE OR REPLACE PROCEDURE comprarItem(idPersonagem INT, idItemCompra INT)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    precoItem INT;
+    pesoItem INT;
+    dinheiroPersonagem INT;
+    pesoAtual INT;
+    qtdItemExistente INT;
+BEGIN
+    -- Obtém o preço e o peso do item
+    SELECT valor, peso INTO precoItem, pesoItem FROM item WHERE idItem = idItemCompra;
+
+    -- Obtém o dinheiro e o peso atual do personagem
+    SELECT dinAtual, capAtual INTO dinheiroPersonagem, pesoAtual FROM inventario WHERE id_personagem = idPersonagem;
+
+    -- Verifica se o personagem tem dinheiro suficiente
+    IF dinheiroPersonagem < precoItem THEN
+        RAISE EXCEPTION 'Dinheiro insuficiente';
+    END IF;
+
+    -- Atualiza o dinheiro e o peso no inventário
+    UPDATE inventario SET 
+        dinAtual = dinAtual - precoItem,
+        capAtual = capAtual + pesoItem
+    WHERE id_personagem = idPersonagem;
+
+    -- Verifica se o item já existe no inventário
+    SELECT quantidade INTO qtdItemExistente FROM compra WHERE id_personagem = idPersonagem AND idItem = idItemCompra;
+
+    IF qtdItemExistente IS NOT NULL THEN
+        -- Se o item já existe, incrementa a quantidade
+        UPDATE compra SET 
+            quantidade = quantidade + 1,
+            valorTotal = valorTotal + precoItem
+        WHERE id_personagem = idPersonagem AND idItem = idItemCompra;
+    ELSE
+        -- Se o item não existe, insere um novo registro
+        INSERT INTO compra (id_personagem, idItem, quantidade, valorTotal)
+        VALUES (idPersonagem, idItemCompra, 1, precoItem);
+    END IF;
+
+    COMMIT;
+END;
+$$;
+
+
 

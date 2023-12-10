@@ -13,3 +13,8 @@ export const getPersonagensPorLocal = async (idLocal) => {
   `;
   return await getDBConnection(query);
 };
+
+export const getPersonagensById = async (id_personagem) => {  
+  const query = `SELECT * FROM personagem WHERE id_personagem = ${id_personagem};`;
+  return await getDBConnection(query);
+};

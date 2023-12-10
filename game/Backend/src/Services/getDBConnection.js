@@ -1,16 +1,16 @@
 import pkg from "pg";
 const { Pool } = pkg;
 
-async function getDBConnection(query, returToCaller = true) {
-  //Conectar Banco de Dados
+async function getDBConnection(query, params = [], returnToCaller = true) {
+  // Conectar Banco de Dados
   const connection = new Pool({
     connectionString: `postgres://postgres:postgres@db:5432/sbd1_database`,
   });
 
   const client = await connection.connect();
-  const resp = await client.query(query);
+  const resp = await client.query(query, params);
   client.release();
-  if (returToCaller) {
+  if (returnToCaller) {
     return resp.rows;
   }
 }
