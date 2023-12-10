@@ -25,6 +25,15 @@ export interface IPersonagem {
   defesa?: number;
 }
 
+export interface IPersonagemNaoJogavel {
+  id_personagem: number;
+  descricao: string;
+  fala: string;
+  imgtexto: string;
+  tipopnj: string;
+  nome: string;
+}
+
 export interface IPersonagemJogavel {
   id_personagem: number;
   hpatual: number;

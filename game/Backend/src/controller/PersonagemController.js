@@ -5,6 +5,7 @@ import {
   getPersonagensJogaveis,
   getPersonagensNaoJogaveis,
   movePersonagem,
+  getPersonagensNaoJogaveisPorLocal,
 } from "../Services/PersonagemServicesDB.js";
 class PersonagemController {
   async getItemPersonagem(req, res) {
@@ -56,6 +57,18 @@ class PersonagemController {
   async getPersonagensNaoJogaveis(req, res) {
     try {
       const response = (await getPersonagensNaoJogaveis()) ?? null;
+      return res.status(200).json(response);
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getPersonagensNaoJogaveisPorLocal(req, res) {
+    try {
+      const { id_local } = req.params;
+      const response =
+        (await getPersonagensNaoJogaveisPorLocal(id_local)) ?? null;
       return res.status(200).json(response);
     } catch (error) {
       console.error(error.message);

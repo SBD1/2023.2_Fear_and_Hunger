@@ -22,9 +22,15 @@ routes.get(
 );
 
 routes.get("/personagem_jogavel", PersonagemController.getPersonagensJogaveis);
+
 routes.get(
   "/personagem_nao_jogavel",
   PersonagemController.getPersonagensNaoJogaveis
+);
+
+routes.get(
+  "/personagem_nao_jogavel/:id_local",
+  PersonagemController.getPersonagensNaoJogaveisPorLocal
 );
 
 routes.put(

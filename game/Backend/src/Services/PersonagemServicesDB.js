@@ -37,6 +37,16 @@ export const getPersonagensNaoJogaveis = async () => {
   return await getDBConnection(query);
 };
 
+export const getPersonagensNaoJogaveisPorLocal = async (id_local) => {
+  const query = `
+    SELECT pnj.*, p.nome
+    FROM personagem_nao_jogavel pnj
+    JOIN personagem p ON pnj.id_personagem = p.id_personagem
+    WHERE p.idlocal = ${id_local};
+  `;
+  return await getDBConnection(query);
+};
+
 export const movePersonagem = async (id_personagem, id_local) => {
   const query = `
     UPDATE personagem
