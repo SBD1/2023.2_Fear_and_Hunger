@@ -8,6 +8,7 @@ import {
   BtnSubmit,
   ContainerItens,
 } from "./styles";
+import api from "../../api";
 
 interface ILojaModal {
   inventario: IInventario;
@@ -21,11 +22,13 @@ export default function LojaModal({ inventario, itemList }: ILojaModal) {
     setSelectedItemId(itemId);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (selectedItemId !== null) {
-      console.log(`ID do item selecionado: ${selectedItemId}`);
+      await api
+        .post(`/comprarItem/1/${selectedItemId}`)
+        .then(() => alert("Item Comprado com Sucesso!")).then(() => window.location.reload());
     }
   };
   return (

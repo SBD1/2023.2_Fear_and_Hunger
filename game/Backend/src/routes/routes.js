@@ -3,6 +3,7 @@ import InventarioController from "../controller/InventarioController.js";
 import PersonagemController from "../controller/PersonagemController.js";
 import RegiaoController from "../controller/RegiaoController.js";
 import ItensController from "../controller/ItensController.js";
+import CompraController from "../controller/CompraController.js";
 
 const routes = new Router();
 
@@ -15,6 +16,7 @@ routes.get("/", (req, res) => {
 // Rota Personagem
 routes.get("/personagem", PersonagemController.getItemPersonagem);
 routes.get("/personagem/:localId", PersonagemController.getPersonagensPorLocal);
+routes.get("/personagem/only/:id_personagem", PersonagemController.getPersonagensById);
 
 // Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
@@ -29,7 +31,10 @@ routes.get(
 );
 
 // Rota para todos os items
-
 routes.get("/item", ItensController.getItens);
+
+// Rota para compra de item
+routes.post("/comprarItem/:idPersonagem/:idItem", CompraController.ComprarItem)
+routes.get("/comprarItem/inventario", CompraController.ItemComprados)
 
 export default routes;

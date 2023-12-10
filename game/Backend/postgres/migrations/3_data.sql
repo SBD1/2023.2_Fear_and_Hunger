@@ -13,30 +13,30 @@ VALUES
         TRUE
     ),
     (
-        'Circo',
-        'Um lugar que antes era usado para diversão e entretenimento, mas que atualmente tem um aspecto sinistro e abandonado.',
-        TRUE
-    ),
-    (
-        'Truques e mágica Dr. Kefer',
-        'Um pequeno edifício de aparência desgastada.',
-        FALSE
-    ),
-    (
-        'Livraria',
-        'A livraria comercializava todo tipo de livro dos mais variados assuntos.',
-        FALSE
-    ),
-    (
         'Floresta',
         'O bosque que fica ao redor da cidade.',
         FALSE
-    ),
-    (
-        'Casa do lenhador',
-        'A casa do lenhador do vilarejo',
-        FALSE
     );
+    -- (
+    --     'Circo',
+    --     'Um lugar que antes era usado para diversão e entretenimento, mas que atualmente tem um aspecto sinistro e abandonado.',
+    --     TRUE
+    -- ),
+    -- (
+    --     'Truques e mágica Dr. Kefer',
+    --     'Um pequeno edifício de aparência desgastada.',
+    --     FALSE
+    -- ),
+    -- (
+    --     'Livraria',
+    --     'A livraria comercializava todo tipo de livro dos mais variados assuntos.',
+    --     FALSE
+    -- ),
+    -- (
+    --     'Casa do lenhador',
+    --     'A casa do lenhador do vilarejo',
+    --     FALSE
+    -- );
 
 INSERT INTO
     Local (idRegiao, nomeL, imgTexto)
@@ -57,11 +57,45 @@ VALUES
         'Diz-se que a  Árvore da Praça tem mais de um século de idade, testemunhando eventos importantes e segredos compartilhados ao longo do tempo. Seus troncos retorcidos e casca rugosa contam histórias que são passadas de boca em boca. Com suas raízes profundamente enraizadas na cultura da cidade, esta árvore é mais do que apenas um elemento paisagístico; ela é um símbolo de conexão, sombra e continuidade na Praça Central.'
     );
 
+INSERT INTO
+    Local (idRegiao, nomeL, imgTexto)
+VALUES
+    (
+        2,
+        'Entrada',
+        'A entrada da igreja, única na cidade, é um portal majestoso para a espiritualidade. Suas portas de madeira entalhada são adornadas com símbolos e cenas da ascensão de All-mer, o último dos deuses antigos. Acima, um arco de pedra com figuras angélicas simboliza a conexão entre os mundos terreno e espiritual. Ao lado, duas estátuas de pedra de All-mer guardam a entrada, representando sua majestosa ascensão e poder divino. O caminho florido que leva até lá evoca paz e reverência, preparando os visitantes para a comunhão espiritual no interior.'
+    ),
+    (
+        2,
+        'Interior',
+        'O interior da igreja é um santuário de serenidade e devoção. Altas colunas de pedra se elevam para sustentar um teto abobadado, adornado com afrescos delicadamente pintados que contam as histórias de All-mer e sua ascensão divina. A luz suave penetra através dos vitrais coloridos, lançando um arco-íris de cores sobre os bancos de madeira enfileirados, convidando os fiéis a um momento de reflexão e oração.'
+    ),
+    (
+        2,
+        'Altar',
+        'O altar, um grande mural retrata All-mer em sua forma glorificada, cercado por símbolos celestiais e terrenos. O espaço em frente ao altar, frequentemente usado para cerimônias e preces, é aberto e acolhedor, facilitando uma conexão coletiva entre os adoradores e o divino.'
+    );
+
+INSERT INTO
+    Local (idRegiao, nomeL, imgTexto)
+VALUES
+    (
+        3,
+        'Entrada',
+        'A entrada da floresta, emerge como um umbral sombrio e inquietante para um reino de mistérios e medos ancestrais. As árvores retorcidas e imponentes formam um arco quase ameaçador, com galhos entrelaçados que se assemelham a dedos esqueléticos estendendo-se para o céu encoberto. A luz do sol raramente penetra essa cortina de folhagem densa, criando um crepúsculo perpétuo que envolve o caminho com uma penumbra desconcertante.'
+    ),
+    (
+        3,
+        'Interior',
+        'À medida que se adentra mais profundamente, a trilha se torna mais sinuosa e menos definida, levando os visitantes a um labirinto de sombras e incertezas. A floresta parece guardar segredos antigos e histórias esquecidas, onde cada sussurro do vento e movimento furtivo nas sombras pode ser o prenúncio de horrores ocultos. Neste cenário, a entrada da floresta é mais do que um simples começo de trilha; é um convite ao coração de um pesadelo natural, onde o medo e o fascínio caminham lado a lado.'
+    );
+    
+
 -- Primeiro, inserimos um personagem que será jogável
 INSERT INTO
-    personagem (nome, idLocal, tipoP)
+    personagem (nome, idLocal, tipoP, dinheiro)
 VALUES
-    ('Jogador Heroico', 1, 'personagem_jogavel') RETURNING id_personagem;
+    ('Jogador Heroico', 1, 'personagem_jogavel', 1000) RETURNING id_personagem;
 
 -- Suponha que o ID retornado seja 1, usamos esse ID para inserir na tabela PersonagemJogavel
 INSERT INTO

@@ -151,3 +151,16 @@ export const LojistaContainer = styled.div`
   box-sizing: border-box;
   cursor: pointer;
 `;
+
+export const InimigoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+`;

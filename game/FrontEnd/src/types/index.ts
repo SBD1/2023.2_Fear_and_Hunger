@@ -40,3 +40,10 @@ export interface Item {
   valor: number;
   peso: number;
 }
+
+export interface ItemRPG {
+  nome: string;
+  quantidade: number;
+  valortotal: number;
+  datacompra: string;
+}

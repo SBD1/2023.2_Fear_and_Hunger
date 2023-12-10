@@ -3,12 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import InventarioModal from "../../components/InventarioModal";
 import LojaModal from "../../components/LojaModal";
-import { IInventario, ILocal, IPersonagem, Item } from "../../types";
+import { IInventario, ILocal, IPersonagem, Item, ItemRPG } from "../../types";
 import {
   ArrowLink,
   Container,
   Content,
   Header,
+  InimigoContainer,
   InventarioContainer,
   LocaisCotaniner,
   LocaisList,
@@ -20,22 +21,30 @@ import {
 } from "./styles";
 
 import { GoArrowLeft } from "react-icons/go";
+import InimigoModal from "../../components/InimigoModal";
 
 const Game = () => {
   const [invertarioOpen, setInvertarioOpen] = useState(false);
   const [lojaOpen, setLojaOpen] = useState(false);
+  const [inimigoOpen, setInimigoOpen] = useState(false);
+
   const [personagens, setPersonagem] = useState<IPersonagem[]>([]);
+  const [heroi, setHeroi] = useState<IPersonagem>();
   const [locais, setLocais] = useState<ILocal[]>([]);
   const [inventario, setInventario] = useState<IInventario>({} as IInventario);
   const [itemList, setItemList] = useState<Item[]>([]);
+  const [itensComprados, setItensComprados] = useState<ItemRPG[]>([]);
 
   const [selectedLocalId, setSelectedLocalId] = useState<number | null>(null);
 
-  const personagemJogador: IPersonagem | undefined = useMemo(() => {
-    return personagens?.find((personagem) =>
-      personagem.tipop?.includes("personagem_jogavel")
-    );
-  }, [personagens]);
+  //UseStete  para loja ou combate
+  const [allowStore, setAllowStore] = useState(false);
+  const [allowEnemy, setAllowEnemy] = useState(false);
+  // const personagemJogador: IPersonagem | undefined = useMemo(() => {
+  //   return personagens?.find((personagem) =>
+  //     personagem.tipop?.includes("personagem_jogavel")
+  //   );
+  // }, [personagens]);
 
   // id que sera usado para fazer a query dos locais
   const { idRegiao } = useParams();
@@ -53,9 +62,27 @@ const Game = () => {
     }
   }, [idRegiao, selectedLocalId]); // Dependências da função
 
+  const getHero = async () => {
+    try {
+      const { data } = await api.get("/personagem/only/1");
+      setHeroi(data[0]);
+    } catch (error) {
+      console.error("Erro ao obter personagem heroico:", error);
+    }
+  };
+
+  // Personagem disponiveis na região
   const getPersonagens = useCallback(async () => {
     try {
       const { data } = await api.get(`/personagem/${selectedLocalId}`);
+      console.log(data);
+      setAllowStore(
+        data.some(
+          (personagem: { tipop: string }) =>
+            personagem.tipop === "personagem_nao_jogavel"
+        )
+      );
+      setAllowEnemy(false);
       setPersonagem(data);
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
@@ -64,12 +91,20 @@ const Game = () => {
 
   const getInventario = async () => {
     try {
-      const { data } = await api.get(
-        `/inventario/${personagemJogador?.id_personagem}`
-      );
+      const { data } = await api.get(`/inventario/${heroi?.id_personagem}`);
       setInventario(data[0]);
     } catch (error) {
       console.error("Erro ao obter inventario:", error);
+    }
+  };
+
+  const getItensComprados = async () => {
+    try {
+      const { data } = await api.get("comprarItem/inventario");
+      console.log(data);
+      setItensComprados(data);
+    } catch (error) {
+      console.error("Erro ao obter itens comprados:", error);
     }
   };
 
@@ -89,10 +124,12 @@ const Game = () => {
 
   useEffect(() => {
     getInventario();
+    getItensComprados();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [personagemJogador]);
+  }, [heroi]);
 
   useEffect(() => {
+    getHero();
     if (personagens.length === 0) {
       getPersonagens();
     }
@@ -118,6 +155,7 @@ const Game = () => {
 
   const inventarioModalRef = useRef<HTMLDivElement>(null); // Tipagem correta para o ref
   const lojaModalRef = useRef<HTMLDivElement>(null);
+  const InimigoModalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -132,6 +170,11 @@ const Game = () => {
         !lojaModalRef.current.contains(event.target as Node)
       ) {
         setLojaOpen(false);
+      } else if (
+        InimigoModalRef.current &&
+        !InimigoModalRef.current.contains(event.target as Node)
+      ) {
+        setInimigoOpen(false);
       }
     };
 
@@ -176,18 +219,24 @@ const Game = () => {
             <InventarioContainer
               onClick={() =>
                 setInvertarioOpen(
-                  personagemJogador === undefined
-                    ? invertarioOpen
-                    : !invertarioOpen
+                  heroi === undefined ? invertarioOpen : !invertarioOpen
                 )
               }
             >
               Inventario
             </InventarioContainer>
 
-            <LojistaContainer onClick={() => setLojaOpen(true)}>
-              Lojista
-            </LojistaContainer>
+            {allowStore && (
+              <LojistaContainer onClick={() => setLojaOpen(true)}>
+                Lojista
+              </LojistaContainer>
+            )}
+
+            {allowEnemy && (
+              <InimigoContainer onClick={() => setInimigoOpen(true)}>
+                Combate
+              </InimigoContainer>
+            )}
           </SubMenoRow>
           {invertarioOpen && inventario != null && (
             <div
@@ -200,7 +249,10 @@ const Game = () => {
                 top: "5%",
               }}
             >
-              <InventarioModal inventario={inventario} />
+              <InventarioModal
+                inventario={inventario}
+                inventarioItens={itensComprados}
+              />
             </div>
           )}
           {lojaOpen && inventario != null && (
@@ -215,6 +267,21 @@ const Game = () => {
               }}
             >
               <LojaModal inventario={inventario} itemList={itemList} />
+            </div>
+          )}
+
+          {inimigoOpen && (
+            <div
+              ref={InimigoModalRef}
+              style={{
+                position: "absolute",
+                width: " 90%",
+                height: " 90%",
+                left: "5%",
+                top: "5%",
+              }}
+            >
+              <InimigoModal />
             </div>
           )}
         </Content>

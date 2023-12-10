@@ -12,6 +12,8 @@ class InventarioController {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }
+
+
 }
 
 export default new InventarioController();
