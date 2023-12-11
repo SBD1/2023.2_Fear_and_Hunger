@@ -21,8 +21,6 @@
 
 Fear & Hunger é um jogo de role-playing sombrio que mergulha os jogadores em um universo perturbador e desafiador. Este projeto tem fins educativos e busca auxiliar na compreensão de Sistemas de Gerenciamento de Bancos de Dados. Exploraremos, dentro das limitações impostas pelo tempo da disciplina e do escopo do projeto, a vasta e sinistra narrativa desse título, destacando sua complexa mecânica de jogo, personagens e enredo envolventes que mergulham os jogadores em um mundo sombrio repleto de horrores inimagináveis. A proposta é fazer um pequeno jogo baseado em texto que se passe no mesmo universo de Fear and Hunger.
 
-Exploraremos a forma como os dados são organizados e armazenados para construir uma experiencia de horror com uma dinamica semelhante a da saga original. Buscaremos reproduzir a mecanica de combate com características de RPG, sistema de crafting de itens, interação entre personagens, lojas, entre outros. Aprofundaremos nosso estudo nos esquemas de banco de dados e relacionamentos no contexto desse mundo sombrio, injusto e repleto de horrores inimagináveis.
-
 # Como Rodar o Projeto
 
 ## Pré-requisitos do Sistema
