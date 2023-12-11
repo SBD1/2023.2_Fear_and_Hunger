@@ -4,17 +4,17 @@
   - [Modelo Entidade Relacionamento](./modulo_01/MREL.md)
   - [Mapeamento Sistematico](./modulo_03/modelo/modelo00.md)
   - [Dicionário de Dados](./modulo_01/DICIO.md)  
-  - [Tabela de dados]()
   - [Feedback](./modulo_03/feedback01.md)
 - Módulo 2
   - [Normalização](./modulo_02/normalizacao.md)   
-  - [DDL]()
-  - [DML]()
-  - [DQL]()
+  - [DDL](../sql/DDL.sql)
+  - [DML](../sql/DML.sql)
+  - [DQL](../sql/DQL.sql)
+  - [Tabela de dados](./modulo_02/tabela_de_dados.md)   
   - [Álgebra relacional]()
 - Módulo 3
   - [Trigger]()
   - [Stored Procedure]()
-  - [Configurações](../game/README.md)
+  - [Configurações](../README.md)
  
 - [FAQ](./modulo_03/faq.md)   
