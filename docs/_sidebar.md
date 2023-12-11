@@ -1,4 +1,4 @@
-- [Home](/)
+- [Home](../README.md)
 - Módulo 1
   - [DER](./modulo_01/DER.md)
   - [Modelo Entidade Relacionamento](./modulo_01/MREL.md)
