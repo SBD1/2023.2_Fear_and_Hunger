@@ -1,4 +1,4 @@
-- [Home](../README.md)
+- [Home](/)
 
 - Módulo 1
   - [DER](./modulo_01/DER.md)
