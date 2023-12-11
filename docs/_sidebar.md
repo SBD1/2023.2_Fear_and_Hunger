@@ -2,11 +2,12 @@
 - Módulo 1
   - [DER](./modulo_01/DER.md)
   - [Modelo Entidade Relacionamento](./modulo_01/MREL.md)
-  - [Mapeamento Sistematico](docs/modulo_03/modelo/modelo00.md)
+  - [Mapeamento Sistematico](./modulo_03/modelo/modelo00.md)
   - [Dicionário de Dados](./modulo_01/DICIO.md)  
   - [Tabela de dados]()
-  - [Feedback](docs/modulo_03/feedback01.md)
+  - [Feedback](./modulo_03/feedback01.md)
 - Módulo 2
+  - [Normalização](./modulo_02/normalizacao.md)   
   - [DDL]()
   - [DML]()
   - [DQL]()
@@ -14,6 +15,6 @@
 - Módulo 3
   - [Trigger]()
   - [Stored Procedure]()
-  - [Configurações]()
+  - [Configurações](../game/README.md)
  
-- [FAQ](docs/modulo_03/faq.md)   
+- [FAQ](./modulo_03/faq.md)   
