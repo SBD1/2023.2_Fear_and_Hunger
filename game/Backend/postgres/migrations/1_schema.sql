@@ -29,6 +29,20 @@ CREATE TABLE personagem (
 );
 
 
+CREATE TABLE parte (
+    idParte SERIAL,
+    idPersonagem INTEGER NOT NULL,
+    tipoParte VARCHAR(50),
+    hpMax INTEGER,
+    hpAtual INTEGER,
+    probAcerto NUMERIC,
+    PRIMARY KEY (idParte, idPersonagem),
+    FOREIGN KEY (idPersonagem) REFERENCES Personagem (id_personagem)
+    ON DELETE CASCADE
+);
+
+
+
 CREATE TABLE personagem_jogavel (
     id_personagem SERIAL PRIMARY KEY,
     hpAtual INTEGER,
@@ -62,6 +76,22 @@ CREATE TABLE personagem_nao_jogavel (
     tipoPnj TEXT -- Supondo que 'tipoPnj' seja um texto que descreve o tipo do PNJ
     -- Se 'tipoPnj' for uma chave estrangeira para outra tabela, você precisará adicionar a chave estrangeira aqui.
 );
+
+
+CREATE TABLE inimigo (
+    id_personagem INTEGER PRIMARY KEY,
+    nivelPerigo INTEGER NOT NULL,
+    recompensa INTEGER NOT NULL,
+    FOREIGN KEY (id_personagem) REFERENCES personagem_nao_jogavel (id_personagem) ON DELETE CASCADE
+);
+
+CREATE TABLE lojista (
+    id_personagem INTEGER PRIMARY KEY,
+    nomeLoja VARCHAR(50) NOT NULL,
+    especialidade VARCHAR(50),
+    FOREIGN KEY (id_personagem) REFERENCES personagem_nao_jogavel (id_personagem) ON DELETE CASCADE
+);
+
 
 -- Assuming 'Item' is an entity that includes 'nome', 'descricao', 'valor', 'peso'
 CREATE TABLE item (

@@ -3,7 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../api";
 import InventarioModal from "../../components/InventarioModal";
 import LojaModal from "../../components/LojaModal";
-import { IInventario, ILocal, IPersonagem, Item, ItemRPG } from "../../types";
+import {
+  IInventario,
+  ILocal,
+  IPersonagem,
+  IPersonagemNaoJogavel,
+  Item,
+  ItemRPG,
+} from "../../types";
 import {
   ArrowLink,
   Container,
@@ -28,7 +35,9 @@ const Game = () => {
   const [lojaOpen, setLojaOpen] = useState(false);
   const [inimigoOpen, setInimigoOpen] = useState(false);
 
-  const [personagens, setPersonagem] = useState<IPersonagem[]>([]);
+  const [inimigos, setInimigos] = useState<IPersonagemNaoJogavel[]>([]); // Personagens que podem ser inimigos
+  const [lojistas, setLojistas] = useState<IPersonagemNaoJogavel[]>([]); // Personagens que podem ser lojistas
+
   const [heroi, setHeroi] = useState<IPersonagem>();
   const [locais, setLocais] = useState<ILocal[]>([]);
   const [inventario, setInventario] = useState<IInventario>({} as IInventario);
@@ -37,17 +46,7 @@ const Game = () => {
 
   const [selectedLocalId, setSelectedLocalId] = useState<number | null>(null);
 
-  //UseStete  para loja ou combate
-  const [allowStore, setAllowStore] = useState(false);
-  const [allowEnemy, setAllowEnemy] = useState(false);
-  // const personagemJogador: IPersonagem | undefined = useMemo(() => {
-  //   return personagens?.find((personagem) =>
-  //     personagem.tipop?.includes("personagem_jogavel")
-  //   );
-  // }, [personagens]);
-
-  // id que sera usado para fazer a query dos locais
-  const { idRegiao } = useParams();
+  const { idRegiao, idPersonagemJogavel } = useParams();
 
   const getLocais = useCallback(async () => {
     try {
@@ -62,28 +61,36 @@ const Game = () => {
     }
   }, [idRegiao, selectedLocalId]); // Dependências da função
 
-  const getHero = async () => {
+  const getHero = useCallback(async () => {
     try {
-      const { data } = await api.get("/personagem/only/1");
+      const { data } = await api.get(`/personagem/only/${idPersonagemJogavel}`);
       setHeroi(data[0]);
     } catch (error) {
       console.error("Erro ao obter personagem heroico:", error);
     }
-  };
+  }, [idPersonagemJogavel]); // Dependências da função
 
   // Personagem disponiveis na região
   const getPersonagens = useCallback(async () => {
     try {
-      const { data } = await api.get(`/personagem/${selectedLocalId}`);
+      const { data } = await api.get(
+        `/personagem_nao_jogavel/${selectedLocalId}`
+      );
+
       console.log(data);
-      setAllowStore(
-        data.some(
-          (personagem: { tipop: string }) =>
-            personagem.tipop === "personagem_nao_jogavel"
+
+      setInimigos(
+        data.filter(
+          (personagem: IPersonagemNaoJogavel) =>
+            personagem.tipopnj !== "Lojista"
         )
       );
-      setAllowEnemy(false);
-      setPersonagem(data);
+      setLojistas(
+        data.filter(
+          (personagem: IPersonagemNaoJogavel) =>
+            personagem.tipopnj === "Lojista"
+        )
+      );
     } catch (error) {
       console.error("Erro ao obter personagens:", error);
     }
@@ -91,7 +98,7 @@ const Game = () => {
 
   const getInventario = async () => {
     try {
-      const { data } = await api.get(`/inventario/${heroi?.id_personagem}`);
+      const { data } = await api.get(`/inventario/${idPersonagemJogavel}`);
       setInventario(data[0]);
     } catch (error) {
       console.error("Erro ao obter inventario:", error);
@@ -117,8 +124,21 @@ const Game = () => {
     }
   };
 
+  const movePersonagemJogavel = useCallback(async () => {
+    try {
+      await api.put(
+        `/personagem/move/${idPersonagemJogavel}/${selectedLocalId}`
+      );
+    } catch (error) {
+      console.error("Erro ao mover personagem:", error);
+    }
+  }, [idPersonagemJogavel, selectedLocalId]);
+
   useEffect(() => {
+    setLojistas([]);
+    setInimigos([]);
     getPersonagens();
+    movePersonagemJogavel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocalId]);
 
@@ -129,9 +149,8 @@ const Game = () => {
   }, [heroi]);
 
   useEffect(() => {
-    getHero();
-    if (personagens.length === 0) {
-      getPersonagens();
+    if (heroi === undefined) {
+      getHero();
     }
 
     if (locais.length === 0) {
@@ -142,11 +161,12 @@ const Game = () => {
       }
     }
   }, [
+    getHero,
     getLocais,
     getPersonagens,
+    heroi,
     itemList.length,
     locais.length,
-    personagens.length,
   ]);
 
   const local: ILocal | undefined = useMemo(() => {
@@ -186,7 +206,7 @@ const Game = () => {
 
   return (
     <WholePage>
-      <Link to="/regiao">
+      <Link to={`/regiao/${idPersonagemJogavel}`}>
         <ArrowLink>
           <GoArrowLeft />
         </ArrowLink>
@@ -226,13 +246,13 @@ const Game = () => {
               Inventario
             </InventarioContainer>
 
-            {allowStore && (
+            {lojistas?.length > 0 && (
               <LojistaContainer onClick={() => setLojaOpen(true)}>
                 Lojista
               </LojistaContainer>
             )}
 
-            {allowEnemy && (
+            {inimigos?.length > 0 && (
               <InimigoContainer onClick={() => setInimigoOpen(true)}>
                 Combate
               </InimigoContainer>
@@ -281,7 +301,11 @@ const Game = () => {
                 top: "5%",
               }}
             >
-              <InimigoModal />
+              <InimigoModal
+                idRegiao={idRegiao}
+                idPersonagemJogavel={idPersonagemJogavel}
+                inimigos={inimigos}
+              />
             </div>
           )}
         </Content>

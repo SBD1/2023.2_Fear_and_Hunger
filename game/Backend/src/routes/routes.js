@@ -16,7 +16,36 @@ routes.get("/", (req, res) => {
 // Rota Personagem
 routes.get("/personagem", PersonagemController.getItemPersonagem);
 routes.get("/personagem/:localId", PersonagemController.getPersonagensPorLocal);
-routes.get("/personagem/only/:id_personagem", PersonagemController.getPersonagensById);
+routes.get(
+  "/personagem/only/:id_personagem",
+  PersonagemController.getPersonagensById
+);
+
+routes.get("/personagem_jogavel", PersonagemController.getPersonagensJogaveis);
+
+routes.get(
+  "/personagem_nao_jogavel",
+  PersonagemController.getPersonagensNaoJogaveis
+);
+
+routes.get(
+  "/personagem_nao_jogavel/:id_local",
+  PersonagemController.getPersonagensNaoJogaveisPorLocal
+);
+
+routes.get(
+  "/personagem_nao_jogavel/id/:id_personagem",
+  PersonagemController.getPersonagensNaoJogaveisPorId
+);
+
+routes.put(
+  "/personagem/move/:id_personagem/:id_local",
+  PersonagemController.movePersonagem
+);
+
+routes.get("/partes/:id_personagem", PersonagemController.getPartesPersonagem);
+
+routes.put("/parte/atualizar_hp/:id/:hp", CompraController.putParteAtualizarHP);
 
 // Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
@@ -34,7 +63,7 @@ routes.get(
 routes.get("/item", ItensController.getItens);
 
 // Rota para compra de item
-routes.post("/comprarItem/:idPersonagem/:idItem", CompraController.ComprarItem)
-routes.get("/comprarItem/inventario", CompraController.ItemComprados)
+routes.post("/comprarItem/:idPersonagem/:idItem", CompraController.ComprarItem);
+routes.get("/comprarItem/inventario", CompraController.ItemComprados);
 
 export default routes;
