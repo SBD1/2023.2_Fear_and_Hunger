@@ -1,24 +1,22 @@
+import { useCallback, useEffect, useState } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLink } from "../Game/styles";
-import {
-  Container,
-  InimigoContainer,
-  PersonagemContainer,
-  WholePage,
-} from "./styles";
-import { IParte, IPersonagemJogavel, IPersonagemNaoJogavel } from "../../types";
-import { useState, useCallback, useEffect } from "react";
 import api from "../../api";
+import { IParte, IPersonagem, IPersonagemNaoJogavel } from "../../types";
+import { ArrowLink } from "../Game/styles";
+import { Container, PersonagemContainer, WholePage } from "./styles";
 
 export default function Batalha() {
   const { idRegiao, idPersonagemJogavel, idInimigo } = useParams();
 
-  const [personagemJogavel, setPersonagemJogavel] =
-    useState<IPersonagemJogavel>({} as IPersonagemJogavel);
+  const [personagemJogavel, setPersonagemJogavel] = useState<IPersonagem>(
+    {} as IPersonagem
+  );
   const [inimigo, setInimigo] = useState<IPersonagemNaoJogavel>(
     {} as IPersonagemNaoJogavel
   );
+
+  const [yourTurn, setYourTurn] = useState<boolean>(true);
 
   const [partesInimigo, setPartesInimigo] = useState<IParte[]>([]);
 
@@ -86,6 +84,79 @@ export default function Batalha() {
     personagemJogavel,
   ]);
 
+  const atacar = useCallback(async (idParte: string, newHp: string) => {
+    try {
+      const { data } = await api.put(`/parte/atualizar_hp/${idParte}/${newHp}`);
+      console.log("Parte atacada", data);
+    } catch (error) {
+      console.error("Erro ao atacar parte:", error);
+    }
+  }, []);
+
+  const ataqueInimigo = () => {
+    setTimeout(() => {
+      const partesIdArray = partesPersonagemJogavel.map(
+        (parte) => parte.idparte
+      );
+
+      const indiceAleatorio = Math.floor(Math.random() * partesIdArray.length);
+      const parteEscolhida = partesPersonagemJogavel.find(
+        (parte) => parte.idparte === partesIdArray[indiceAleatorio]
+      );
+
+      if (parteEscolhida && personagemJogavel?.atq && idPersonagemJogavel) {
+        const probabilidadeAcertoInimigo = Number(parteEscolhida.probacerto);
+
+        const sorteio = Math.random();
+
+        if (sorteio <= probabilidadeAcertoInimigo) {
+          const danoInimigo = personagemJogavel.atq / 2; // Implemente esta função
+          const novoHpAtual = parteEscolhida.hpatual - danoInimigo;
+
+          parteEscolhida.hpatual = novoHpAtual > 0 ? novoHpAtual : 0;
+
+          // Atualiza a parte atacada do jogador
+          atacar(idPersonagemJogavel, novoHpAtual.toString());
+        } else {
+          // O ataque do inimigo erra
+          console.log("O ataque do inimigo errou!");
+        }
+      }
+
+      // Aqui você pode reabilitar o turno do jogador
+      setYourTurn(true);
+    }, 1000); // 1000 milissegundos (1 segundo) de atraso
+  };
+
+  const handleClick = (id: string) => {
+    setYourTurn(false);
+
+    const parte = partesInimigo.find(
+      (parte) => parte.idparte.toString() === id
+    );
+
+    if (parte && personagemJogavel?.atq) {
+      // Convertendo a probabilidade de string para número
+      const probabilidadeAcerto = parseFloat(parte.probacerto);
+
+      // Gerando um número aleatório entre 0 e 1
+      const sorteio = Math.random();
+
+      if (sorteio <= probabilidadeAcerto) {
+        const novoHpAtual = parte.hpatual - personagemJogavel.atq;
+
+        parte.hpatual = novoHpAtual > 0 ? novoHpAtual : 0;
+
+        atacar(id, novoHpAtual.toString());
+
+        ataqueInimigo();
+      } else {
+        console.log("O ataque errou!");
+        ataqueInimigo();
+      }
+    }
+  };
+
   return (
     <WholePage>
       <Link to={`/game/${idRegiao}/${idPersonagemJogavel}`}>
@@ -108,22 +179,61 @@ export default function Batalha() {
           <h1>Batalha</h1>
         </div>
 
-        <InimigoContainer>
+        <PersonagemContainer>
           <h1>Nome: {inimigo.nome}</h1>
-          {partesInimigo.map((parte) => {
+          {partesInimigo.map((parte, idx) => {
             return (
-              <div>
-                <p>{` ${parte.tipoparte} ${parte.hpatual}`}</p>
+              <div key={idx * 80}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      width: "10em",
+                      height: "5em",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >{`${parte.tipoparte} ${parte.hpatual}`}</p>
+                  <button
+                    style={{ width: "10em", height: "5em" }}
+                    onClick={() => handleClick(parte.idparte.toString())}
+                    disabled={!yourTurn}
+                  >
+                    Atacar
+                  </button>
+                </div>
               </div>
             );
           })}
-        </InimigoContainer>
+        </PersonagemContainer>
         <PersonagemContainer>
           <h1>Nome: {personagemJogavel.nome}</h1>
-          {partesPersonagemJogavel.map((parte) => {
+          {partesPersonagemJogavel.map((parte, idx) => {
             return (
-              <div>
-                <p>{` ${parte.tipoparte} ${parte.hpatual}`}</p>
+              <div key={idx * 2}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      width: "10em",
+                      height: "5em",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >{`${parte.tipoparte} ${parte.hpatual}`}</p>
+                </div>
               </div>
             );
           })}

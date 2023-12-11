@@ -37,18 +37,10 @@ export const Content = styled.div`
   flex-direction: column;
 `;
 
-export const InimigoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
-`;
-
 export const PersonagemContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 100%;
+  height: fit-content;
   box-sizing: border-box;
 `;

@@ -45,6 +45,8 @@ routes.put(
 
 routes.get("/partes/:id_personagem", PersonagemController.getPartesPersonagem);
 
+routes.put("/parte/atualizar_hp/:id/:hp", CompraController.putParteAtualizarHP);
+
 // Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
 

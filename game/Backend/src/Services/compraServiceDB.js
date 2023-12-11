@@ -2,7 +2,10 @@ import getDBConnection from "./getDBConnection.js";
 
 export const compraItens = async (idPersonagem, idItem) => {
   // const query = "'CALL comprarItem($1, $2)', [idPersonagem, idItem]";
-  return await getDBConnection('CALL comprarItem($1, $2)', [idPersonagem, idItem]);
+  return await getDBConnection("CALL comprarItem($1, $2)", [
+    idPersonagem,
+    idItem,
+  ]);
 };
 
 export const ItemComprados = async () => {
@@ -16,5 +19,10 @@ export const ItemComprados = async () => {
         WHERE c.id_personagem = $1
         ORDER BY c.dataCompra DESC;
     `;
-    return await getDBConnection(query, [1]);
+  return await getDBConnection(query, [1]);
+};
+
+export const putParteAtualizarHP = async (id, hp) => {
+  const query = `UPDATE parte SET hpAtual = ${hp} WHERE idParte = ${id};`;
+  return await getDBConnection(query);
 };
