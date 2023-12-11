@@ -80,6 +80,7 @@ export default function Batalha() {
     idInimigo,
     inimigo,
     partesInimigo.length,
+    partesPersonagemJogavel,
     partesPersonagemJogavel.length,
     personagemJogavel,
   ]);
@@ -93,11 +94,23 @@ export default function Batalha() {
     }
   }, []);
 
+  const [isEnemyDead, setIsEnemyDead] = useState<boolean>(false);
+  const [isPlayerDead, setIsPlayerDead] = useState<boolean>(false);
+
+  const [battleMessage, setBattleMessage] = useState<string>("Sua vez!");
+
+  // Função que simula um ataque do inimigo
   const ataqueInimigo = () => {
+    // Informa ao jogador que o inimigo está atacando
+    setBattleMessage("Inimigo atacando...");
+
     setTimeout(() => {
-      const partesIdArray = partesPersonagemJogavel.map(
-        (parte) => parte.idparte
-      );
+      // Realiza o ataque após uma pausa para a mensagem "Inimigo atacando..."
+      const partesIdArray = partesPersonagemJogavel
+        .filter((parte) => parte.hpatual > 0) // Filtra primeiro
+        .map((parte) => parte.idparte);
+
+      console.log(partesIdArray);
 
       const indiceAleatorio = Math.floor(Math.random() * partesIdArray.length);
       const parteEscolhida = partesPersonagemJogavel.find(
@@ -106,28 +119,60 @@ export default function Batalha() {
 
       if (parteEscolhida && personagemJogavel?.atq && idPersonagemJogavel) {
         const probabilidadeAcertoInimigo = Number(parteEscolhida.probacerto);
-
         const sorteio = Math.random();
 
         if (sorteio <= probabilidadeAcertoInimigo) {
-          const danoInimigo = personagemJogavel.atq / 2; // Implemente esta função
+          // const danoInimigo = personagemJogavel.atq / 2;
+          const danoInimigo = 50;
           const novoHpAtual = parteEscolhida.hpatual - danoInimigo;
-
           parteEscolhida.hpatual = novoHpAtual > 0 ? novoHpAtual : 0;
+          atacar(parteEscolhida.idparte.toString(), novoHpAtual.toString());
+          setBattleMessage(
+            "Inimigo acertou sua " +
+              parteEscolhida.tipoparte +
+              " e causou " +
+              danoInimigo +
+              " de dano!"
+          );
 
-          // Atualiza a parte atacada do jogador
-          atacar(idPersonagemJogavel, novoHpAtual.toString());
+          const novoEstadoPartesPersonagem = partesPersonagemJogavel.map(
+            (parte) => {
+              if (parte.idparte === parteEscolhida.idparte) {
+                return { ...parte, hpatual: parteEscolhida.hpatual };
+              }
+              return parte;
+            }
+          );
+
+          const isPlayerNowDead = novoEstadoPartesPersonagem.some(
+            (parte) =>
+              (parte.tipoparte === "Cabeça" || parte.tipoparte === "Torso") &&
+              parte.hpatual <= 0
+          );
+
+          setIsPlayerDead(isPlayerNowDead);
+
+          if (isPlayerNowDead) {
+            setYourTurn(false);
+            setBattleMessage("Personagem Morto");
+          } else {
+            setTimeout(() => {
+              setYourTurn(true);
+              setBattleMessage("Sua vez!");
+            }, 3000);
+          }
         } else {
-          // O ataque do inimigo erra
-          console.log("O ataque do inimigo errou!");
+          setBattleMessage("Inimigo errou o ataque!");
+          setTimeout(() => {
+            setYourTurn(true);
+            setBattleMessage("Sua vez!");
+          }, 3000);
         }
       }
-
-      // Aqui você pode reabilitar o turno do jogador
-      setYourTurn(true);
-    }, 1000); // 1000 milissegundos (1 segundo) de atraso
+    }, 2000);
   };
 
+  // Função que maneja o clique do botão de ataque do jogador
   const handleClick = (id: string) => {
     setYourTurn(false);
 
@@ -136,26 +181,72 @@ export default function Batalha() {
     );
 
     if (parte && personagemJogavel?.atq) {
-      // Convertendo a probabilidade de string para número
       const probabilidadeAcerto = parseFloat(parte.probacerto);
-
-      // Gerando um número aleatório entre 0 e 1
       const sorteio = Math.random();
 
       if (sorteio <= probabilidadeAcerto) {
         const novoHpAtual = parte.hpatual - personagemJogavel.atq;
-
         parte.hpatual = novoHpAtual > 0 ? novoHpAtual : 0;
-
         atacar(id, novoHpAtual.toString());
+        setBattleMessage(
+          "Você acertou a " +
+            parte.tipoparte +
+            " do inimigo e causou " +
+            personagemJogavel.atq +
+            " de dano!"
+        );
 
-        ataqueInimigo();
+        const novoEstadoPartesInimigo = partesInimigo.map((parte) => {
+          if (parte.idparte.toString() === id) {
+            return { ...parte, hpatual: novoHpAtual };
+          }
+          return parte;
+        });
+
+        const isEnemyNowDead = novoEstadoPartesInimigo.some(
+          (parte) =>
+            (parte.tipoparte === "Cabeça" || parte.tipoparte === "Torso") &&
+            parte.hpatual <= 0
+        );
+
+        setIsEnemyDead(isEnemyNowDead);
+
+        if (isEnemyNowDead) {
+          setBattleMessage("Inimigo Morto");
+        } else {
+          // Espera um segundo antes de simular o ataque do inimigo
+          setTimeout(ataqueInimigo, 3000);
+        }
       } else {
-        console.log("O ataque errou!");
-        ataqueInimigo();
+        setBattleMessage("Você errou o ataque!");
+        setTimeout(ataqueInimigo, 3000);
       }
     }
   };
+
+  useEffect(() => {
+    if (
+      partesInimigo.some(
+        (parte) =>
+          (parte.tipoparte === "Cabeça" || parte.tipoparte === "Torso") &&
+          parte.hpatual <= 0
+      )
+    ) {
+      setIsEnemyDead(true);
+      setYourTurn(false);
+    }
+
+    if (
+      partesPersonagemJogavel.some(
+        (parte) =>
+          (parte.tipoparte === "Cabeça" || parte.tipoparte === "Torso") &&
+          parte.hpatual <= 0
+      )
+    ) {
+      setIsPlayerDead(true);
+      setYourTurn(false);
+    }
+  }, [partesInimigo, partesPersonagemJogavel]);
 
   return (
     <WholePage>
@@ -181,63 +272,92 @@ export default function Batalha() {
 
         <PersonagemContainer>
           <h1>Nome: {inimigo.nome}</h1>
-          {partesInimigo.map((parte, idx) => {
-            return (
-              <div key={idx * 80}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                  }}
-                >
-                  <p
-                    style={{
-                      width: "10em",
-                      height: "5em",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >{`${parte.tipoparte} ${parte.hpatual}`}</p>
-                  <button
-                    style={{ width: "10em", height: "5em" }}
-                    onClick={() => handleClick(parte.idparte.toString())}
-                    disabled={!yourTurn}
-                  >
-                    Atacar
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          <>
+            {isEnemyDead ? (
+              <h1>Inimigo Morto</h1>
+            ) : (
+              <>
+                {partesInimigo.map((parte, idx) => {
+                  return (
+                    <div key={idx * 80}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p
+                          style={{
+                            width: "10em",
+                            height: "5em",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >{`${parte.tipoparte} ${parte.hpatual}`}</p>
+                        <button
+                          style={{ width: "10em", height: "5em" }}
+                          onClick={() => handleClick(parte.idparte.toString())}
+                          disabled={!yourTurn}
+                        >
+                          Atacar
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </>
         </PersonagemContainer>
         <PersonagemContainer>
           <h1>Nome: {personagemJogavel.nome}</h1>
-          {partesPersonagemJogavel.map((parte, idx) => {
-            return (
-              <div key={idx * 2}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                  }}
-                >
-                  <p
-                    style={{
-                      width: "10em",
-                      height: "5em",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >{`${parte.tipoparte} ${parte.hpatual}`}</p>
-                </div>
-              </div>
-            );
-          })}
+          <>
+            {isPlayerDead ? (
+              <h1>Personagem Morto</h1>
+            ) : (
+              <>
+                {partesPersonagemJogavel.map((parte, idx) => {
+                  return (
+                    <div key={idx * 80}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p
+                          style={{
+                            width: "10em",
+                            height: "5em",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >{`${parte.tipoparte} ${parte.hpatual}`}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </>
         </PersonagemContainer>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "10%",
+            position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
+            bottom: 0,
+          }}
+        >
+          <h1>{battleMessage}</h1>
+        </div>
       </Container>
     </WholePage>
   );
