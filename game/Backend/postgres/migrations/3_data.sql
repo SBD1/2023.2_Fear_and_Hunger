@@ -74,9 +74,9 @@ VALUES
 
 -- Primeiro, inserimos um personagem que será jogável
 INSERT INTO
-    personagem (nome, idLocal, tipoP, dinheiro)
+    personagem (nome, idLocal, tipoP, dinheiro, atq)
 VALUES
-    ('Jogador Heroico', 1, 'personagem_jogavel', 1000) RETURNING id_personagem;
+    ('Jogador Heroico', 1, 'personagem_jogavel', 1000, 20) RETURNING id_personagem;
 
 -- Suponha que o ID retornado seja 1, usamos esse ID para inserir na tabela PersonagemJogavel
 INSERT INTO
