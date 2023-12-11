@@ -301,7 +301,11 @@ const Game = () => {
                 top: "5%",
               }}
             >
-              <InimigoModal />
+              <InimigoModal
+                idRegiao={idRegiao}
+                idPersonagemJogavel={idPersonagemJogavel}
+                inimigos={inimigos}
+              />
             </div>
           )}
         </Content>

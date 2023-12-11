@@ -69,3 +69,12 @@ export interface ItemRPG {
   valortotal: number;
   datacompra: string;
 }
+
+export interface IParte {
+  idparte: number;
+  idpersonagem: number;
+  tipoparte: string;
+  hpmax: number;
+  hpatual: number;
+  probacerto: string;
+}

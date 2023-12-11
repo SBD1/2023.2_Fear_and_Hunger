@@ -47,11 +47,29 @@ export const getPersonagensNaoJogaveisPorLocal = async (id_local) => {
   return await getDBConnection(query);
 };
 
+export const getPersonagensNaoJogaveisPorId = async (id_personagem) => {
+  const query = `
+    SELECT pnj.*, p.nome
+    FROM personagem_nao_jogavel pnj
+    JOIN personagem p ON pnj.id_personagem = p.id_personagem
+    WHERE p.id_personagem = ${id_personagem};
+  `;
+  return await getDBConnection(query);
+};
+
 export const movePersonagem = async (id_personagem, id_local) => {
   const query = `
     UPDATE personagem
     SET idLocal = ${id_local}
     WHERE id_personagem = ${id_personagem};
+  `;
+  return await getDBConnection(query);
+};
+
+export const getPartesPersonagem = async (id_personagem) => {
+  const query = `
+    SELECT * FROM parte
+    WHERE idPersonagem = ${id_personagem};
   `;
   return await getDBConnection(query);
 };

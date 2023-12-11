@@ -26,6 +26,7 @@ export const Body = styled.div`
   width: 100%;
   height: 80%;
   justify-content: center;
+  align-items: center;
 
   ul {
     display: flex;
@@ -39,8 +40,8 @@ export const Body = styled.div`
 
   /* Estilo para cada item do inventário */
   li {
-    border: 1px solid #45372E;
-    background-color: #857C6E;
+    border: 1px solid #45372e;
+    background-color: #857c6e;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
@@ -66,4 +67,28 @@ export const Footer = styled.div`
   width: 100%;
   height: 10%;
   justify-content: space-evenly;
+`;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  width: 30%;
+  box-sizing: border-box;
+  color: #f5f5f5;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #1d1a17;
+
+  padding: 2%;
+
+  transition: transform 0.7s ease;
+
+  &:hover {
+    transform: scale(1.025);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  }
 `;

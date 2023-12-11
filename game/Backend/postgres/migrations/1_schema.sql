@@ -29,7 +29,7 @@ CREATE TABLE personagem (
 );
 
 
-CREATE TABLE Parte (
+CREATE TABLE parte (
     idParte SERIAL,
     idPersonagem INTEGER NOT NULL,
     tipoParte VARCHAR(50),

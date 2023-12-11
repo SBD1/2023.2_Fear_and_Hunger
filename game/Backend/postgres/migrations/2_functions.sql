@@ -151,22 +151,22 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Insere duas pernas para o novo personagem
     FOR i IN 1..2 LOOP
-        INSERT INTO Parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
+        INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
         VALUES (NEW.id_personagem, 'Perna', 100, 100, 0.7);
     END LOOP;
     
     -- Insere dois braços para o novo personagem
     FOR i IN 1..2 LOOP
-        INSERT INTO Parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
+        INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
         VALUES (NEW.id_personagem, 'Braço', 100, 100, 0.8);
     END LOOP;
 
     -- Insere um torso para o novo personagem
-    INSERT INTO Parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
+    INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
     VALUES (NEW.id_personagem, 'Torso', 200, 200, 0.5);
     
     -- Insere uma cabeça para o novo personagem
-    INSERT INTO Parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
+    INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
     VALUES (NEW.id_personagem, 'Cabeça', 50, 50, 0.2);
 
     RETURN NEW;

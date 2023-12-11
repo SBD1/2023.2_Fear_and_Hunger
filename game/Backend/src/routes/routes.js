@@ -33,10 +33,17 @@ routes.get(
   PersonagemController.getPersonagensNaoJogaveisPorLocal
 );
 
+routes.get(
+  "/personagem_nao_jogavel/id/:id_personagem",
+  PersonagemController.getPersonagensNaoJogaveisPorId
+);
+
 routes.put(
   "/personagem/move/:id_personagem/:id_local",
   PersonagemController.movePersonagem
 );
+
+routes.get("/partes/:id_personagem", PersonagemController.getPartesPersonagem);
 
 // Rota Regiao
 routes.get("/regiao", RegiaoController.getRegioes);
