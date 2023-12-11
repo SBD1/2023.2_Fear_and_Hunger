@@ -29,6 +29,20 @@ CREATE TABLE personagem (
 );
 
 
+CREATE TABLE Parte (
+    idParte SERIAL,
+    idPersonagem INTEGER NOT NULL,
+    tipoParte VARCHAR(50),
+    hpMax INTEGER,
+    hpAtual INTEGER,
+    probAcerto NUMERIC,
+    PRIMARY KEY (idParte, idPersonagem),
+    FOREIGN KEY (idPersonagem) REFERENCES Personagem (id_personagem)
+    ON DELETE CASCADE
+);
+
+
+
 CREATE TABLE personagem_jogavel (
     id_personagem SERIAL PRIMARY KEY,
     hpAtual INTEGER,
