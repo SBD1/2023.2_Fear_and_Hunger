@@ -7,6 +7,7 @@ import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Personagem from "./pages/Personagem";
 import Regiao from "./pages/Regiao";
+import EndGame from "./pages/EndGame";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -46,6 +47,10 @@ function App() {
     {
       path: "/batalha/:idRegiao/:idPersonagemJogavel/:idInimigo",
       element: <Batalha />,
+    },
+    {
+      path: "/endgame",
+      element: <EndGame />,
     },
   ]);
 

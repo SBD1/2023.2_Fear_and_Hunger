@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { GoArrowLeft } from "react-icons/go";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
 import { IParte, IPersonagem, IPersonagemNaoJogavel } from "../../types";
 import { ArrowLink } from "../Game/styles";
@@ -23,6 +23,8 @@ export default function Batalha() {
   const [partesPersonagemJogavel, setPartesPersonagemJogavel] = useState<
     IParte[]
   >([]);
+
+  const navigator = useNavigate();
 
   const getInimigo = useCallback(async () => {
     const { data } = await api.get(`/personagem_nao_jogavel/id/${idInimigo}`);
@@ -245,8 +247,9 @@ export default function Batalha() {
     ) {
       setIsPlayerDead(true);
       setYourTurn(false);
+      navigator("/endgame");
     }
-  }, [partesInimigo, partesPersonagemJogavel]);
+  }, [navigator, partesInimigo, partesPersonagemJogavel]);
 
   return (
     <WholePage>
