@@ -63,6 +63,22 @@ CREATE TABLE personagem_nao_jogavel (
     -- Se 'tipoPnj' for uma chave estrangeira para outra tabela, você precisará adicionar a chave estrangeira aqui.
 );
 
+
+CREATE TABLE inimigo (
+    id_personagem INTEGER PRIMARY KEY,
+    nivelPerigo INTEGER NOT NULL,
+    recompensa INTEGER NOT NULL,
+    FOREIGN KEY (id_personagem) REFERENCES personagem_nao_jogavel (id_personagem) ON DELETE CASCADE
+);
+
+CREATE TABLE lojista (
+    id_personagem INTEGER PRIMARY KEY,
+    nomeLoja VARCHAR(50) NOT NULL,
+    especialidade VARCHAR(50),
+    FOREIGN KEY (id_personagem) REFERENCES personagem_nao_jogavel (id_personagem) ON DELETE CASCADE
+);
+
+
 -- Assuming 'Item' is an entity that includes 'nome', 'descricao', 'valor', 'peso'
 CREATE TABLE item (
     idItem SERIAL PRIMARY KEY,

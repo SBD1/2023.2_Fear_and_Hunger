@@ -17,26 +17,7 @@ VALUES
         'O bosque que fica ao redor da cidade.',
         FALSE
     );
-    -- (
-    --     'Circo',
-    --     'Um lugar que antes era usado para diversão e entretenimento, mas que atualmente tem um aspecto sinistro e abandonado.',
-    --     TRUE
-    -- ),
-    -- (
-    --     'Truques e mágica Dr. Kefer',
-    --     'Um pequeno edifício de aparência desgastada.',
-    --     FALSE
-    -- ),
-    -- (
-    --     'Livraria',
-    --     'A livraria comercializava todo tipo de livro dos mais variados assuntos.',
-    --     FALSE
-    -- ),
-    -- (
-    --     'Casa do lenhador',
-    --     'A casa do lenhador do vilarejo',
-    --     FALSE
-    -- );
+
 
 INSERT INTO
     Local (idRegiao, nomeL, imgTexto)
@@ -119,29 +100,23 @@ VALUES
         'Cota de Malha'
     );
 
--- Em seguida, inserimos um personagem que não será jogável
+-- Inserir NPCs na tabela personagem
+-- Suponha que os IDs de Local correspondam aos inseridos anteriormente nas tabelas de Região e Local
 INSERT INTO
-    personagem (nome, idLocal, tipoP)
+    personagem (nome, idLocal, tipoP, dinheiro)
 VALUES
-    ('NPC Misterioso', 1, 'personagem_nao_jogavel') RETURNING id_personagem;
+    ('Lojista da Fonte', 1, 'personagem_nao_jogavel', 0),
+    ('Ermitão da Praça', 2, 'personagem_nao_jogavel', 0)
+RETURNING id_personagem;
 
--- Suponha que o ID retornado seja 2, usamos esse ID para inserir na tabela PersonagemNaoJogavel
+-- Inserir detalhes dos NPCs na tabela personagem_nao_jogavel
+-- Suponha que os IDs retornados correspondam aos nomes dos NPCs acima
 INSERT INTO
-    personagem_nao_jogavel (
-        id_personagem,
-        descricao,
-        fala,
-        imgTexto,
-        tipoPnj
-    )
+    personagem_nao_jogavel (id_personagem, descricao, fala, imgTexto, tipoPnj)
 VALUES
-    (
-        2,
-        'Um misterioso Logista que oferece conselhos.',
-        'Olá, aventureiro!',
-        'imagem_do_npc.png',
-        'Lojista'
-    );
+    (2, 'O guardião eterno da fonte, observa e cuida dela.', 'As águas ainda fluem puras...', null, 'Lojista'),
+    (3, 'Uma sombra ameaçadora que assombra os limites da praça. ', 'Encontre seu caminho ou perca-se tentando...', null, 'Inimigo');
+
 
 -- Inserting items into the 'item' table
 INSERT INTO

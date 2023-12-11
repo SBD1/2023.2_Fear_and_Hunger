@@ -42,6 +42,31 @@ FOR EACH ROW EXECUTE FUNCTION check_exclusive_personagem_type();
 
 
 
+CREATE OR REPLACE FUNCTION check_exclusive_pnj_type()
+RETURNS TRIGGER AS $$
+DECLARE
+    count_subcategories INT; -- Contador para o número total de subcategorias associadas
+BEGIN
+    -- Inicializa o contador como zero
+    count_subcategories := 0;
+
+    -- Verifica se o personagem existe na subcategoria Inimigo
+    SELECT COUNT(*) INTO count_subcategories FROM inimigo WHERE id_personagem = NEW.id_personagem;
+    -- Verifica se o personagem existe na subcategoria Lojista e adiciona ao contador
+    SELECT COUNT(*) INTO count_subcategories FROM lojista WHERE id_personagem = NEW.id_personagem + count_subcategories;
+
+    -- Se o contador for maior que 1, então o personagem está em mais de uma subcategoria
+    IF count_subcategories > 1 THEN
+        RAISE EXCEPTION 'Um personagem não pode ser de mais de um tipo de PNJ.';
+    END IF;
+
+    -- Se tudo estiver correto, permite a inserção ou atualização
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
 CREATE OR REPLACE FUNCTION check_exclusive_item_type()
 RETURNS TRIGGER AS $$
 DECLARE
