@@ -1,5 +1,11 @@
 # DDL
 
+### Versionamento
+
+| Versão | Data       | Modificação                                                                              | Autor                               |
+| ------ | ---------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| 0.1    |            | Criação do Documento                                                                     | Matheus                             |
+
 ```
 CREATE TABLE regiao (
   idRegiao SERIAL PRIMARY KEY,
