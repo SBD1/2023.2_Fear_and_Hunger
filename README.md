@@ -109,19 +109,22 @@ Adicionar um servidor PostgreSQL:
 # Apresentações
 [Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
 [Apresentação do Módulo 2](https://www.youtube.com/watch?v=rAxV4Q2LYVc) <br>
+[Apresentação do Módulo 3](https://www.youtube.com/watch?v=vbgUQetyP7w) <br>
 [Apresentação Final](https://youtu.be/mu0X1KlzbUE) <br>
 
 # Entregas
 
+
 - Módulo 1
   - [DER](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/der)
-  - [Dicionário de Dados](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/dicionarioDeDados)
-  - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloRelacional)
-  - [Modelo Entidade Relacionamento](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/modeloEntidadeRelacionamento)
+  - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/MREL)
+  - [Dicionário de Dados](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/DICIO)
+ 
 - Módulo 2
-  - [Normalização](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/docs/modulo_02/normalizacao.md)   
-  - [DDL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DDL.sql)
-  - [DML](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DML.sql)
-  - [DQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/blob/main/sql/DQL.sql)
+  - [Normalização](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_02/normalizacao)   
+  - [DDL](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_02/DDL)
+  - [DML](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_02/DML)
+  - [DQL](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_02/DQL)
   - [Documento Completo SQL](https://github.com/SBD1/2023.2_Fear_and_Hunger/tree/main/pdf)
-  - Algoritmo Relacional
+
+- Módulo 3 
