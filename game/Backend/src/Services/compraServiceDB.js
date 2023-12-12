@@ -1,7 +1,6 @@
 import getDBConnection from "./getDBConnection.js";
 
 export const compraItens = async (idPersonagem, idItem) => {
-  // const query = "'CALL comprarItem($1, $2)', [idPersonagem, idItem]";
   return await getDBConnection("CALL comprarItem($1, $2)", [
     idPersonagem,
     idItem,
@@ -9,9 +8,6 @@ export const compraItens = async (idPersonagem, idItem) => {
 };
 
 export const ItemComprados = async () => {
-  // console.log('teste');
-  // const query = `SELECT * FROM inventario`;
-  // return await getDBConnection(query);
   const query = `
         SELECT i.nome, c.quantidade, c.valorTotal, c.dataCompra
         FROM compra c

@@ -45,6 +45,7 @@ services:
       - ./Backend/src:/usr/src/app/src
   app-vite:
     container_name: frontend_fear_hunger
+    restart: always
     stdin_open: true
     tty: true
     build:
