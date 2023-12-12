@@ -2,7 +2,7 @@
 
 - Módulo 1
   - [DER](./modulo_01/DER.md)
-  - [Modelo Entidade Relacionamento](./modulo_01/MREL.md)
+  - [Modelo Relacional](./modulo_01/MREL.md)
   - [Mapeamento Sistematico](./modulo_03/modelo/modelo00.md)
   - [Dicionário de Dados](./modulo_01/DICIO.md)  
   - [Feedback](./modulo_03/feedback01.md)
