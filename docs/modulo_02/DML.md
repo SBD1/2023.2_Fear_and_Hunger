@@ -1,5 +1,11 @@
 # DML
 
+### Versionamento
+
+| Versão | Data       | Modificação                                                                              | Autor                               |
+| ------ | ---------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| 0.1    | 11/12/2023 | Criação do Documento                                                                     | Gabriela, Matheus                   |
+
 ```
 
 INSERT INTO Alma(nome, descricao) VALUES
