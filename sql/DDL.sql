@@ -48,7 +48,7 @@ CREATE TABLE legivel(
     conteudo TEXT NOT NULL,
     valor int default 0,
     peso int NOT NULL,
-    nome VARCHAR(25) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
     descricao text DEFAULT ''
 );
 
@@ -85,17 +85,23 @@ CREATE TABLE chave(
     descricao text DEFAULT ''
 );
 
+CREATE TABLE alma(
+  nome VARCHAR(30) PRIMARY KEY,
+  descricao TEXT DEFAULT ''
+);
+
 CREATE TABLE personagem(
   idPersonagem SERIAL PRIMARY KEY,
+  alma VARCHAR(30) REFERENCES Alma (nome),
   tipoP VARCHAR(3) NOT NULL
 );
 
 CREATE TABLE personagem_jogavel(
   idPersonagem SERIAL PRIMARY KEY REFERENCES personagem (idPersonagem),
-  acessorio1 SERIAL REFERENCES acessorio (idItem),
-  acessorio2 SERIAL REFERENCES acessorio (idItem),
-  armadura SERIAL REFERENCES armadura (idItem),
-  arma SERIAL REFERENCES arma (idItem),
+  acessorio1 INTEGER NULL REFERENCES acessorio (idItem),
+  acessorio2 INTEGER NULL REFERENCES acessorio (idItem),
+  armadura INTEGER NULL REFERENCES armadura (idItem),
+  arma INTEGER NULL REFERENCES arma (idItem),
   menteAtual INT NOT NULL,
   menteMax INT NOT NULL,
   hpAtual INT NOT NULL,
@@ -144,14 +150,6 @@ CREATE TABLE inimigo(
   atqM INT DEFAULT 0,
   nome TEXT NOT NULL
 );
-
-CREATE TABLE alma(
-  nome VARCHAR(25) PRIMARY KEY,
-  idPersonagem SERIAL REFERENCES personagem_jogavel(idPersonagem),
-  descricao TEXT DEFAULT ''
-);
-
-ALTER TABLE personagem ADD COLUMN alma TEXT REFERENCES alma (nome);
 
 CREATE TABLE parte(
   idParte SERIAL,
