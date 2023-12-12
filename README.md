@@ -114,9 +114,8 @@ Adicionar um servidor PostgreSQL:
 
 # Entregas
 
-
 - Módulo 1
-  - [DER](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/der)
+  - [DER](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/DER)
   - [Modelo Relacional](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/MREL)
   - [Dicionário de Dados](https://sbd1.github.io/2023.2_Fear_and_Hunger/#/./modulo_01/DICIO)
  
