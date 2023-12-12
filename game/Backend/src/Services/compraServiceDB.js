@@ -23,6 +23,7 @@ export const ItemComprados = async () => {
 };
 
 export const putParteAtualizarHP = async (id, hp) => {
-  const query = `UPDATE parte SET hpAtual = ${hp} WHERE idParte = ${id};`;
+  const query = `UPDATE parte SET hpAtual = ${hp} WHERE idParte = ${id};
+  COMMIT;`;
   return await getDBConnection(query);
 };

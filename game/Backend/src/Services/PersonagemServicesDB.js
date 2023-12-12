@@ -73,3 +73,13 @@ export const getPartesPersonagem = async (id_personagem) => {
   `;
   return await getDBConnection(query);
 };
+
+
+export const rewardPersonagem = async (id_personagem) => {
+  const query = `
+    UPDATE inventario
+    SET dinAtual = dinAtual + 100
+    WHERE id_personagem = ${id_personagem};    
+  `;
+  return await getDBConnection(query);
+};

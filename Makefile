@@ -1,5 +1,6 @@
 build:
-		docker-compose -f game/docker-compose.yml up -d	
+		docker-compose -f game/docker-compose.yml up -d
+		cd game/FrontEnd && npm install
 stop:
 		docker-compose -f game/docker-compose.yml stop
 down:
