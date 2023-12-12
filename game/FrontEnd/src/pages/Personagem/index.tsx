@@ -67,14 +67,23 @@ export default function Personagem() {
             {personagensJogaveis?.map((personagem) => {
               return (
                 <RegiaoContainer
-                  onClick={() => handleClick(personagem.id_personagem)}
+                  onClick={() =>
+                    personagem.hpatual > 0
+                      ? handleClick(personagem.id_personagem)
+                      : null
+                  }
                 >
                   <Header>
                     <h2>{personagem.nome}</h2>
                   </Header>
                   <Content>
-                    <p>{`Vida: ${personagem.hpatual}`}</p>
+                    <p>{`Vida: ${personagem.hpatual}/${personagem.hpmax}`}</p>
                     <p>{`Arma: ${personagem.arma}`}</p>
+                    {personagem.hpatual === 0 ? (
+                      <p style={{ color: "red" }}>Morto</p>
+                    ) : (
+                      <p style={{ color: "green" }}>Vivo</p>
+                    )}
                   </Content>
                 </RegiaoContainer>
               );

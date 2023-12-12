@@ -249,7 +249,13 @@ export default function Batalha() {
       setYourTurn(false);
       navigator("/endgame");
     }
-  }, [navigator, partesInimigo, partesPersonagemJogavel]);
+  }, [navigator, partesInimigo, partesPersonagemJogavel, atacar]);
+
+  useEffect(() => {
+    if (isPlayerDead) {
+      navigator("/endgame");
+    }
+  }, [isPlayerDead, navigator]);
 
   return (
     <WholePage>
@@ -302,7 +308,7 @@ export default function Batalha() {
                         <button
                           style={{ width: "10em", height: "5em" }}
                           onClick={() => handleClick(parte.idparte.toString())}
-                          disabled={!yourTurn}
+                          disabled={!yourTurn || parte.hpatual <= 0}
                         >
                           Atacar
                         </button>

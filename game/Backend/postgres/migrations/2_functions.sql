@@ -163,7 +163,7 @@ BEGIN
 
     -- Insere um torso para o novo personagem
     INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
-    VALUES (NEW.id_personagem, 'Torso', 200, 200, 0.5);
+    VALUES (NEW.id_personagem, 'Torso', 150, 150, 0.5);
     
     -- Insere uma cabeça para o novo personagem
     INSERT INTO parte (idPersonagem, tipoParte, hpMax, hpAtual, probAcerto)
@@ -177,3 +177,55 @@ CREATE TRIGGER trigger_criar_partes_personagem
 AFTER INSERT ON Personagem
 FOR EACH ROW
 EXECUTE FUNCTION criar_partes_personagem();
+
+
+CREATE OR REPLACE FUNCTION atualizar_hp_personagem_jogavel()
+RETURNS TRIGGER AS $$
+DECLARE
+    somaHp NUMERIC;
+    somaPeso NUMERIC;
+    hpPonderado NUMERIC;
+    hpCabeça INTEGER;
+    hpTorso INTEGER;
+BEGIN
+    -- Verificar se o hpAtual do torso ou da cabeça é zero
+    SELECT
+        MAX(CASE WHEN tipoParte = 'Cabeça' THEN hpAtual ELSE NULL END),
+        MAX(CASE WHEN tipoParte = 'Torso' THEN hpAtual ELSE NULL END)
+    INTO hpCabeça, hpTorso
+    FROM parte
+    WHERE idPersonagem = NEW.idPersonagem;
+
+    IF hpCabeça = 0 OR hpTorso = 0 THEN
+        -- Se a cabeça ou o torso estiver em 0, definir hpAtual do personagem para 0
+        UPDATE personagem_jogavel SET hpAtual = 0 WHERE id_personagem = NEW.idPersonagem;
+    ELSE
+        -- Calcular a soma ponderada dos hps e dos pesos das partes do corpo
+        SELECT SUM(hpAtual * peso), SUM(peso)
+        INTO somaHp, somaPeso
+        FROM (
+            SELECT hpAtual, CASE
+                WHEN tipoParte IN ('Perna') THEN 2
+                WHEN tipoParte IN ('Braço') THEN 1
+                WHEN tipoParte IN ('Cabeça', 'Torso') THEN 4
+            END as peso
+            FROM parte
+            WHERE idPersonagem = NEW.idPersonagem
+        ) AS subquery;
+
+        -- Calcular a média ponderada do HP
+        hpPonderado := somaHp / somaPeso;
+
+        -- Atualiza hpAtual do personagem jogável com a média ponderada calculada
+        UPDATE personagem_jogavel SET hpAtual = hpPonderado WHERE id_personagem = NEW.idPersonagem;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_atualizar_hp_personagem_jogavel
+AFTER UPDATE ON parte
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_hp_personagem_jogavel();
+

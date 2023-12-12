@@ -27,6 +27,7 @@ export const Body = styled.div`
   height: 80%;
   justify-content: center;
   align-items: center;
+  gap: 1%;
 
   ul {
     display: flex;

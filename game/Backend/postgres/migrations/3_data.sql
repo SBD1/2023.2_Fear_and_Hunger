@@ -16,7 +16,9 @@ VALUES
         'Floresta',
         'O bosque que fica ao redor da cidade.',
         FALSE
-    );
+    ),
+    ('Calabouços de Eldor', 'Os calabouços antigos abaixo da cidade, dizem que são amaldiçoados pelos espíritos dos antigos prisioneiros.', TRUE),
+    ('Torre do Mago', 'Uma torre misteriosa onde um mago poderoso realiza seus estudos e experimentos mágicos.', FALSE);
 
 
 INSERT INTO
@@ -70,13 +72,26 @@ VALUES
         'Interior',
         'À medida que se adentra mais profundamente, a trilha se torna mais sinuosa e menos definida, levando os visitantes a um labirinto de sombras e incertezas. A floresta parece guardar segredos antigos e histórias esquecidas, onde cada sussurro do vento e movimento furtivo nas sombras pode ser o prenúncio de horrores ocultos. Neste cenário, a entrada da floresta é mais do que um simples começo de trilha; é um convite ao coração de um pesadelo natural, onde o medo e o fascínio caminham lado a lado.'
     );
+
+
+INSERT INTO local (idRegiao, nomeL, imgTexto)
+VALUES
+    (4, 'Cela Subterrânea', 'Uma pequena cela dentro dos calabouços, escurecida e úmida, com marcas de luta nas paredes.'),
+    (4, 'Laboratório Secreto', 'O laboratório secreto do mago, cheio de pergaminhos, poções e instrumentos mágicos.');
+
     
 
 -- Primeiro, inserimos um personagem que será jogável
 INSERT INTO
     personagem (nome, idLocal, tipoP, dinheiro, atq)
 VALUES
-    ('Jogador Heroico', 1, 'personagem_jogavel', 1000, 20) RETURNING id_personagem;
+    ('Jogador Heroico', 1, 'personagem_jogavel', 800, 30) RETURNING id_personagem;
+
+
+INSERT INTO personagem (nome, idLocal, tipoP, dinheiro, atq, agilidade, defesaM, defesa)
+VALUES
+    ('Cavaleiro Errante', 1, 'personagem_jogavel', 1000, 30, 15, 10, 40),
+    ('Mago Ancestral', 1, 'personagem_jogavel', 1500, 40, 20, 30, 50) RETURNING id_personagem;
 
 -- Suponha que o ID retornado seja 1, usamos esse ID para inserir na tabela PersonagemJogavel
 INSERT INTO
@@ -100,13 +115,22 @@ VALUES
         'Cota de Malha'
     );
 
+INSERT INTO personagem_jogavel (id_personagem, hpAtual, hpMax, menteAtual, menteMax, arma, armadura)
+VALUES
+    (2, 100, 100, 30, 30, 'Espada Bastarda', 'Armadura Completa'),
+    (3, 100, 100, 100, 100, 'Cajado de Cristal', 'Túnica de Seda');
+
 -- Inserir NPCs na tabela personagem
 -- Suponha que os IDs de Local correspondam aos inseridos anteriormente nas tabelas de Região e Local
 INSERT INTO
     personagem (nome, idLocal, tipoP, dinheiro)
 VALUES
     ('Lojista da Fonte', 1, 'personagem_nao_jogavel', 0),
-    ('Ermitão da Praça', 2, 'personagem_nao_jogavel', 0)
+    ('Ermitão da Praça', 2, 'personagem_nao_jogavel', 0),
+    ('Bandido da Floresta', 3, 'personagem_nao_jogavel', 0),
+    ('Espectro do Cemitério', 3, 'personagem_nao_jogavel', 0),
+    ('Golem de Pedra', 4, 'personagem_nao_jogavel', 0),
+    ('Feiticeira Sombria', 4, 'personagem_nao_jogavel', 0)
 RETURNING id_personagem;
 
 -- Inserir detalhes dos NPCs na tabela personagem_nao_jogavel
@@ -114,8 +138,12 @@ RETURNING id_personagem;
 INSERT INTO
     personagem_nao_jogavel (id_personagem, descricao, fala, imgTexto, tipoPnj)
 VALUES
-    (2, 'O guardião eterno da fonte, observa e cuida dela.', 'As águas ainda fluem puras...', null, 'Lojista'),
-    (3, 'Uma sombra ameaçadora que assombra os limites da praça. ', 'Encontre seu caminho ou perca-se tentando...', null, 'Inimigo');
+    (4, 'O guardião eterno da fonte, observa e cuida dela.', 'As águas ainda fluem puras...', null, 'Lojista'),
+    (5, 'Uma sombra ameaçadora que assombra os limites da praça. ', 'Encontre seu caminho ou perca-se tentando...', null, 'Inimigo'),
+    (6, 'Um bandido que assalta viajantes na floresta.', 'Isso é um assalto! Passa tudo!', null, 'Inimigo'),
+    (7, 'Uma alma penada que assombra o cemitério local.', 'Oooooooh... Deixe-me descansar!', null, 'Inimigo'),
+    (8, 'Uma criatura mágica feita de pedra e terra.', '... ... ...', null, 'Inimigo'),
+    (9, 'Uma feiticeira que pratica artes obscuras.', 'Você não sabe com o que está lidando!', null, 'Inimigo');
 
 
 -- Inserting items into the 'item' table
