@@ -21,6 +21,9 @@ routes.get(
   PersonagemController.getPersonagensById
 );
 
+// Rota para recompensa
+routes.put("/personagem/reward/:id_personagem", PersonagemController.rewardPersonagem);
+
 routes.get("/personagem_jogavel", PersonagemController.getPersonagensJogaveis);
 
 routes.get(
@@ -65,5 +68,7 @@ routes.get("/item", ItensController.getItens);
 // Rota para compra de item
 routes.post("/comprarItem/:idPersonagem/:idItem", CompraController.ComprarItem);
 routes.get("/comprarItem/inventario", CompraController.ItemComprados);
+
+
 
 export default routes;
