@@ -1,5 +1,11 @@
 # Normalizacao
 
+### Versionamento
+
+| Versão | Data       | Modificação                                                                              | Autor                               |
+| ------ | ---------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| 0.1    | 30/10/2023 | Criação do Documento                                                                     | Gabriela, Matheus                   |
+
 ## Primeira Forma Normal
 
 |                 |                    |  
