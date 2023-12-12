@@ -1,5 +1,11 @@
 ## Mapeamento sistemático da modelagem
 
+### Versionamento
+
+| Versão | Data       | Modificação                                                                              | Autor                               |
+| ------ | ---------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| 0.1    | 28/11/2023 | Criação do Documento                                                                     | Gabriela, Matheus                   |
+
 Este documento visa auxiliar as nossas correções e feedbacks do professor, além de rastrear as decisões tomadas pela equipe. 
 
 Partes fragmentadas do nosso Diagrama Entidade Relacionamento (DER) e suas respectivas modelagens no Modelo Relacional são mostradas uma a uma, seguindo a ordem de passos do mapeamento do slide abaixo, visto em sala de aula. 
@@ -236,24 +242,31 @@ Partes fragmentadas do nosso Diagrama Entidade Relacionamento (DER) e suas respe
 
 ### Mapear todos os conjuntos de relacionamento (CR) de cardinalidade 1:1
 
-1. Equipa?
+<details>
+<summary>Relacionamento: Personagem jogável Equipa Instância item</summary>
+</details>
 
 ### Mapear todos os conjuntos de relacionamento (CR) de cardinalidade 1:N
 
 <details>
 <summary>Relacionamento: Região contém Local</summary>
+</details>
 
 <details>
 <summary>Relacionamento: Local contém Personagem</summary>
+</details>
 
 <details>
 <summary>Relacionamento: Local contém “Instância Item”</summary>
+</details>
 
 <details>
 <summary>Relacionamento: Personagem possui Parte</summary>
+</details>
 
 <details>
 <summary>Relacionamento: Personagem possui Alma</summary>
+</details>
 
 <details>
 <summary>Relacionamento: “Personagem Não Jogável” Armazena “Instância Item”</summary>
