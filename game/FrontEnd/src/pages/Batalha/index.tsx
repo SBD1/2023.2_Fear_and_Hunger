@@ -96,6 +96,17 @@ export default function Batalha() {
     }
   }, []);
 
+  const recompensar = useCallback(async () => {
+    try {
+      const { data } = await api.put(
+        `/personagem/reward/${idPersonagemJogavel}`
+      );
+      console.log("Recompensado", data);
+    } catch (error) {
+      console.error("Erro ao recompensar:", error);
+    }
+  }, [idPersonagemJogavel]);
+
   const [isEnemyDead, setIsEnemyDead] = useState<boolean>(false);
   const [isPlayerDead, setIsPlayerDead] = useState<boolean>(false);
 
@@ -215,6 +226,12 @@ export default function Batalha() {
 
         if (isEnemyNowDead) {
           setBattleMessage("Inimigo Morto");
+          recompensar();
+          setTimeout(() => {
+            setBattleMessage(
+              "Você venceu a batalha! e ganhou 100 de dinheiro!"
+            );
+          }, 3000);
         } else {
           // Espera um segundo antes de simular o ataque do inimigo
           setTimeout(ataqueInimigo, 3000);
@@ -256,6 +273,12 @@ export default function Batalha() {
       navigator("/endgame");
     }
   }, [isPlayerDead, navigator]);
+
+  useEffect(() => {
+    if (isEnemyDead) {
+      setBattleMessage("Inimigo Morto");
+    }
+  }, [idPersonagemJogavel, isEnemyDead, navigator]);
 
   return (
     <WholePage>
