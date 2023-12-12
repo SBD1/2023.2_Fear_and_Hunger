@@ -109,6 +109,7 @@ Adicionar um servidor PostgreSQL:
 # Apresentações
 [Apresentação do Módulo 1](https://youtu.be/hq5K7pO5bPs) <br>
 [Apresentação do Módulo 2](https://www.youtube.com/watch?v=rAxV4Q2LYVc) <br>
+[Apresentação Final](https://youtu.be/mu0X1KlzbUE) <br>
 
 # Entregas
 
